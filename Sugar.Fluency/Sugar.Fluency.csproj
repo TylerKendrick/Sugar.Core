@@ -47,6 +47,7 @@
     <Compile Include="AndComparableExpression.cs" />
     <Compile Include="ComparableExpression.cs" />
     <Compile Include="ConditionalExpression.cs" />
+    <Compile Include="Is.Not.cs" />
     <Compile Include="Linq\Enumerable.extensions.cs" />
     <Compile Include="Fluent.cs" />
     <Compile Include="Is.cs" />
