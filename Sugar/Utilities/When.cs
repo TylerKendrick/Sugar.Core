@@ -1,11 +1,12 @@
 ﻿using System;
+using Sugar.Utilities;
 
 namespace Sugar
 {
     /// <summary>
     /// Used to provide fluent conditional invocations.
     /// </summary>
-    public class When
+    public class When : IBlock
     {
         private readonly Func<bool> _predicate;
         private readonly Action _action;
@@ -30,58 +31,28 @@ namespace Sugar
         /// <returns>When the predicate is true, it returns the original action, otherwise, it returns the "other" provided parameter.</returns>
         public Otherwise Otherwise(Action other)
         {
-            return _otherwise = new Otherwise(_action, other, _predicate);
+            return _otherwise = new Otherwise(_action, other, () => !_predicate());
         }
 
-        public void Raise()
+        public IResult Raise()
         {
-            Action self = this;
-            self();
+            var success = _predicate();
+
+            if (success)
+            {
+                _action();
+            }
+            else if (_otherwise != null)
+            {
+                _otherwise.Raise();
+            }
+
+            return new Result(success);
         }
 
         public static implicit operator Action(When operand)
         {
-            return operand._otherwise == null
-                ? () =>
-                {
-                    if (operand._predicate())
-                    {
-                        operand._action();
-                    }
-                }
-                : (Action)operand._otherwise;
-        }
-    }
-
-    public class Otherwise
-    {
-        private readonly Action _action;
-        private readonly Action _other;
-        private readonly Func<bool> _predicate;
-
-        public Otherwise(Action action, Action other, Func<bool> predicate)
-        {
-            _action = action;
-            _other = other;
-            _predicate = predicate;
-        }
-
-        public When When(Func<bool> predicate)
-        {
-            return new When(this, predicate);
-        }
-
-        public void Raise()
-        {
-            Action self = this;
-            self();
-        }
-
-        public static implicit operator Action(Otherwise operand)
-        {
-            return operand._predicate()
-                ? operand._action
-                : operand._other;
+            return () => operand.Raise();
         }
     }
 }

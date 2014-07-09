@@ -1,4 +1,5 @@
 ﻿using System;
+using Sugar.Utilities;
 
 namespace Sugar
 {
@@ -21,6 +22,11 @@ namespace Sugar
         public static Looper Loop(this Action self)
         {
             return new Looper(self);
+        }
+
+        public static IExecutionBlock Try(this Action self)
+        {
+            return new ExecutionBlock(self);
         }
     }
 }

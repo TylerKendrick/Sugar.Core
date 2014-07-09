@@ -6,14 +6,14 @@ namespace Sugar
 {
     public static class ObjectExtensions
     {
-        public static T Cast<T>(this object self)
+        public static T Cast<T>(this object self, T fallbackValue = default(T))
         {
-            return (T) self;
+            return self is T ? (T)self : fallbackValue;
         }
 
-        public static TOut ConvertTo<TOut>(this object self)
+        public static TOut ConvertTo<TOut>(this object self, TOut fallbackValue = default(TOut))
         {
-            return Convert.ChangeType(self, typeof (TOut)).Cast<TOut>();
+            return Convert.ChangeType(self, typeof (TOut)).Cast(fallbackValue);
         }
 
         public static void Require<T>(this T self, Func<T, bool> predicate)

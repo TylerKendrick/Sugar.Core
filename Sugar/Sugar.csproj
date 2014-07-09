@@ -56,11 +56,13 @@
     <Compile Include="Double.extensions.cs" />
     <Compile Include="Enum.extensions.cs" />
     <Compile Include="EventHandler.extensions.cs" />
+    <Compile Include="Utilities\ExecutionBlock.cs" />
     <Compile Include="Func.extensions.cs" />
     <Compile Include="GC.extensions.cs" />
     <Compile Include="Globalization\CultureInfo.extensions.cs" />
     <Compile Include="Globalization\Number.extensions.cs" />
     <Compile Include="Globalization\String.extensions.cs" />
+    <Compile Include="IExecutionBlock.cs" />
     <Compile Include="Int.extensions.cs" />
     <Compile Include="IO\Stream.extensions.cs" />
     <Compile Include="IRange.cs" />
@@ -69,6 +71,8 @@
     <Compile Include="Linq\Enumerable.extensions.cs" />
     <Compile Include="Linq\Enumerable.generic.extensions.cs" />
     <Compile Include="Loop.extensions.cs" />
+    <Compile Include="Utilities\IBlock.cs" />
+    <Compile Include="Utilities\IResult.cs" />
     <Compile Include="Utilities\Looper.cs" />
     <Compile Include="Math.extensions.cs" />
     <Compile Include="Object.extensions.cs" />
@@ -94,7 +98,9 @@
     <Compile Include="Struct.extensions.cs" />
     <Compile Include="Utilities\Comparer.cs" />
     <Compile Include="Utilities\Error.cs" />
+    <Compile Include="Utilities\Otherwise.cs" />
     <Compile Include="Utilities\Range.cs" />
+    <Compile Include="Utilities\Result.cs" />
     <Compile Include="Utilities\When.cs" />
     <Compile Include="Yield.cs" />
   </ItemGroup>
