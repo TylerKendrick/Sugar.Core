@@ -7,28 +7,34 @@ namespace Sugar
     /// <summary>
     /// Provides a new instance of a <see cref="ConditionalExpression{T}"/> for expressions common to all object types.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class ComparableExpression<T>
+    public class ComparableExpression<T> : 
+        ComparableExpression<T, ConditionalExpression<T>>, 
+        IComparableExpression<T>
     {
-        protected readonly T Context;
-        protected readonly Func<bool, bool> Evaluate;
-        private readonly Lazy<ConditionalExpression<T>> _default;
-
-        /// <summary>
-        /// Returns an expression that evaluates as true if the context provided for the condition is equal to <code>default(T)</code>.
-        /// </summary>
-        public ConditionalExpression<T> Default { get { return _default.Value; } } 
-
         /// <summary>
         /// Uses a specified context and predicate to provide context and offset the evaluation of proceeding expressions.
         /// </summary>
         /// <param name="context">The object context for evaluation.</param>
         /// <param name="evaluate">The offset predicate.  Returns an identity function (x => x) if null.</param>
-        public ComparableExpression(T context, Func<bool, bool> evaluate = null)
+        public ComparableExpression(T context, Func<bool, bool> evaluate = null) 
+            : base(context, evaluate)
         {
-            Context = context;
-            Evaluate = evaluate ?? (x => x);
-            _default = new Lazy<ConditionalExpression<T>>(() => new ConditionalExpression<T>(Context, HandleIsDefault()));
+        }
+
+        /// <summary>
+        /// Generates a new instance of <see cref="ConditionalExpression{T}"/> for use by subsequent expressions.
+        /// </summary>
+        protected override ConditionalExpression<T> GetDefaultExpression()
+        {
+            return new ConditionalExpression<T>(Context, HandleIsDefault());
+        }
+
+        /// <summary>
+        /// Generates a new instance of <see cref="ConditionalExpression{T}"/> for use by subsequent expressions.
+        /// </summary>
+        protected override ConditionalExpression<T> GetConditionalExpression(bool predicate)
+        {
+            return new ConditionalExpression<T>(Context, predicate);
         }
 
         private bool HandleIsDefault()
@@ -36,77 +42,115 @@ namespace Sugar
             var isEqual = RuntimeHelpers.Equals(Context, default(T));
             return Evaluate(isEqual);
         }
+    }
 
+    /// <summary>
+    /// Provides a new instance of a <see cref="ConditionalExpression{T}"/> for expressions common to all object types.
+    /// </summary>
+    public abstract class ComparableExpression<T, TConditional> : IComparableExpression<T, TConditional> 
+        where TConditional : IConditionalExpression<T>
+    {
+        protected readonly T Context;
+        protected readonly Func<bool, bool> Evaluate;
+        private readonly Lazy<TConditional> _default;
+
+        /// <summary>
+        /// Returns an expression that evaluates as true if the context provided for the condition is equal to <code>default(T)</code>.
+        /// </summary>
+        public TConditional Default { get { return _default.Value; } } 
+
+        /// <summary>
+        /// Uses a specified context and predicate to provide context and offset the evaluation of proceeding expressions.
+        /// </summary>
+        /// <param name="context">The object context for evaluation.</param>
+        /// <param name="evaluate">The offset predicate.  Returns an identity function (x => x) if null.</param>
+        protected internal ComparableExpression(T context, Func<bool, bool> evaluate = null)
+        {
+            Context = context;
+            Evaluate = evaluate ?? (x => x);
+            _default = new Lazy<TConditional>(GetDefaultExpression);
+        }
+
+        /// <summary>
+        /// Generates a new instance of <see cref="ConditionalExpression{T}"/> for use by subsequent expressions.
+        /// </summary>
+        protected abstract TConditional GetDefaultExpression();
+
+        /// <summary>
+        /// Generates a new instance of <see cref="ConditionalExpression{T}"/> for use by subsequent expressions.
+        /// </summary>
+        protected abstract TConditional GetConditionalExpression(bool predicate);
+        
         /// <summary>
         /// Uses an <see cref="IEqualityComparer{T}"/> to compare object values.
         /// </summary>
-        public ConditionalExpression<T> EqualTo(T comparable, IEqualityComparer<T> comparer = null)
+        public TConditional EqualTo(T comparable, IEqualityComparer<T> comparer = null)
         {
             comparer = comparer ?? EqualityComparer<T>.Default;
             var result = comparer.Equals(Context, comparable);
-            return new ConditionalExpression<T>(Context, Evaluate(result));
+            return GetConditionalExpression(Evaluate(result));
         }
 
         /// <summary>
         /// Uses an <see cref="IComparer{T}"/> to determine if <paramref name="comparable"/> is equivalent to the wrapped object.
         /// </summary>
-        public ConditionalExpression<T> SameAs(T comparable, IComparer<T> comparer = null)
+        public TConditional SameAs(T comparable, IComparer<T> comparer = null)
         {
             comparer = comparer ?? Comparer<T>.Default;
             var result = comparer.Compare(Context, comparable) == 0;
-            return new ConditionalExpression<T>(Context, Evaluate(result));
+            return GetConditionalExpression(Evaluate(result));
         }
 
         /// <summary>
         /// Uses an <see cref="IComparer{T}"/> to determine if the wrapped object is greater than <paramref name="comparable"/>.
         /// </summary>
-        public ConditionalExpression<T> GreaterThan(T comparable, IComparer<T> comparer = null)
+        public TConditional GreaterThan(T comparable, IComparer<T> comparer = null)
         {
             comparer = comparer ?? Comparer<T>.Default;
             var result = comparer.Compare(Context, comparable) > 0;
-            return new ConditionalExpression<T>(Context, Evaluate(result));
+            return GetConditionalExpression(Evaluate(result));
         }
 
         /// <summary>
         /// Uses an <see cref="IComparer{T}"/> to determine if the wrapped object is less than <paramref name="comparable"/>.
         /// </summary>
-        public ConditionalExpression<T> LessThan(T comparable, IComparer<T> comparer = null)
+        public TConditional LessThan(T comparable, IComparer<T> comparer = null)
         {
             comparer = comparer ?? Comparer<T>.Default;
             var result = comparer.Compare(Context, comparable) < 0;
-            return new ConditionalExpression<T>(Context, Evaluate(result));
+            return GetConditionalExpression(Evaluate(result));
         }
 
         /// <summary>
         /// Uses an <see cref="IComparer{T}"/> to determine if the wrapped object is within a specified range.
         /// </summary>
-        public ConditionalExpression<T> Between(T start, T end, IComparer<T> comparer = null)
+        public TConditional Between(T start, T end, IComparer<T> comparer = null)
         {
             comparer = comparer ?? Comparer<T>.Default;
             //The relation between start and end could be a negative range.
             //In this case, just make sure that the compare results (when added) show no difference.
             var result = comparer.Compare(Context, start) + comparer.Compare(Context, end) == 0;
-            return new ConditionalExpression<T>(Context, Evaluate(result));
+            return GetConditionalExpression(Evaluate(result));
         }
 
         /// <summary>
         /// Uses an <see cref="IComparer{T}"/> to determine if the wrapped object is greater than or equal to <paramref name="comparable"/>.
         /// </summary>
-        public ConditionalExpression<T> AtLeast(T comparable, IComparer<T> comparer = null)
+        public TConditional AtLeast(T comparable, IComparer<T> comparer = null)
         {
             comparer = comparer ?? Comparer<T>.Default;
             var result = comparer.Compare(Context, comparable) >= 0;
-            return new ConditionalExpression<T>(Context, Evaluate(result));
+            return GetConditionalExpression(Evaluate(result));
         }
 
         /// <summary>
         /// Uses an <see cref="IComparer{T}"/> to determine if the wrapped object is less than or equal to <paramref name="comparable"/>.
         /// </summary>
-        public ConditionalExpression<T> AtMost(T comparable, IComparer<T> comparer = null)
+        public TConditional AtMost(T comparable, IComparer<T> comparer = null)
         {
             comparer = comparer ?? Comparer<T>.Default;
             var result = comparer.Compare(Context, comparable) <= 0;
-            return new ConditionalExpression<T>(Context, Evaluate(result));
+            return GetConditionalExpression(Evaluate(result));
         }
     }
 }

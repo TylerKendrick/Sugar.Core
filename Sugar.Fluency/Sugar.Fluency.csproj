@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Sugar.Fluency.XML</DocumentationFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,6 +48,16 @@
     <Compile Include="AndComparableExpression.cs" />
     <Compile Include="ComparableExpression.cs" />
     <Compile Include="ConditionalExpression.cs" />
+    <Compile Include="EnumerableComparableExpression.cs" />
+    <Compile Include="EnumerableConditionalExpression.cs" />
+    <Compile Include="EnumerableIsComparableExpression.cs" />
+    <Compile Include="EnumerableIt.cs" />
+    <Compile Include="IComparableExpression.cs" />
+    <Compile Include="IConditionalExpression.cs" />
+    <Compile Include="IEnumerableComparableExpression.cs" />
+    <Compile Include="IIsComparableExpression.cs" />
+    <Compile Include="IIt.cs" />
+    <Compile Include="ILogicalComparableExpression.cs" />
     <Compile Include="Is.Not.cs" />
     <Compile Include="Linq\Enumerable.extensions.cs" />
     <Compile Include="Fluent.cs" />
@@ -57,6 +68,10 @@
     <Compile Include="NotComparableExpression.cs" />
     <Compile Include="OrComparableExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringComparableExpression.cs" />
+    <Compile Include="StringConditionalExpression.cs" />
+    <Compile Include="StringIsComparableExpression.cs" />
+    <Compile Include="StringIt.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

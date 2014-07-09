@@ -5,7 +5,7 @@ namespace Sugar
     /// <summary>
     /// Provides an <see cref="IsComparableExpression{T}"/> for access to the <see cref="NotComparableExpression{T}"/> property.
     /// </summary>
-    public abstract class LogicalComparableExpression<T> : ComparableExpression<T>
+    public abstract class LogicalComparableExpression<T> : ComparableExpression<T>, ILogicalComparableExpression<T>
     {
         private readonly Lazy<IsComparableExpression<T>> _isExpression;
 
@@ -17,10 +17,11 @@ namespace Sugar
         /// <summary>
         /// Used to create a new instance of an <see cref="IsComparableExpression{T}"/> object.
         /// </summary>
-        protected LogicalComparableExpression(T context, Func<bool, bool> evaluate)
+        protected internal LogicalComparableExpression(T context, Func<bool, bool> evaluate)
             : base(context, evaluate)
         {
-            _isExpression = new Lazy<IsComparableExpression<T>>(() => new IsComparableExpression<T>(context));
+            _isExpression = new Lazy<IsComparableExpression<T>>(() => 
+                new IsComparableExpression<T>(context));
         }
     }
 }

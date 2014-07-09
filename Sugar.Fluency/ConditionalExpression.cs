@@ -5,36 +5,93 @@ namespace Sugar
     /// <summary>
     /// Provides predicate comparable expressions for fluent evaluation.
     /// </summary>
-    /// <typeparam name="T">The kind of object being used for evaluation.</typeparam>
-    public class ConditionalExpression<T>
+    public abstract class ConditionalExpression<T, TComparable, TLogical> : IConditionalExpression<T, TComparable, TLogical> 
+        where TComparable : IComparableExpression<T> 
+        where TLogical : ILogicalComparableExpression<T>, TComparable
     {
-        private readonly bool? _offset;
-        private readonly Lazy<NotComparableExpression<T>> _not;
-        private readonly Lazy<AndComparableExpression<T>> _and;
-        private readonly Lazy<OrComparableExpression<T>> _or;
+        protected readonly bool? Offset;
+        private readonly Lazy<TComparable> _not;
+        private readonly Lazy<TLogical> _and;
+        private readonly Lazy<TLogical> _or;
 
         /// <summary>
         /// Negates the preceeding comparable expressions during evaluation.
         /// </summary>
-        public NotComparableExpression<T> Not { get { return _not.Value; } }
+        public TComparable Not { get { return _not.Value; } }
+
         /// <summary>
         /// Compounds the preceeding comparable expressions during evaluation.
         /// </summary>
-        public AndComparableExpression<T> And { get { return _and.Value; } }
+        public TLogical And { get { return _and.Value; } }
+
         /// <summary>
         /// Substitutes preceeding comparables epressions that evaluate to false.
         /// </summary>
-        public OrComparableExpression<T> Or { get { return _or.Value; } }
+        public TLogical Or { get { return _or.Value; } }
 
         /// <summary>
         /// Optionally offsets the proceeding comparable expressions with a seed value from <paramref name="offset"/>.
         /// </summary>
-        public ConditionalExpression(T handle, bool? offset = null)
+        internal protected ConditionalExpression(T handle, bool? offset = null)
         {
-            _offset = offset;
-            _not = new Lazy<NotComparableExpression<T>>(() => new NotComparableExpression<T>(handle));
-            _and = new Lazy<AndComparableExpression<T>>(() => new AndComparableExpression<T>(handle, (!offset.HasValue || offset.Value)));
-            _or = new Lazy<OrComparableExpression<T>>(() => new OrComparableExpression<T>(handle, (offset.HasValue && offset.Value)));
+            Offset = offset;
+            _not = new Lazy<TComparable>(() => CreateNotExpression(handle, offset));
+            _and = new Lazy<TLogical>(() => CreateAndExpression(handle, offset));
+            _or = new Lazy<TLogical>(() => CreateOrExpression(handle, offset));
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="OrComparableExpression{T}"/>.
+        /// </summary>
+        protected abstract TLogical CreateOrExpression(T handle, bool? offset);
+
+        /// <summary>
+        /// Creates an instance of <see cref="AndComparableExpression{T}"/>.
+        /// </summary>
+        protected abstract TLogical CreateAndExpression(T handle, bool? offset);
+
+        /// <summary>
+        /// Creates an instance of <see cref="NotComparableExpression{T}"/>.
+        /// </summary>
+        protected abstract TComparable CreateNotExpression(T handle, bool? offset);
+    }
+
+    /// <summary>
+    /// Provides predicate comparable expressions for fluent evaluation.
+    /// </summary>
+    /// <typeparam name="T">The kind of object being used for evaluation.</typeparam>
+    public class ConditionalExpression<T> : ConditionalExpression<T, ComparableExpression<T>, LogicalComparableExpression<T>>, IConditionalExpression<T>
+    {
+        /// <summary>
+        /// Optionally offsets the proceeding comparable expressions with a seed value from <paramref name="offset"/>.
+        /// </summary>
+        public ConditionalExpression(T handle, bool? offset = null)
+            : base(handle, offset)
+        {
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="OrComparableExpression{T}"/>.
+        /// </summary>
+        protected sealed override LogicalComparableExpression<T> CreateOrExpression(T handle, bool? offset)
+        {
+            return new OrComparableExpression<T>(handle, (offset.HasValue && offset.Value));
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="AndComparableExpression{T}"/>.
+        /// </summary>
+        protected override LogicalComparableExpression<T> CreateAndExpression(T handle, bool? offset)
+        {
+            return new AndComparableExpression<T>(handle, (!offset.HasValue || offset.Value));
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="NotComparableExpression{T}"/>.
+        /// </summary>
+        protected override ComparableExpression<T> CreateNotExpression(T handle, bool? offset)
+        {
+            return new NotComparableExpression<T>(handle);
         }
 
         /// <summary>
@@ -42,7 +99,7 @@ namespace Sugar
         /// </summary>
         public static implicit operator bool(ConditionalExpression<T> handle)
         {
-            var result = handle._offset;
+            var result = handle.Offset;
             return result.HasValue && result.Value;
         }
 

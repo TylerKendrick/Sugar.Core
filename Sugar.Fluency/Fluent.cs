@@ -24,5 +24,14 @@ namespace Sugar
         {
             return predicate(It(context));
         }
+
+        /// <summary>
+        /// Returns a new instance of <see cref="StringIt"/> that wraps the provided context as a fluent expression.
+        /// </summary>
+        /// <param name="handle">The specified string to wrap for evluation of fluent expressions.</param>
+        public static StringIt String(string handle)
+        {
+            return new StringIt(handle);
+        }
     }
 }

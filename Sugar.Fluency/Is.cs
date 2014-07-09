@@ -127,11 +127,33 @@ namespace Sugar
         /// </summary>
         /// <typeparam name="T">The type to use for comparison.</typeparam>
         /// <param name="min">The minimum expected value.</param>
+        /// <returns>Returns a function for evaluating the expression against the specified values.</returns>
+        public static Func<It<T>, ConditionalExpression<T>> AtLeast<T>(T min)
+        {
+            return it => it.Is.AtLeast(min);
+        }
+
+        /// <summary>
+        /// Determines sort order between comparable objects.
+        /// </summary>
+        /// <typeparam name="T">The type to use for comparison.</typeparam>
+        /// <param name="min">The minimum expected value.</param>
         /// <param name="comparer">A custom comparer used when evaluating the expression.</param>
         /// <returns>Returns a function for evaluating the expression against the specified values.</returns>
         public static Func<It<T>, ConditionalExpression<T>> AtLeast<T>(T min, IComparer<T> comparer)
         {
             return it => it.Is.AtLeast(min, comparer);
+        }
+
+        /// <summary>
+        /// Determines sort order between comparable objects.
+        /// </summary>
+        /// <typeparam name="T">The type to use for comparison.</typeparam>
+        /// <param name="target">The target value expected to be of matching sort order.</param>
+        /// <returns>Returns a function for evaluating the expression against the specified values.</returns>
+        public static Func<It<T>, ConditionalExpression<T>> SameAs<T>(T target)
+        {
+            return it => it.Is.SameAs(target);
         }
 
         /// <summary>
