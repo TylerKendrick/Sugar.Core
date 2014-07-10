@@ -3,16 +3,32 @@ using System.Text.RegularExpressions;
 
 namespace Sugar
 {
-    public class StringComparableExpression : LogicalComparableExpression<string>
+    public class StringComparableExpression : LogicalComparableExpression<string>, IStringComparableExpression
     {
         private readonly Lazy<StringConditionalExpression> _empty;
         private readonly Lazy<StringConditionalExpression> _null;
         private readonly Lazy<StringConditionalExpression> _whitespace;
         private readonly Lazy<StringConditionalExpression> _uri;
-        public StringConditionalExpression Empty { get { return _empty.Value; } }
-        public StringConditionalExpression Null { get { return _null.Value; } }
-        public StringConditionalExpression Whitespace { get { return _whitespace.Value; } }
-        public StringConditionalExpression Uri { get { return _uri.Value; } }
+
+        public StringConditionalExpression Empty()
+        {
+            return _empty.Value;
+        }
+
+        public StringConditionalExpression Null()
+        {
+            return _null.Value;
+        }
+
+        public StringConditionalExpression Whitespace()
+        {
+            return _whitespace.Value;
+        }
+
+        public StringConditionalExpression Uri()
+        {
+            return _uri.Value;
+        }
 
         public StringComparableExpression(string context, Func<bool, bool> evaluate = null)
             : base(context, evaluate)

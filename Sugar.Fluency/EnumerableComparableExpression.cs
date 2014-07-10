@@ -18,8 +18,11 @@ namespace Sugar
         /// <summary>
         /// Provides a fluent comparison to determine if the wrapped collection is empty.
         /// </summary>
-        public EnumerableConditionalExpression<TItem, TCollection> Empty { get { return _empty.Value; } }
-        
+        public EnumerableConditionalExpression<TItem, TCollection> Empty()
+        {
+            return _empty.Value;
+        }
+
         /// <summary>
         /// Wraps the collection in a comparable expression.
         /// </summary>

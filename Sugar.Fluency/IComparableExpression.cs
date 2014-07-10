@@ -11,7 +11,7 @@ namespace Sugar
         /// <summary>
         /// Returns an expression that evaluates as true if the context provided for the condition is equal to <code>default(T)</code>.
         /// </summary>
-        TConditional Default { get; }
+        TConditional Default();
 
         /// <summary>
         /// Uses an <see cref="IEqualityComparer{T}"/> to compare object values.

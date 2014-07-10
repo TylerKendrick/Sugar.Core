@@ -18,7 +18,7 @@ namespace Sugar
             public static ConditionalExpression<T> Null<T>(It<T> it)
                 where T : class
             {
-                return it.Is.Not.Default;
+                return it.Is.Not.Default();
             }
 
             /// <summary>
@@ -29,7 +29,7 @@ namespace Sugar
             /// <returns>Returns a new instance of <see cref="ConditionalExpression{T}"/> that resolves to true when the specified target is set to its default value.</returns>
             public static ConditionalExpression<T> Default<T>(It<T> it)
             {
-                return it.Is.Not.Default;
+                return it.Is.Not.Default();
             }
 
             /// <summary>

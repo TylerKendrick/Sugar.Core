@@ -57,7 +57,10 @@ namespace Sugar
         /// <summary>
         /// Returns an expression that evaluates as true if the context provided for the condition is equal to <code>default(T)</code>.
         /// </summary>
-        public TConditional Default { get { return _default.Value; } } 
+        public TConditional Default()
+        {
+            return _default.Value;
+        }
 
         /// <summary>
         /// Uses a specified context and predicate to provide context and offset the evaluation of proceeding expressions.

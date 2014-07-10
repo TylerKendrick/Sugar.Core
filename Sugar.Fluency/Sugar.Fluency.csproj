@@ -60,6 +60,7 @@
     <Compile Include="IIt.cs" />
     <Compile Include="ILogicalComparableExpression.cs" />
     <Compile Include="Is.Not.cs" />
+    <Compile Include="IStringComparableExpression.cs" />
     <Compile Include="Linq\Enumerable.extensions.cs" />
     <Compile Include="Fluent.cs" />
     <Compile Include="Is.cs" />

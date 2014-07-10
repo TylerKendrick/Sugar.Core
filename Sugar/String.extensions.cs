@@ -19,8 +19,8 @@ namespace Sugar
         {
             Func<string, bool> isNullOrEmptyOrWhitespace = x => Fluent.String(x)
                 .Is.Null
-                .Or.Empty
-                .Or.Whitespace;
+                .Or.Empty()
+                .Or.Whitespace();
 
             return self.Aggregate((first, second) => isNullOrEmptyOrWhitespace(first)
                 ? isNullOrEmptyOrWhitespace(second)
