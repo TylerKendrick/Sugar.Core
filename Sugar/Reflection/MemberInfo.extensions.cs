@@ -50,36 +50,6 @@ namespace Sugar.Reflection
     public static class MemberInfoExtensions
     {
         /// <summary>
-        /// Returns the value of a MemberInfo.
-        /// </summary>
-        /// <param name="self">Thhe target member.</param>
-        /// <param name="instance">The instance used for inspection.</param>
-        public static dynamic ToDynamic(this MemberInfo self, object instance)
-        {
-            switch (self.MemberType)
-            {
-                case MemberTypes.Field:
-                    return AsFieldInfo(self, instance);
-                case MemberTypes.Property:
-                    return AsPropertyInfo(self, instance);
-            }
-            return null;
-        }
-
-        private static dynamic AsPropertyInfo(MemberInfo memberInfo, object instance)
-        {
-            var propertyInfo = memberInfo.Cast<PropertyInfo>();
-            var getMethod = propertyInfo.GetGetMethod(true);
-            return getMethod.Invoke(instance, null);
-        }
-
-        private static dynamic AsFieldInfo(MemberInfo memberInfo, object instance)
-        {
-            var fieldInfo = memberInfo.Cast<FieldInfo>();
-            return fieldInfo.GetValue(instance);
-        }
-
-        /// <summary>
         /// Returns all members of a specified type.
         /// </summary>
         /// <typeparam name="T">The type used for inspection.</typeparam>

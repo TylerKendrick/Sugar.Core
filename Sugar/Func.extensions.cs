@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -54,8 +53,21 @@ namespace Sugar
 
         public static Func<TIn, TOut> Memoize<TIn, TOut>(this Func<TIn, TOut> self)
         {
-            var concurrentDictionary = new ConcurrentDictionary<TIn, TOut>();
-            return x => concurrentDictionary.GetOrAdd(x, self);
+            var dictionary = new Dictionary<TIn, TOut>();
+            return x =>
+            {
+                TOut result;
+                if (dictionary.ContainsKey(x) == false)
+                {
+                    result = self(x);
+                    dictionary.Add(x, result);
+                }
+                else
+                {
+                    result = dictionary[x];
+                }
+                return result;
+            };
         }
     }
 }

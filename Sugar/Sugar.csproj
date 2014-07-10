@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sugar</RootNamespace>
     <AssemblyName>Sugar</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
@@ -54,7 +54,6 @@
     <Compile Include="Comparable.extensions.cs" />
     <Compile Include="Decimal.extensions.cs" />
     <Compile Include="Double.extensions.cs" />
-    <Compile Include="Dynamic\Dynamic.extensions.cs" />
     <Compile Include="Enum.extensions.cs" />
     <Compile Include="EventHandler.extensions.cs" />
     <Compile Include="Func.extensions.cs" />
@@ -66,7 +65,6 @@
     <Compile Include="IO\Stream.extensions.cs" />
     <Compile Include="IRange.cs" />
     <Compile Include="Lambda.cs" />
-    <Compile Include="Lazy.extentions.cs" />
     <Compile Include="Linq\Collection.extensions.cs" />
     <Compile Include="Linq\Enumerable.extensions.cs" />
     <Compile Include="Linq\Enumerable.generic.extensions.cs" />
@@ -95,7 +93,6 @@
     <Compile Include="Security\SymmetricAlgorithmTypes.cs" />
     <Compile Include="String.extensions.cs" />
     <Compile Include="Struct.extensions.cs" />
-    <Compile Include="Threading\Parallel.extensions.cs" />
     <Compile Include="Utilities\Comparer.cs" />
     <Compile Include="Utilities\Error.cs" />
     <Compile Include="Utilities\Range.cs" />
