@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 
 namespace Sugar.Reflection
 {
@@ -18,8 +18,10 @@ namespace Sugar.Reflection
         /// <param name="instance">The instance to inspect with reflection.</param>
         public static TAttribute Parse<T>(T instance)
         {
-            var type = instance.GetType();
-            return type.GetCustomAttribute<TAttribute>();
+            return instance.GetType()
+                .GetCustomAttributes(false)
+                .OfType<TAttribute>()
+                .FirstOrDefault();
         }
 
         /// <summary>
@@ -28,8 +30,10 @@ namespace Sugar.Reflection
         /// <typeparam name="T">The type of the provided instance.</typeparam>
         public static TAttribute Parse<T>()
         {
-            var type = typeof(T);
-            return type.GetCustomAttribute<TAttribute>();
+            return typeof(T)
+                .GetCustomAttributes(false)
+                .OfType<TAttribute>()
+                .FirstOrDefault();
         }
 
         /// <summary>
@@ -39,8 +43,9 @@ namespace Sugar.Reflection
         /// <param name="instance">The instance to inspect with reflection.</param>
         public static IEnumerable<TAttribute> ParseMany<T>(T instance)
         {
-            var type = instance.GetType();
-            return type.GetCustomAttributes<TAttribute>();
+            return instance.GetType()
+                .GetCustomAttributes(false)
+                .OfType<TAttribute>();
         }
 
         /// <summary>
@@ -49,8 +54,9 @@ namespace Sugar.Reflection
         /// <typeparam name="T">The type of the provided instance.</typeparam>
         public static IEnumerable<TAttribute> ParseMany<T>()
         {
-            var type = typeof(T);
-            return type.GetCustomAttributes<TAttribute>();
+            return typeof (T)
+                .GetCustomAttributes(false)
+                .OfType<TAttribute>();
         }
 
         /// <summary>
@@ -61,8 +67,9 @@ namespace Sugar.Reflection
         /// <param name="inherit">true to inspect the ancestors of <paramref name="instance"/>; otherwise, false. </param>
         public static IEnumerable<TAttribute> ParseMany<T>(T instance, bool inherit)
         {
-            var type = instance.GetType();
-            return type.GetCustomAttributes<TAttribute>(inherit);
+            return instance.GetType()
+                .GetCustomAttributes(inherit)
+                .OfType<TAttribute>();
         }
 
         /// <summary>
@@ -72,8 +79,9 @@ namespace Sugar.Reflection
         /// <param name="inherit">true to inspect the ancestors of the targetted type; otherwise, false. </param>
         public static IEnumerable<TAttribute> ParseMany<T>(bool inherit)
         {
-            var type = typeof(T);
-            return type.GetCustomAttributes<TAttribute>(inherit);
+            return typeof(T)
+                .GetCustomAttributes(inherit)
+                .OfType<TAttribute>();
         }
     }
 }

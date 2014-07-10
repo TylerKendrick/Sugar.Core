@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sugar</RootNamespace>
     <AssemblyName>Sugar</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,7 +73,6 @@
     <Compile Include="Loop.extensions.cs" />
     <Compile Include="Looper.cs" />
     <Compile Include="Math.extensions.cs" />
-    <Compile Include="Net\Mail\Email.cs" />
     <Compile Include="Number.extensions.cs" />
     <Compile Include="Object.extensions.cs" />
     <Compile Include="Observables\Disposable.cs" />

@@ -36,7 +36,7 @@ namespace Sugar.Reflection
         /// <returns>Returns the value of the property.</returns>
         public static TOut Get<TOut>(string name, object instance)
         {
-            return Parse(name).GetValue(instance).Cast<TOut>();
+            return Parse(name).GetValue(instance, null).Cast<TOut>();
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Sugar.Reflection
         /// <param name="value">The value attempted for assignment.</param>
         public static void Set<TIn>(string name, object instance, TIn value)
         {
-            Parse(name).SetValue(instance, value);
+            Parse(name).SetValue(instance, value, null);
         }
     }
 }

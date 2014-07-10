@@ -40,7 +40,8 @@ namespace Sugar
         /// <summary>
         /// Returns a <see cref="IDisposable"/> context to the subscribed listener.
         /// </summary>
-        public static IDisposable Subscribe<T>(this EventHandler<T> self, EventHandler<T> listener)
+        public static IDisposable Subscribe<T>(this EventHandler<T> self, EventHandler<T> listener) 
+            where T : EventArgs
         {
             self.Require();
             listener.Require();
