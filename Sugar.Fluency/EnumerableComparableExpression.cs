@@ -23,7 +23,7 @@ namespace Sugar
         /// <summary>
         /// Wraps the collection in a comparable expression.
         /// </summary>
-        public EnumerableComparableExpression(TCollection context) 
+        internal EnumerableComparableExpression(TCollection context) 
             : base(context)
         {
         }

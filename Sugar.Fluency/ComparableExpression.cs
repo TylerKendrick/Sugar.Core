@@ -16,7 +16,7 @@ namespace Sugar
         /// </summary>
         /// <param name="context">The object context for evaluation.</param>
         /// <param name="evaluate">The offset predicate.  Returns an identity function (x => x) if null.</param>
-        public ComparableExpression(T context, Func<bool, bool> evaluate = null) 
+        internal ComparableExpression(T context, Func<bool, bool> evaluate = null) 
             : base(context, evaluate)
         {
         }

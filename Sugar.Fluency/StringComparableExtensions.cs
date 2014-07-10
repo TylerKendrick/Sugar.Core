@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Sugar
@@ -38,6 +39,20 @@ namespace Sugar
         public static ConditionalExpression<string> EndsWith(this IComparableExpression<string> self, string match)
         {
             return self.Generate(x => x.EndsWith(match));
+        }
+
+        public static ConditionalExpression<string> Normalized(this IComparableExpression<string> self)
+        {
+            return self.Generate(x => x.IsNormalized());
+        }
+        public static ConditionalExpression<string> Normalized(this IComparableExpression<string> self,
+            NormalizationForm normalizationForm)
+        {
+            return self.Generate(x => x.IsNormalized(normalizationForm));
+        }
+        public static ConditionalExpression<string> Contains(this IComparableExpression<string> self, string value)
+        {
+            return self.Generate(x => x.Contains(value));
         }
 
         private static ConditionalExpression<string> Generate(this IComparableExpression<string, ConditionalExpression<string>> self, 

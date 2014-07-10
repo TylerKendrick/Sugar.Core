@@ -15,7 +15,7 @@ namespace Sugar
         /// <summary>
         /// Used to create a new instance of an <see cref="IsComparableExpression{T}"/> object.
         /// </summary>
-        protected internal LogicalComparableExpression(T context, Func<bool, bool> evaluate)
+        internal LogicalComparableExpression(T context, Func<bool, bool> evaluate)
             : base(context, evaluate)
         {
         }

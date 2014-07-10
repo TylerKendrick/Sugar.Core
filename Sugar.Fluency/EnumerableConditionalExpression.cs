@@ -15,7 +15,7 @@ namespace Sugar
         /// </summary>
         /// <param name="handle">The target collection wrapped for evaluation.</param>
         /// <param name="offset">The specified offset for evaluation.</param>
-        public EnumerableConditionalExpression(TCollection handle, bool? offset = null) 
+        internal EnumerableConditionalExpression(TCollection handle, bool? offset = null) 
             : base(handle, offset)
         {
         }
@@ -32,7 +32,7 @@ namespace Sugar
         /// </summary>
         /// <param name="handle">The target collection wrapped for evaluation.</param>
         /// <param name="offset">The specified offset for evaluation.</param>
-        public EnumerableConditionalExpression(IEnumerable<T> handle, bool? offset = null) 
+        internal EnumerableConditionalExpression(IEnumerable<T> handle, bool? offset = null) 
             : base(handle, offset)
         {
         }
