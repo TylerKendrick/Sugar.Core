@@ -50,19 +50,4 @@ namespace Sugar
             return Evaluate(isEqual);
         }
     }
-
-    /// <summary>
-    /// Provides fluent comparable expressions for enumerable types.
-    /// </summary>
-    /// <typeparam name="T">The type of item in the enumerable collection.</typeparam>
-    public class EnumerableComparableExpression<T> : EnumerableComparableExpression<T, IEnumerable<T>>
-    {
-        /// <summary>
-        /// Wraps the collection in a comparable expression.
-        /// </summary>
-        public EnumerableComparableExpression(IEnumerable<T> context) 
-            : base(context)
-        {
-        }
-    }
 }

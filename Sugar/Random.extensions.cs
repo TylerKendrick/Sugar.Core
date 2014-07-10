@@ -24,6 +24,7 @@ namespace Sugar
         {
             self.Require();
             collection.Require();
+
             var array = collection.ToArray();
             var index = self.Next(0, array.Length);
             return array[index];

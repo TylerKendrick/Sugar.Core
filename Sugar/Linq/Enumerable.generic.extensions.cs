@@ -192,7 +192,7 @@ namespace Sugar.Linq
         public static IOrderedEnumerable<TIn> OrderBy<TIn, TOut>(this IEnumerable<TIn> self, 
             Func<TIn, TOut> selector, Func<TOut, TOut, int> comparison)
         {
-            var comparer = comparison.AsComparer();
+            var comparer = comparison.ToComparer();
             return self.OrderBy(selector, comparer);
         }
 
@@ -208,7 +208,7 @@ namespace Sugar.Linq
         public static IOrderedEnumerable<TIn> OrderByDescending<TIn, TOut>(this IEnumerable<TIn> self, 
             Func<TIn, TOut> selector, Func<TOut, TOut, int> comparison)
         {
-            var comparer = comparison.AsComparer();
+            var comparer = comparison.ToComparer();
             return self.OrderByDescending(selector, comparer);
         }
 

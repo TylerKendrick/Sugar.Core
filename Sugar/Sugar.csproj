@@ -69,9 +69,8 @@
     <Compile Include="Linq\Enumerable.extensions.cs" />
     <Compile Include="Linq\Enumerable.generic.extensions.cs" />
     <Compile Include="Loop.extensions.cs" />
-    <Compile Include="Looper.cs" />
+    <Compile Include="Utilities\Looper.cs" />
     <Compile Include="Math.extensions.cs" />
-    <Compile Include="Number.extensions.cs" />
     <Compile Include="Object.extensions.cs" />
     <Compile Include="Observables\Disposable.cs" />
     <Compile Include="Observables\Disposable.extensions.cs" />
@@ -96,7 +95,7 @@
     <Compile Include="Utilities\Comparer.cs" />
     <Compile Include="Utilities\Error.cs" />
     <Compile Include="Utilities\Range.cs" />
-    <Compile Include="When.cs" />
+    <Compile Include="Utilities\When.cs" />
     <Compile Include="Yield.cs" />
   </ItemGroup>
   <ItemGroup>

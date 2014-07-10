@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Sugar.Observables;
 
 namespace Sugar.IO
 {
@@ -16,6 +17,7 @@ namespace Sugar.IO
         /// <param name="action">The action to execute on the reader.</param>
         public static void Read(this Stream self, Action<StreamReader> action)
         {
+            new StreamReader(self).Using(action);
             using (var reader = new StreamReader(self))
             {
                 action(reader);

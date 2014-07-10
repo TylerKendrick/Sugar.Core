@@ -23,36 +23,28 @@ namespace Sugar
 
     public static class FuncExtensions
     {
-        public static Func<TOut> Curry<TIn, TOut>(this Func<TIn, TOut> self, TIn value)
-        {
-            return () => self(value);
-        }
-        public static Func<T1, Func<T2, T3>> Curry<T1, T2, T3>(this Func<T1, T2, T3> self)
-        {
-            return x => y => self(x, y);
-        }
-        
         public static Predicate<T> ToPredicate<T>(this Func<T, bool> self)
         {
-            return new Predicate<T>(self);
+            return x => self(x);
         }
         public static Func<T, bool> ToFunc<T>(this Predicate<T> self)
         {
             return x => self(x);
         }
-
         public static Expression<Func<TIn, TOut>> ToExpression<TIn, TOut>(this Func<TIn, TOut> self)
         {
             return x => self(x);
         }
 
-        public static IComparer<T> AsComparer<T>(this Func<T, T, int> comparer)
+        public static IComparer<T> ToComparer<T>(this Func<T, T, int> comparer)
         {
             return new CustomComparer<T>(comparer);
         }
 
         public static Func<TIn, TOut> Memoize<TIn, TOut>(this Func<TIn, TOut> self)
         {
+            self.Require();
+
             var dictionary = new Dictionary<TIn, TOut>();
             return x =>
             {
