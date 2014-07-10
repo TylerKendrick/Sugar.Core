@@ -88,8 +88,11 @@
     <Compile Include="Reflection\PropertyInfo.extensions.cs" />
     <Compile Include="Reflection\Reflection.extensions.cs" />
     <Compile Include="Require.cs" />
+    <Compile Include="Security\ByteArray.extensions.cs" />
+    <Compile Include="Security\Encryption.cs" />
     <Compile Include="Security\HashAlgorithmTypes.cs" />
     <Compile Include="Security\String.extensions.cs" />
+    <Compile Include="Security\SymmetricAlgorithmTypes.cs" />
     <Compile Include="String.extensions.cs" />
     <Compile Include="Struct.extensions.cs" />
     <Compile Include="Threading\Parallel.extensions.cs" />

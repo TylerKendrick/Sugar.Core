@@ -11,12 +11,4 @@
         SHA384,
         SHA512,
     }
-
-    public enum SymmetricAlgorithmTypes
-    {
-        Aes,
-        DES,
-        RC2,
-        TripleDES
-    }
 }

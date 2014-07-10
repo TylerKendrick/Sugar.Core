@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Security;
 using System.Security.Cryptography;
 using System.Text;
@@ -12,55 +11,6 @@ namespace Sugar.Security
     /// </summary>
     public static class StringExtensions
     {
-        private static SymmetricAlgorithm GetSymmetricAlgorithmType(SymmetricAlgorithmTypes cryptoType)
-        {
-            SymmetricAlgorithm provider;
-            switch (cryptoType)
-            {
-                case SymmetricAlgorithmTypes.Aes:
-                    provider = new AesCryptoServiceProvider();
-                    break;
-                case SymmetricAlgorithmTypes.DES:
-                    provider = new DESCryptoServiceProvider();
-                    break;
-                case SymmetricAlgorithmTypes.RC2:
-                    provider = new RC2CryptoServiceProvider();
-                    break;
-                case SymmetricAlgorithmTypes.TripleDES:
-                    provider = new TripleDESCryptoServiceProvider();
-                    break;
-                default:
-                    throw new InvalidEnumArgumentException("cryptoType", (int)cryptoType, typeof(SymmetricAlgorithmTypes));
-            }
-            return provider;
-        }
-        private static HashAlgorithm GetHashAlgorithmType(HashAlgorithmTypes cryptoType)
-        {
-            HashAlgorithm result;
-            switch (cryptoType)
-            {
-                case HashAlgorithmTypes.MD5:
-                    result = new MD5CryptoServiceProvider();
-                    break;
-                case HashAlgorithmTypes.SHA1:
-                    result = new SHA1CryptoServiceProvider();
-                    break;
-                case HashAlgorithmTypes.SHA256:
-                    result = new SHA256CryptoServiceProvider();
-                    break;
-                case HashAlgorithmTypes.SHA384:
-                    result = new SHA384CryptoServiceProvider();
-                    break;
-                case HashAlgorithmTypes.SHA512:
-                    result = new SHA512CryptoServiceProvider();
-                    break;
-                default:
-                    throw new InvalidEnumArgumentException("cryptoType", (int)cryptoType, typeof(HashAlgorithmTypes));
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// Simplifies application of a hash algorithm with a string.
         /// </summary>
@@ -85,7 +35,7 @@ namespace Sugar.Security
         /// <returns>Returns the result of the hash algorithm applied to the string.</returns>
         public static string Encrypt(this string self, HashAlgorithmTypes cryptoType = HashAlgorithmTypes.SHA256)
         {
-            var crypto = GetHashAlgorithmType(cryptoType);
+            var crypto = cryptoType.Create();
             return Encrypt(self, crypto);
         }
 
@@ -93,18 +43,16 @@ namespace Sugar.Security
             string password, string iv, Encoding encoding = null)
         {
             encoding = encoding ?? Encoding.UTF8;
-            var crypto = GetSymmetricAlgorithmType(cryptoType);
-            crypto.Key = password.ToBytes(encoding);
-            crypto.IV = iv.ToBytes(encoding);
+            var crypto = cryptoType.Create(password.ToBytes(encoding), iv.ToBytes(encoding));
             return Encrypt(self, crypto, encoding);
         }
-
-        public static string Encrypt(this string self, SymmetricAlgorithm hashAlgorithm, Encoding encoding = null)
+        
+        public static string Encrypt(this string self, SymmetricAlgorithm symmetricAlgorithm, 
+            Encoding encoding = null)
         {
             encoding = encoding ?? Encoding.UTF8;
-            var encryptor = hashAlgorithm.CreateEncryptor();
             var input = self.ToBytes(encoding);
-            var output = encryptor.TransformFinalBlock(input, 0, input.Length);
+            var output = input.Encrypt(symmetricAlgorithm);
             return Convert.ToBase64String(output);
         }
 
@@ -112,19 +60,16 @@ namespace Sugar.Security
             string password, string iv, Encoding encoding = null)
         {
             encoding = encoding ?? Encoding.UTF8;
-            var crypto = GetSymmetricAlgorithmType(cryptoType);
-            crypto.Key = password.ToBytes(encoding);
-            crypto.IV = iv.ToBytes(encoding);
+            var crypto = cryptoType.Create(password.ToBytes(encoding), iv.ToBytes(encoding));
             return Decrypt(self, crypto, encoding);
         }
-
+        
         public static string Decrypt(string self, SymmetricAlgorithm symmetricAlgorithm, 
             Encoding encoding = null)
         {
             encoding = encoding ?? Encoding.UTF8;
-            var decryptor = symmetricAlgorithm.CreateDecryptor();
             var input = Convert.FromBase64String(self);
-            var output = decryptor.TransformFinalBlock(input, 0, input.Length);
+            var output = input.Decrypt(symmetricAlgorithm);
             return encoding.GetString(output);
         }
 
