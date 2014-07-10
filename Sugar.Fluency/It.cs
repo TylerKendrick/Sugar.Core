@@ -1,56 +1,29 @@
-﻿using System;
-
-namespace Sugar
+﻿namespace Sugar
 {
     /// <summary>
     /// Object wrapper to provide fluent extensions common to all objects.
     /// </summary>
-    public class It<T> : It<T, IsComparableExpression<T>>
+    public class It<T> : IIt<T> 
     {
-        /// <summary>
-        /// Provides the context to wrap.
-        /// </summary>
-        internal It(T handle)
-            : base(() => new IsComparableExpression<T>(handle))
-        {
-        }
-    }
-
-    /// <summary>
-    /// Object wrapper to provide fluent extensions common to all objects.
-    /// </summary>
-    public class It<T, TIs> : It<T, TIs, ConditionalExpression<T>> 
-        where TIs : IIsComparableExpression<T, ConditionalExpression<T>>
-    {
-        /// <summary>
-        /// Provides predicate expressions through an instance of a subclass of <see cref="IsComparableExpression{T}"/>.
-        /// </summary>
-        public It(Func<TIs> factoryMethod) 
-            : base(factoryMethod)
-        {
-        }
-    }
-
-    /// <summary>
-    /// Object wrapper to provide fluent extensions common to all objects.
-    /// </summary>
-    public class It<T, TIs, TConditional> : IIt<T, TIs, TConditional> 
-        where TIs : IIsComparableExpression<T, TConditional> 
-        where TConditional : IConditionalExpression<T>
-    {
-        private readonly Lazy<TIs> _is;
+        private readonly T _context;
 
         /// <summary>
         /// Provides predicate expressions through an instance of a subclass of <see cref="IsComparableExpression{T}"/>.
         /// </summary>
-        public TIs Is { get { return _is.Value; } }
+        public IsComparableExpression<T> Is { get; private set; }
 
         /// <summary>
         /// Provides the context to wrap.
         /// </summary>
-        public It(Func<TIs> factoryMethod)
+        internal It(T context)
         {
-            _is = new Lazy<TIs>(factoryMethod);
+            _context = context;
+            Is = new IsComparableExpression<T>(context);
+        }
+
+        public static implicit operator T(It<T> handle)
+        {
+            return handle._context;
         }
     }
 }

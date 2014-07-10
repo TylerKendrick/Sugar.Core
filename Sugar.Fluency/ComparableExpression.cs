@@ -50,16 +50,16 @@ namespace Sugar
     public abstract class ComparableExpression<T, TConditional> : IComparableExpression<T, TConditional> 
         where TConditional : IConditionalExpression<T>
     {
+        T IComparableExpression<T, TConditional>.Context { get { return Context; } }
         protected readonly T Context;
         protected readonly Func<bool, bool> Evaluate;
-        private readonly Lazy<TConditional> _default;
 
         /// <summary>
         /// Returns an expression that evaluates as true if the context provided for the condition is equal to <code>default(T)</code>.
         /// </summary>
         public TConditional Default()
         {
-            return _default.Value;
+            return GetDefaultExpression();
         }
 
         /// <summary>
@@ -71,7 +71,6 @@ namespace Sugar
         {
             Context = context;
             Evaluate = evaluate ?? (x => x);
-            _default = new Lazy<TConditional>(GetDefaultExpression);
         }
 
         /// <summary>

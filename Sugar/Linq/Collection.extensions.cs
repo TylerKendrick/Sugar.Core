@@ -29,7 +29,7 @@ namespace Sugar.Linq
         /// <returns></returns>
         public static bool Remove<T>(this ICollection<T> self, Func<T, bool> predicate)
         {
-            return self.Where(predicate).All(self.Remove);
+            return self.Where(predicate).All(x => self.Remove(x));
         }
     }
 }

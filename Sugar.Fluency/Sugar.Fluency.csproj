@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sugar</RootNamespace>
     <AssemblyName>Sugar.Fluency</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -52,7 +52,6 @@
     <Compile Include="EnumerableComparableExpression.cs" />
     <Compile Include="EnumerableConditionalExpression.cs" />
     <Compile Include="EnumerableIsComparableExpression.cs" />
-    <Compile Include="EnumerableIt.cs" />
     <Compile Include="IComparableExpression.cs" />
     <Compile Include="IConditionalExpression.cs" />
     <Compile Include="IEnumerableComparableExpression.cs" />
@@ -70,10 +69,7 @@
     <Compile Include="NotComparableExpression.cs" />
     <Compile Include="OrComparableExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringComparableExpression.cs" />
-    <Compile Include="StringConditionalExpression.cs" />
-    <Compile Include="StringIsComparableExpression.cs" />
-    <Compile Include="StringIt.cs" />
+    <Compile Include="StringComparableExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

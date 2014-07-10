@@ -18,7 +18,7 @@ namespace Sugar
         public static string Delimit(this IEnumerable<string> self, string delimiter = ", ")
         {
             Func<string, bool> isNullOrEmptyOrWhitespace = x => Fluent.String(x)
-                .Is.Null
+                .Is.Null()
                 .Or.Empty()
                 .Or.Whitespace();
 

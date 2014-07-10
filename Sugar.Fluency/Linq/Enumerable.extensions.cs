@@ -15,7 +15,7 @@ namespace Sugar.Linq
         public static IEnumerable<T> Where<T>(this IEnumerable<T> self,
             Func<It<T>, ConditionalExpression<T>> fluentExpression)
         {
-            return self.Where(x => fluentExpression(Fluent.It(x)));
+            return self.Where(x => fluentExpression(Fluent.It(x)) == true);
         }
 
         /// <summary>

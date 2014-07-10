@@ -46,7 +46,9 @@ namespace Sugar
         /// <summary>
         /// Uses an <see cref="IComparer{T}"/> to determine if the wrapped object is less than or equal to <paramref name="comparable"/>.
         /// </summary>
-        TConditional AtMost(T comparable, IComparer<T> comparer = null);        
+        TConditional AtMost(T comparable, IComparer<T> comparer = null);
+
+        T Context { get; }
     }
 
     /// <summary>

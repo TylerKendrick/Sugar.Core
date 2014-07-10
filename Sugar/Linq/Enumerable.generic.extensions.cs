@@ -93,7 +93,7 @@ namespace Sugar.Linq
         /// <returns>Returns false if the predicate returns false against all matches.</returns>
         public static bool MatchesAny<T>(this IEnumerable<T> self, params T[] items)
         {
-            return items.Any(self.Contains);
+            return items.Any(x => self.Contains(x));
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Sugar.Linq
         /// <returns>Returns false if the predicate returns false against any matches.</returns>
         public static bool MatchesAll<T>(this IEnumerable<T> self, params T[] items)
         {
-            return items.All(self.Contains);
+            return items.All(x => self.Contains(x));
         }
 
         /// <summary>

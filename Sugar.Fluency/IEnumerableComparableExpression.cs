@@ -7,20 +7,7 @@ namespace Sugar
     /// </summary>
     /// <typeparam name="TItem">The type of item in the enumerable collection.</typeparam>
     /// <typeparam name="TCollection">The type of the collection.</typeparam>
-    /// <typeparam name="TConditional">The type of conditional fluent expression returned.</typeparam>
-    public interface IEnumerableComparableExpression<TItem, TCollection, out TConditional> :
-        IComparableExpression<TCollection, TConditional>
-        where TCollection : IEnumerable<TItem> 
-        where TConditional : IConditionalExpression<TCollection>
-    {
-    }
-
-    /// <summary>
-    /// Provides fluent comparable expressions for enumerable types.
-    /// </summary>
-    /// <typeparam name="TItem">The type of item in the enumerable collection.</typeparam>
-    /// <typeparam name="TCollection">The type of the collection.</typeparam>
-    public interface IEnumerableComparableExpression<TItem, TCollection> : IComparableExpression<TCollection>
+    public interface IEnumerableComparableExpression<TItem, TCollection> : IComparableExpression<TCollection, EnumerableConditionalExpression<TItem, TCollection>>
         where TCollection : IEnumerable<TItem>
     {
         /// <summary>

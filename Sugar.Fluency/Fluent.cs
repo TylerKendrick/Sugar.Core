@@ -26,12 +26,12 @@ namespace Sugar
         }
 
         /// <summary>
-        /// Returns a new instance of <see cref="StringIt"/> that wraps the provided context as a fluent expression.
+        /// Returns a new instance of <see cref="Sugar.It{string}"/> that wraps the provided context as a fluent expression.
         /// </summary>
         /// <param name="handle">The specified string to wrap for evluation of fluent expressions.</param>
-        public static StringIt String(string handle)
+        public static It<string> String(string handle)
         {
-            return new StringIt(handle);
+            return new It<string>(handle);
         }
     }
 }
