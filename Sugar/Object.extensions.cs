@@ -60,14 +60,5 @@ namespace Sugar
                 throw innerException;
             }
         }
-        
-        public static IEnumerable<T> ToEnumerable<T>(this T self)
-        {
-            return new [] { self };
-        }
-        public static T[] AsArray<T>(this T self)
-        {
-            return new[] {self};
-        }
     }
 }
