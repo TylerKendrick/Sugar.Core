@@ -5,11 +5,11 @@ using Moq;
 namespace Sugar.Fluency.Tests
 {
     [TestClass]
-    public partial class OrComparableExpressionTests : UnitTestOf<ComparableExpression<IFakeConcern>>
+    public partial class OrComparableExpressionTests : UnitTestOf<FluentExpression<IFakeConcern>>
     {
         private Mock<IFakeConcern> _fakeConcern;
         private Mock<IComparer<IFakeConcern>> _mockComparer;
-        private OrComparableExpression<IFakeConcern> _trueConcern;
+        private OrFluentExpression<IFakeConcern> _trueConcern;
 
         protected override void SetUpMocks()
         {
@@ -17,10 +17,10 @@ namespace Sugar.Fluency.Tests
             _mockComparer = Register<IComparer<IFakeConcern>>();
         }
 
-        protected override ComparableExpression<IFakeConcern> SetUpConcern()
+        protected override FluentExpression<IFakeConcern> SetUpConcern()
         {
-            _trueConcern = new OrComparableExpression<IFakeConcern>(_fakeConcern.Object, true);
-            return new OrComparableExpression<IFakeConcern>(_fakeConcern.Object);
+            _trueConcern = new OrFluentExpression<IFakeConcern>(_fakeConcern.Object, true);
+            return new OrFluentExpression<IFakeConcern>(_fakeConcern.Object);
         }
     }
 }

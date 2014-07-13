@@ -56,6 +56,11 @@
     <Compile Include="Double.extensions.cs" />
     <Compile Include="Enum.extensions.cs" />
     <Compile Include="EventHandler.extensions.cs" />
+    <Compile Include="IFluentExpression.cs" />
+    <Compile Include="IFluentPredicate.cs" />
+    <Compile Include="IEnumerableFluentExpression.cs" />
+    <Compile Include="IIsFluentExpression.cs" />
+    <Compile Include="ILogicalFluentExpression.cs" />
     <Compile Include="Utilities\ExecutionBlock.cs" />
     <Compile Include="Func.extensions.cs" />
     <Compile Include="GC.extensions.cs" />

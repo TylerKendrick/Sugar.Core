@@ -8,9 +8,9 @@
         private readonly T _context;
 
         /// <summary>
-        /// Provides predicate expressions through an instance of a subclass of <see cref="IsComparableExpression{T}"/>.
+        /// Provides predicate expressions through an instance of a subclass of <see cref="IsFluentExpression{T}"/>.
         /// </summary>
-        public IsComparableExpression<T> Is { get; private set; }
+        public IsFluentExpression<T> Is { get; private set; }
 
         /// <summary>
         /// Provides the context to wrap.
@@ -18,7 +18,7 @@
         internal It(T context)
         {
             _context = context;
-            Is = new IsComparableExpression<T>(context);
+            Is = new IsFluentExpression<T>(context);
         }
 
         public static implicit operator T(It<T> handle)

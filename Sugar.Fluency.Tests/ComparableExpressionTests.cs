@@ -6,7 +6,7 @@ using Moq;
 namespace Sugar.Fluency.Tests
 {
     [TestClass]
-    public partial class ComparableExpressionTests : UnitTestOf<ComparableExpression<IFakeConcern>>
+    public partial class ComparableExpressionTests : UnitTestOf<FluentExpression<IFakeConcern>>
     {
         private Mock<IFakeConcern> _fakeConcern;
         private Mock<IComparer<IFakeConcern>> _mockComparer;
@@ -18,9 +18,9 @@ namespace Sugar.Fluency.Tests
             _mockComparer = Register<IComparer<IFakeConcern>>();
         }
 
-        protected override ComparableExpression<IFakeConcern> SetUpConcern()
+        protected override FluentExpression<IFakeConcern> SetUpConcern()
         {
-            return new ComparableExpression<IFakeConcern>(_fakeConcern.Object, _offset);
+            return new FluentExpression<IFakeConcern>(_fakeConcern.Object, _offset);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Sugar.Fluency.Tests
             var result = Concern.AtLeast(mockComparable.Object);
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsFalse(result);
 
             _fakeConcern.Verify(x => x.CompareTo(mockComparable.Object), Times.Once);
@@ -29,7 +29,7 @@ namespace Sugar.Fluency.Tests
             var result = Concern.AtLeast(mockComparable.Object);
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsTrue(result);
 
             _fakeConcern.Verify(x => x.CompareTo(mockComparable.Object), Times.Once);
@@ -44,7 +44,7 @@ namespace Sugar.Fluency.Tests
             var result = Concern.AtLeast(mockComparable.Object);
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsTrue(result);
 
             _fakeConcern.Verify(x => x.CompareTo(mockComparable.Object), Times.Once);
@@ -60,7 +60,7 @@ namespace Sugar.Fluency.Tests
             var result = Concern.AtLeast(mockComparable.Object, _mockComparer.Object);
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsTrue(result);
 
             _mockComparer.Verify(x => x.Compare(_fakeConcern.Object, mockComparable.Object), Times.Once);
@@ -76,7 +76,7 @@ namespace Sugar.Fluency.Tests
             var result = Concern.AtLeast(mockComparable.Object, _mockComparer.Object);
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsFalse(result);
 
             _mockComparer.Verify(x => x.Compare(_fakeConcern.Object, mockComparable.Object), Times.Once);
@@ -92,7 +92,7 @@ namespace Sugar.Fluency.Tests
             var result = Concern.AtLeast(mockComparable.Object, _mockComparer.Object);
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsTrue(result);
 
             _mockComparer.Verify(x => x.Compare(_fakeConcern.Object, mockComparable.Object), Times.Once);

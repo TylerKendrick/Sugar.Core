@@ -1,14 +1,14 @@
 ﻿namespace Sugar
 {
     /// <summary>
-    /// Negates proceeding <see cref="ComparableExpression{T}"/> results.
+    /// Negates proceeding <see cref="FluentExpression{T}"/> results.
     /// </summary>
-    internal sealed class NotComparableExpression<T> : ComparableExpression<T>
+    internal sealed class NotFluentExpression<T> : FluentExpression<T>
     {
         /// <summary>
         /// Provides a context for evaluation.
         /// </summary>
-        internal NotComparableExpression(T context)
+        internal NotFluentExpression(T context)
             : base(context, x => !x)
         {
         }

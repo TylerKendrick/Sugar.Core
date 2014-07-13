@@ -7,12 +7,12 @@ namespace Sugar
     /// </summary>
     /// <typeparam name="TItem">The type of item in the enumerable collection.</typeparam>
     /// <typeparam name="TCollection">The type of the collection.</typeparam>
-    public interface IEnumerableComparableExpression<TItem, TCollection> : IComparableExpression<TCollection, EnumerableConditionalExpression<TItem, TCollection>>
+    public interface IEnumerableFluentExpression<TItem, TCollection> : IFluentExpression<TCollection, FluentPredicate<TCollection>>
         where TCollection : IEnumerable<TItem>
     {
         /// <summary>
         /// Provides a fluent comparison to determine if the wrapped collection is empty.
         /// </summary>
-        EnumerableConditionalExpression<TItem, TCollection> Empty();
+        FluentPredicate<TCollection> Empty();
     }
 }

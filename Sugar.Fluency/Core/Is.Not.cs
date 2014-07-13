@@ -14,11 +14,11 @@ namespace Sugar
             /// </summary>
             /// <typeparam name="T">Any specified class type.</typeparam>
             /// <param name="it">The specified target for comparison.</param>
-            /// <returns>Returns a new instance of <see cref="ConditionalExpression{T}"/> that resolves to true when the specified target is null.</returns>
-            public static ConditionalExpression<T> Null<T>(It<T> it)
+            /// <returns>Returns a new instance of <see cref="FluentPredicate{T}"/> that resolves to true when the specified target is null.</returns>
+            public static FluentPredicate<T> Null<T>(It<T> it)
                 where T : class
             {
-                return it.Is.Not.Default();
+                return it.Is.Not().Default();
             }
 
             /// <summary>
@@ -26,10 +26,10 @@ namespace Sugar
             /// </summary>
             /// <typeparam name="T">Any specified type.</typeparam>
             /// <param name="it">The specified target for comparison.</param>
-            /// <returns>Returns a new instance of <see cref="ConditionalExpression{T}"/> that resolves to true when the specified target is set to its default value.</returns>
-            public static ConditionalExpression<T> Default<T>(It<T> it)
+            /// <returns>Returns a new instance of <see cref="FluentPredicate{T}"/> that resolves to true when the specified target is set to its default value.</returns>
+            public static FluentPredicate<T> Default<T>(It<T> it)
             {
-                return it.Is.Not.Default();
+                return it.Is.Not().Default();
             }
 
             /// <summary>
@@ -38,9 +38,9 @@ namespace Sugar
             /// <typeparam name="T">The type of object for comparison.</typeparam>
             /// <param name="other">The object to evaluate against a specified target for comparison.</param>
             /// <returns>Returns a function that evaluates against the specified argument <paramref name="other"/>.</returns>
-            public static Func<T, ConditionalExpression<T>> GreaterThan<T>(T other)
+            public static Func<T, FluentPredicate<T>> GreaterThan<T>(T other)
             {
-                return x => Fluent.It(x).Is.Not.GreaterThan(other);
+                return x => Fluent.It(x).Is.Not().GreaterThan(other);
             }
 
             /// <summary>
@@ -49,7 +49,7 @@ namespace Sugar
             /// <typeparam name="T">The type of object for comparison.</typeparam>
             /// <param name="other">The object to evaluate against a specified target for comparison.</param>
             /// <returns>Returns a function that evaluates against the specified argument <paramref name="other"/>.</returns>
-            public static Func<T, ConditionalExpression<T>> LessThan<T>(T other)
+            public static Func<T, FluentPredicate<T>> LessThan<T>(T other)
             {
                 return x => Fluent.It(x).Is.LessThan(other);
             }

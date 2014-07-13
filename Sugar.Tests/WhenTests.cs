@@ -46,21 +46,6 @@ namespace Sugar.Tests
         }
 
         [Test]
-        public void ConcernReturnsExpectedInstanceWhenTrueAndOtherwiseFalse()
-        {
-            var mockOther = new Mock<IFakeConcern>();
-            Action action = new Mock<IFakeConcern>().Object.Action;
-            Action otherAction = mockOther.Object.Action;
-
-            var result = action.When(() => true)
-                .Otherwise(otherAction);
-
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result, Is.InstanceOf<Otherwise>());
-            Assert.That((Action)result, Is.SameAs(action));
-        }
-
-        [Test]
         public void InvocationOfConcernRaisesExpectedBehaviorsWhenTrue()
         {
             const int expectedInvocations = 1;

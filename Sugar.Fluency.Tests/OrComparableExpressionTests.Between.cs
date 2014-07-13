@@ -15,7 +15,7 @@ namespace Sugar.Fluency.Tests
 
             var result = Concern.Between(mockMinimum.Object, mockMaximum.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsFalse(result);
 
@@ -33,7 +33,7 @@ namespace Sugar.Fluency.Tests
 
             var result = _trueConcern.Between(mockMinimum.Object, mockMaximum.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsTrue(result);
 
@@ -51,7 +51,7 @@ namespace Sugar.Fluency.Tests
 
             var result = Concern.Between(mockMinimum.Object, mockMaximum.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsTrue(result);
 
@@ -69,7 +69,7 @@ namespace Sugar.Fluency.Tests
 
             var result = Concern.Between(mockMinimum.Object, mockMaximum.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsTrue(result);
 
@@ -87,7 +87,7 @@ namespace Sugar.Fluency.Tests
 
             var result = Concern.Between(mockMinimum.Object, mockMaximum.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsFalse(result);
 
@@ -105,7 +105,7 @@ namespace Sugar.Fluency.Tests
 
             var result = _trueConcern.Between(mockMinimum.Object, mockMaximum.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsTrue(result);
 
@@ -123,7 +123,7 @@ namespace Sugar.Fluency.Tests
 
             var result = Concern.Between(mockMinimum.Object, mockMaximum.Object, _mockComparer.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsFalse(result);
 
@@ -141,7 +141,7 @@ namespace Sugar.Fluency.Tests
 
             var result = _trueConcern.Between(mockMinimum.Object, mockMaximum.Object, _mockComparer.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsTrue(result);
 
@@ -159,7 +159,7 @@ namespace Sugar.Fluency.Tests
 
             var result = Concern.Between(mockMinimum.Object, mockMaximum.Object, _mockComparer.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsTrue(result);
 
@@ -177,7 +177,7 @@ namespace Sugar.Fluency.Tests
 
             var result = Concern.Between(mockMinimum.Object, mockMaximum.Object, _mockComparer.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsTrue(result);
 
@@ -195,7 +195,7 @@ namespace Sugar.Fluency.Tests
 
             var result = Concern.Between(mockMinimum.Object, mockMaximum.Object, _mockComparer.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsFalse(result);
 
@@ -213,7 +213,7 @@ namespace Sugar.Fluency.Tests
 
             var result = _trueConcern.Between(mockMinimum.Object, mockMaximum.Object, _mockComparer.Object);
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsTrue(result);
 

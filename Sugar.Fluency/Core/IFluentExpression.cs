@@ -3,10 +3,10 @@
 namespace Sugar
 {
     /// <summary>
-    /// Provides a new instance of a <see cref="ConditionalExpression{T}"/> for expressions common to all object types.
+    /// Provides a new instance of a <see cref="FluentPredicate{T}"/> for expressions common to all object types.
     /// </summary>
-    public interface IComparableExpression<T, out TConditional>
-        where TConditional : IConditionalExpression<T>
+    public interface IFluentExpression<T, out TConditional>
+        where TConditional : IFluentPredicate<T>
     {
         /// <summary>
         /// Returns an expression that evaluates as true if the context provided for the condition is equal to <code>default(T)</code>.
@@ -52,9 +52,9 @@ namespace Sugar
     }
 
     /// <summary>
-    /// Provides a new instance of a <see cref="ConditionalExpression{T}"/> for expressions common to all object types.
+    /// Provides a new instance of a <see cref="FluentPredicate{T}"/> for expressions common to all object types.
     /// </summary>
-    public interface IComparableExpression<T> : IComparableExpression<T, ConditionalExpression<T>>
+    public interface IFluentExpression<T> : IFluentExpression<T, FluentPredicate<T>>
     {
     }
 }

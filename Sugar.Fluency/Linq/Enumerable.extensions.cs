@@ -13,7 +13,7 @@ namespace Sugar.Linq
         /// Exposes syntactic sugar for evaluating a conditional expression in a linq Where clause.
         /// </summary>
         public static IEnumerable<T> Where<T>(this IEnumerable<T> self,
-            Func<It<T>, ConditionalExpression<T>> fluentExpression)
+            Func<It<T>, FluentPredicate<T>> fluentExpression)
         {
             return self.Where(x => fluentExpression(Fluent.It(x)) == true);
         }
@@ -22,36 +22,36 @@ namespace Sugar.Linq
         /// Exposes syntactic sugar for evaluating a conditional expression in a linq Any clause.
         /// </summary>
         public static bool Any<T>(this IEnumerable<T> self,
-            Func<It<T>, ConditionalExpression<T>> fluentExpression)
+            Func<It<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.Any(x => fluentExpression(Fluent.It(x)));
+            return Enumerable.Any(self, x => fluentExpression(Fluent.It(x)));
         }
 
         /// <summary>
         /// Exposes syntactic sugar for evaluating a conditional expression in a linq All clause.
         /// </summary>
         public static bool All<T>(this IEnumerable<T> self,
-            Func<It<T>, ConditionalExpression<T>> fluentExpression)
+            Func<It<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.All(x => fluentExpression(Fluent.It(x)));
+            return Enumerable.All(self, x => fluentExpression(Fluent.It(x)));
         }
 
         /// <summary>
         /// Exposes syntactic sugar for evaluating a conditional expression in a linq Single clause.
         /// </summary>
         public static T Single<T>(this IEnumerable<T> self,
-            Func<It<T>, ConditionalExpression<T>> fluentExpression)
+            Func<It<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.Single(x => fluentExpression(Fluent.It(x)));
+            return Enumerable.Single(self, x => fluentExpression(Fluent.It(x)));
         }
 
         /// <summary>
         /// Exposes syntactic sugar for evaluating a conditional expression in a linq SingleOrDefault clause.
         /// </summary>
         public static T SingleOrDefault<T>(this IEnumerable<T> self,
-            Func<It<T>, ConditionalExpression<T>> fluentExpression)
+            Func<It<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.SingleOrDefault(x => fluentExpression(Fluent.It(x)));
+            return Enumerable.SingleOrDefault(self, x => fluentExpression(Fluent.It(x)));
         }
 
 
@@ -59,18 +59,18 @@ namespace Sugar.Linq
         /// Exposes syntactic sugar for evaluating a conditional expression in a linq First clause.
         /// </summary>
         public static T First<T>(this IEnumerable<T> self,
-            Func<It<T>, ConditionalExpression<T>> fluentExpression)
+            Func<It<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.First(x => fluentExpression(Fluent.It(x)));
+            return Enumerable.First(self, x => fluentExpression(Fluent.It(x)));
         }
 
         /// <summary>
         /// Exposes syntactic sugar for evaluating a conditional expression in a linq FirstOrDefault clause.
         /// </summary>
         public static T FirstOrDefault<T>(this IEnumerable<T> self,
-            Func<It<T>, ConditionalExpression<T>> fluentExpression)
+            Func<It<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.FirstOrDefault(x => fluentExpression(Fluent.It(x)));
+            return Enumerable.FirstOrDefault(self, x => fluentExpression(Fluent.It(x)));
         }
 
 
@@ -78,18 +78,18 @@ namespace Sugar.Linq
         /// Exposes syntactic sugar for evaluating a conditional expression in a linq Last clause.
         /// </summary>
         public static T Last<T>(this IEnumerable<T> self,
-            Func<It<T>, ConditionalExpression<T>> fluentExpression)
+            Func<It<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.Single(x => fluentExpression(Fluent.It(x)));
+            return Enumerable.Single(self, x => fluentExpression(Fluent.It(x)));
         }
 
         /// <summary>
         /// Exposes syntactic sugar for evaluating a conditional expression in a linq LastOrDefault clause.
         /// </summary>
         public static T LastOrDefault<T>(this IEnumerable<T> self,
-            Func<It<T>, ConditionalExpression<T>> fluentExpression)
+            Func<It<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.LastOrDefault(x => fluentExpression(Fluent.It(x)));
+            return Enumerable.LastOrDefault(self, x => fluentExpression(Fluent.It(x)));
         }
 
 
@@ -97,9 +97,9 @@ namespace Sugar.Linq
         /// Exposes syntactic sugar for evaluating a conditional expression in a linq Count expression.
         /// </summary>
         public static int Count<T>(this IEnumerable<T> self,
-            Func<It<T>, ConditionalExpression<T>> fluentExpression)
+            Func<It<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.Count(x => fluentExpression(Fluent.It(x)));
+            return Enumerable.Count(self, x => fluentExpression(Fluent.It(x)));
         }
     }
 }

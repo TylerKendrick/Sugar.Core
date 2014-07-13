@@ -46,34 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AndComparableExpression.cs" />
-    <Compile Include="ComparableExpression.cs" />
-    <Compile Include="ConditionalExpression.cs" />
-    <Compile Include="DecimalComparableExtensions.cs" />
-    <Compile Include="DoubleComparableExtensions.cs" />
-    <Compile Include="EnumerableComparableExpression.cs" />
-    <Compile Include="EnumerableConditionalExpression.cs" />
-    <Compile Include="EnumerableIsComparableExpression.cs" />
-    <Compile Include="FloatComparableExtensions.cs" />
-    <Compile Include="IComparableExpression.cs" />
-    <Compile Include="IConditionalExpression.cs" />
-    <Compile Include="IEnumerableComparableExpression.cs" />
-    <Compile Include="IIsComparableExpression.cs" />
-    <Compile Include="IIt.cs" />
-    <Compile Include="ILogicalComparableExpression.cs" />
-    <Compile Include="IntComparableExtensions.cs" />
-    <Compile Include="Is.Not.cs" />
+    <Compile Include="Reflection\Type.extensions.cs" />
+    <Compile Include="Utilities\AndFluentExpression.cs" />
+    <Compile Include="Core\FluentExpression.cs" />
+    <Compile Include="Core\FluentPredicate.cs" />
+    <Compile Include="Extensions\Decimal.extensions.cs" />
+    <Compile Include="Extensions\Double.extensions.cs" />
+    <Compile Include="Core\EnumerableFluentExpression.cs" />
+    <Compile Include="Extensions\Enumerable.extensions.cs" />
+    <Compile Include="Extensions\Float.extensions.cs" />
+    <Compile Include="Core\IFluentExpression.cs" />
+    <Compile Include="Core\IFluentPredicate.cs" />
+    <Compile Include="Core\IEnumerableFluentExpression.cs" />
+    <Compile Include="Core\IIsFluentExpression.cs" />
+    <Compile Include="Core\IIt.cs" />
+    <Compile Include="Core\ILogicalFluentExpression.cs" />
+    <Compile Include="Extensions\Int.extensions.cs" />
+    <Compile Include="Core\Is.Not.cs" />
     <Compile Include="Linq\Enumerable.extensions.cs" />
-    <Compile Include="Fluent.cs" />
-    <Compile Include="Is.cs" />
-    <Compile Include="IsComparableExpression.cs" />
-    <Compile Include="It.cs" />
-    <Compile Include="LogicalComparableExpression.cs" />
-    <Compile Include="NotComparableExpression.cs" />
-    <Compile Include="OrComparableExpression.cs" />
+    <Compile Include="Core\Fluent.cs" />
+    <Compile Include="Core\Is.cs" />
+    <Compile Include="Core\IsFluentExpression.cs" />
+    <Compile Include="Core\It.cs" />
+    <Compile Include="Core\LogicalFluentExpression.cs" />
+    <Compile Include="Utilities\NotFluentExpression.cs" />
+    <Compile Include="Utilities\OrFluentExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringComparableExtensions.cs" />
+    <Compile Include="Extensions\String.extensions.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

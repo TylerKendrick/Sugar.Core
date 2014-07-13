@@ -5,36 +5,36 @@ using System.Runtime.CompilerServices;
 namespace Sugar
 {
     /// <summary>
-    /// Provides a new instance of a <see cref="ConditionalExpression{T}"/> for expressions common to all object types.
+    /// Provides a new instance of a <see cref="FluentPredicate{T}"/> for expressions common to all object types.
     /// </summary>
-    public class ComparableExpression<T> : 
-        ComparableExpression<T, ConditionalExpression<T>>, 
-        IComparableExpression<T>
+    public class FluentExpression<T> : 
+        FluentExpression<T, FluentPredicate<T>>, 
+        IFluentExpression<T>
     {
         /// <summary>
         /// Uses a specified context and predicate to provide context and offset the evaluation of proceeding expressions.
         /// </summary>
         /// <param name="context">The object context for evaluation.</param>
         /// <param name="evaluate">The offset predicate.  Returns an identity function (x => x) if null.</param>
-        internal ComparableExpression(T context, Func<bool, bool> evaluate = null) 
+        internal FluentExpression(T context, Func<bool, bool> evaluate = null) 
             : base(context, evaluate)
         {
         }
 
         /// <summary>
-        /// Generates a new instance of <see cref="ConditionalExpression{T}"/> for use by subsequent expressions.
+        /// Generates a new instance of <see cref="FluentPredicate{T}"/> for use by subsequent expressions.
         /// </summary>
-        protected override ConditionalExpression<T> GetDefaultExpression()
+        protected override FluentPredicate<T> GetDefaultExpression()
         {
-            return new ConditionalExpression<T>(Context, HandleIsDefault());
+            return new FluentPredicate<T>(Context, HandleIsDefault());
         }
 
         /// <summary>
-        /// Generates a new instance of <see cref="ConditionalExpression{T}"/> for use by subsequent expressions.
+        /// Generates a new instance of <see cref="FluentPredicate{T}"/> for use by subsequent expressions.
         /// </summary>
-        protected override ConditionalExpression<T> GetConditionalExpression(bool predicate)
+        protected override FluentPredicate<T> GetConditionalExpression(bool predicate)
         {
-            return new ConditionalExpression<T>(Context, predicate);
+            return new FluentPredicate<T>(Context, predicate);
         }
 
         private bool HandleIsDefault()
@@ -45,12 +45,12 @@ namespace Sugar
     }
 
     /// <summary>
-    /// Provides a new instance of a <see cref="ConditionalExpression{T}"/> for expressions common to all object types.
+    /// Provides a new instance of a <see cref="FluentPredicate{T}"/> for expressions common to all object types.
     /// </summary>
-    public abstract class ComparableExpression<T, TConditional> : IComparableExpression<T, TConditional> 
-        where TConditional : IConditionalExpression<T>
+    public abstract class FluentExpression<T, TConditional> : IFluentExpression<T, TConditional> 
+        where TConditional : IFluentPredicate<T>
     {
-        T IComparableExpression<T, TConditional>.Context { get { return Context; } }
+        T IFluentExpression<T, TConditional>.Context { get { return Context; } }
         protected readonly T Context;
         protected readonly Func<bool, bool> Evaluate;
 
@@ -67,19 +67,19 @@ namespace Sugar
         /// </summary>
         /// <param name="context">The object context for evaluation.</param>
         /// <param name="evaluate">The offset predicate.  Returns an identity function (x => x) if null.</param>
-        protected internal ComparableExpression(T context, Func<bool, bool> evaluate = null)
+        protected internal FluentExpression(T context, Func<bool, bool> evaluate = null)
         {
             Context = context;
             Evaluate = evaluate ?? (x => x);
         }
 
         /// <summary>
-        /// Generates a new instance of <see cref="ConditionalExpression{T}"/> for use by subsequent expressions.
+        /// Generates a new instance of <see cref="FluentPredicate{T}"/> for use by subsequent expressions.
         /// </summary>
         protected abstract TConditional GetDefaultExpression();
 
         /// <summary>
-        /// Generates a new instance of <see cref="ConditionalExpression{T}"/> for use by subsequent expressions.
+        /// Generates a new instance of <see cref="FluentPredicate{T}"/> for use by subsequent expressions.
         /// </summary>
         protected abstract TConditional GetConditionalExpression(bool predicate);
         

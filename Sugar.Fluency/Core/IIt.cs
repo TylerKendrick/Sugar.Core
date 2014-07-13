@@ -6,8 +6,8 @@
     public interface IIt<T>
     {
         /// <summary>
-        /// Provides predicate expressions through an instance of a subclass of <see cref="IsComparableExpression{T}"/>.
+        /// Provides predicate expressions through an instance of a subclass of <see cref="IsFluentExpression{T}"/>.
         /// </summary>
-        IsComparableExpression<T> Is { get; }
+        IsFluentExpression<T> Is { get; }
     }
 }

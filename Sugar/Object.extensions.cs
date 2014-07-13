@@ -28,7 +28,7 @@ namespace Sugar
             }
         }
 
-        public static void Require<T>(this T self, ConditionalExpression<T> predicate)
+        public static void Require<T>(this T self, FluentPredicate<T> predicate)
         {
             if (!predicate)
             {
@@ -36,7 +36,7 @@ namespace Sugar
             }
         }
 
-        public static void Require<T>(this T self, Func<It<T>, ConditionalExpression<T>> predicate)
+        public static void Require<T>(this T self, Func<It<T>, FluentPredicate<T>> predicate)
         {
             if (!Fluent.It(self, predicate))
             {

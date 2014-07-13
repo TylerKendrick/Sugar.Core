@@ -4,7 +4,7 @@ using Moq;
 namespace Sugar.Fluency.Tests
 {
     [TestClass]
-    public class ConditionalExpressionTests : UnitTestOf<ConditionalExpression<IFakeConcern>>
+    public class ConditionalExpressionTests : UnitTestOf<FluentPredicate<IFakeConcern>>
     {
         private Mock<IFakeConcern> _fakeConcern;
         private readonly bool? _offset = null; 
@@ -14,9 +14,9 @@ namespace Sugar.Fluency.Tests
             _fakeConcern = Register<IFakeConcern>();
         }
 
-        protected override ConditionalExpression<IFakeConcern> SetUpConcern()
+        protected override FluentPredicate<IFakeConcern> SetUpConcern()
         {
-            return new ConditionalExpression<IFakeConcern>(_fakeConcern.Object, _offset);
+            return new FluentPredicate<IFakeConcern>(_fakeConcern.Object, _offset);
         }
 
         [TestMethod, TestCategory("Wiring Test")]
@@ -25,7 +25,7 @@ namespace Sugar.Fluency.Tests
             var result = Concern.And;
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(AndComparableExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(AndFluentExpression<IFakeConcern>));
         }
 
         [TestMethod, TestCategory("Wiring Test")]
@@ -34,7 +34,7 @@ namespace Sugar.Fluency.Tests
             var result = Concern.Or;
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(OrComparableExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(OrFluentExpression<IFakeConcern>));
         }
 
         [TestMethod, TestCategory("Wiring Test")]
@@ -43,7 +43,7 @@ namespace Sugar.Fluency.Tests
             var result = Concern.Not;
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(NotComparableExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(NotFluentExpression<IFakeConcern>));
         }
     }
 }

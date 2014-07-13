@@ -3,12 +3,12 @@
     /// <summary>
     /// Evaluates in the expression chain as a logical AND operation.
     /// </summary>
-    internal sealed class AndComparableExpression<T> : LogicalComparableExpression<T>
+    internal sealed class AndFluentExpression<T> : LogicalFluentExpression<T>
     {
         /// <summary>
-        /// Wraps the context in a new instance of <see cref="IsComparableExpression{T}"/>.
+        /// Wraps the context in a new instance of <see cref="IsFluentExpression{T}"/>.
         /// </summary>
-        internal AndComparableExpression(T context, bool offset = true)
+        internal AndFluentExpression(T context, bool offset = true)
             : base(context, x => x && offset)
         {
         }

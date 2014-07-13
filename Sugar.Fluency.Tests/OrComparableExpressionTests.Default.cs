@@ -7,10 +7,10 @@ namespace Sugar.Fluency.Tests
         [TestMethod]
         public void DefaultPropertyFulfillsExpectationsWhenConcernIsDefault()
         {
-            Concern = new OrComparableExpression<IFakeConcern>(null);
+            Concern = new OrFluentExpression<IFakeConcern>(null);
             var result = Concern.Default();
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsTrue(result);
         }
@@ -20,7 +20,7 @@ namespace Sugar.Fluency.Tests
         {
             var result = Concern.Default();
 
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.IsNotNull(result);
             Assert.IsFalse(result);
         }
