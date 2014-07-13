@@ -5,7 +5,7 @@ namespace Sugar
     /// <summary>
     /// Provides additional expressions for fluent evaluation.
     /// </summary>
-    public class IsFluentExpression<T> : FluentExpression<T>, IIsFluentExpression<T>
+    internal class IsFluentExpression<T> : FluentExpression<T>, IIsFluentExpression<T>
     {
         private readonly FluentExpression<T> _not;
 
@@ -33,15 +33,6 @@ namespace Sugar
         {
             var result = collection.Contains(Context);
             return GetConditionalExpression(result);
-        }
-        protected override FluentPredicate<T> GetDefaultExpression()
-        {
-            return new FluentPredicate<T>(Context, Context.Equals(default(T)));
-        }
-
-        protected override FluentPredicate<T> GetConditionalExpression(bool predicate)
-        {
-            return new FluentPredicate<T>(Context, predicate);
         }
     }
 }

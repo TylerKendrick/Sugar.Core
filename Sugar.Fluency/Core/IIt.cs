@@ -8,6 +8,6 @@
         /// <summary>
         /// Provides predicate expressions through an instance of a subclass of <see cref="IsFluentExpression{T}"/>.
         /// </summary>
-        IsFluentExpression<T> Is { get; }
+        IIsFluentExpression<T> Is { get; }
     }
 }

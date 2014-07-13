@@ -4,7 +4,7 @@ using Moq;
 namespace Sugar.Fluency.Tests
 {
     [TestClass]
-    public class IsComparableExpressionTests : UnitTestOf<IsFluentExpression<IFakeConcern>>
+    public class IsComparableExpressionTests : UnitTestOf<IIsFluentExpression<IFakeConcern>>
     {
         private Mock<IFakeConcern> _fakeConcern;
 
@@ -13,7 +13,7 @@ namespace Sugar.Fluency.Tests
             _fakeConcern = Register<IFakeConcern>();
         }
 
-        protected override IsFluentExpression<IFakeConcern> SetUpConcern()
+        protected override IIsFluentExpression<IFakeConcern> SetUpConcern()
         {
             return new IsFluentExpression<IFakeConcern>(_fakeConcern.Object);
         }

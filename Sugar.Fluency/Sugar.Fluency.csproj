@@ -54,7 +54,6 @@
     <Compile Include="Core\FluentPredicate.cs" />
     <Compile Include="Extensions\Decimal.extensions.cs" />
     <Compile Include="Extensions\Double.extensions.cs" />
-    <Compile Include="Core\EnumerableFluentExpression.cs" />
     <Compile Include="Extensions\Enumerable.extensions.cs" />
     <Compile Include="Extensions\Float.extensions.cs" />
     <Compile Include="Core\IFluentExpression.cs" />
@@ -64,10 +63,10 @@
     <Compile Include="Core\IIt.cs" />
     <Compile Include="Core\ILogicalFluentExpression.cs" />
     <Compile Include="Extensions\Int.extensions.cs" />
-    <Compile Include="Core\Is.Not.cs" />
+    <Compile Include="Is.Not.cs" />
     <Compile Include="Linq\Enumerable.extensions.cs" />
-    <Compile Include="Core\Fluent.cs" />
-    <Compile Include="Core\Is.cs" />
+    <Compile Include="Fluent.cs" />
+    <Compile Include="Is.cs" />
     <Compile Include="Core\IsFluentExpression.cs" />
     <Compile Include="Core\It.cs" />
     <Compile Include="Core\LogicalFluentExpression.cs" />

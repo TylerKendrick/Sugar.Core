@@ -8,6 +8,6 @@
         /// <summary>
         /// Provides access to the <see cref="NotFluentExpression{T}"/> property.
         /// </summary>
-        IsFluentExpression<T> Is { get; }
+        IIsFluentExpression<T> Is { get; }
     }
 }

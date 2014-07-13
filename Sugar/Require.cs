@@ -10,7 +10,7 @@ namespace Sugar
         /// <summary>
         /// Provides an explicit fluent assertion against a specified <see cref="FluentPredicate{T}"/>.
         /// </summary>
-        public static void That<T>(T instance, Func<It<T>, FluentPredicate<T>> predicate)
+        public static void That<T>(T instance, Func<IIt<T>, FluentPredicate<T>> predicate)
         {
             instance.Require(predicate);
         }

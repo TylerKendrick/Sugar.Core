@@ -15,7 +15,7 @@ namespace Sugar
             /// <typeparam name="T">Any specified class type.</typeparam>
             /// <param name="it">The specified target for comparison.</param>
             /// <returns>Returns a new instance of <see cref="FluentPredicate{T}"/> that resolves to true when the specified target is null.</returns>
-            public static FluentPredicate<T> Null<T>(It<T> it)
+            public static FluentPredicate<T> Null<T>(IIt<T> it)
                 where T : class
             {
                 return it.Is.Not().Default();
@@ -27,7 +27,7 @@ namespace Sugar
             /// <typeparam name="T">Any specified type.</typeparam>
             /// <param name="it">The specified target for comparison.</param>
             /// <returns>Returns a new instance of <see cref="FluentPredicate{T}"/> that resolves to true when the specified target is set to its default value.</returns>
-            public static FluentPredicate<T> Default<T>(It<T> it)
+            public static FluentPredicate<T> Default<T>(IIt<T> it)
             {
                 return it.Is.Not().Default();
             }

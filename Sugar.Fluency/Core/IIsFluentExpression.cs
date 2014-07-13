@@ -3,8 +3,7 @@
     /// <summary>
     /// Provides additional expressions for fluent evaluation.
     /// </summary>
-    public interface IIsFluentExpression<T, out TConditional> : IFluentExpression<T, TConditional> 
-        where TConditional : IFluentPredicate<T>
+    public interface IIsFluentExpression<T> : IFluentExpression<T>
     {
         /// <summary>
         /// Negates the following comparable expressions.
@@ -14,13 +13,6 @@
         /// <summary>
         /// Determines if the context of the expression is contained within a collection.
         /// </summary>
-        TConditional In(params T[] collection);
-    }
-
-    /// <summary>
-    /// Provides additional expressions for fluent evaluation.
-    /// </summary>
-    public interface IIsFluentExpression<T> : IFluentExpression<T>, IIsFluentExpression<T, FluentPredicate<T>>
-    {
+        FluentPredicate<T> In(params T[] collection);
     }
 }

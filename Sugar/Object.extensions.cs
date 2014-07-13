@@ -36,7 +36,7 @@ namespace Sugar
             }
         }
 
-        public static void Require<T>(this T self, Func<It<T>, FluentPredicate<T>> predicate)
+        public static void Require<T>(this T self, Func<IIt<T>, FluentPredicate<T>> predicate)
         {
             if (!Fluent.It(self, predicate))
             {

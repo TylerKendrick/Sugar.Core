@@ -10,7 +10,7 @@ namespace Sugar
         /// <summary>
         /// Provides access to the <see cref="NotFluentExpression{T}"/> property.
         /// </summary>
-        public IsFluentExpression<T> Is { get { return new IsFluentExpression<T>(Context); } } 
+        public IIsFluentExpression<T> Is { get { return new IsFluentExpression<T>(Context); } } 
 
         /// <summary>
         /// Used to create a new instance of an <see cref="IsFluentExpression{T}"/> object.

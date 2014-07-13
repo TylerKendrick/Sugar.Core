@@ -26,7 +26,7 @@ namespace Sugar
         /// <typeparam name="T">Any specified class type.</typeparam>
         /// <param name="it">The specified target for comparison.</param>
         /// <returns>Returns a new instance of <see cref="FluentPredicate{T}"/> that resolves to true when the specified target is null.</returns>
-        public static FluentPredicate<T> Null<T>(It<T> it)
+        public static FluentPredicate<T> Null<T>(IIt<T> it)
             where T : class 
         {
             return it.Is.Default();
@@ -49,7 +49,7 @@ namespace Sugar
         /// <typeparam name="T">Any specified type.</typeparam>
         /// <param name="it">The specified target for comparison.</param>
         /// <returns>Returns a new instance of <see cref="FluentPredicate{T}"/> that resolves to true when the specified target is set to its default value.</returns>
-        public static FluentPredicate<T> Default<T>(It<T> it)
+        public static FluentPredicate<T> Default<T>(IIt<T> it)
         {
             return it.Is.Default();
         }
@@ -60,7 +60,7 @@ namespace Sugar
         /// <typeparam name="T">The type of object for comparison.</typeparam>
         /// <param name="other">The object to evaluate against a specified target for comparison.</param>
         /// <returns>Returns a function that evaluates against the specified argument <paramref name="other"/>.</returns>
-        public static Func<It<T>, FluentPredicate<T>> GreaterThan<T>(T other)
+        public static Func<IIt<T>, FluentPredicate<T>> GreaterThan<T>(T other)
         {
             return it => it.Is.GreaterThan(other);
         }
@@ -72,7 +72,7 @@ namespace Sugar
         /// <param name="other">The object to evaluate against a specified target for comparison.</param>
         /// <param name="comparer">The comparer to use when evaluating the expression.</param>
         /// <returns>Returns a function that evaluates against the specified argument <paramref name="other"/>.</returns>
-        public static Func<It<T>, FluentPredicate<T>> GreaterThan<T>(T other, IComparer<T> comparer)
+        public static Func<IIt<T>, FluentPredicate<T>> GreaterThan<T>(T other, IComparer<T> comparer)
         {
             return it => it.Is.GreaterThan(other, comparer);
         }
@@ -83,7 +83,7 @@ namespace Sugar
         /// <typeparam name="T">The type of object for comparison.</typeparam>
         /// <param name="other">The object to evaluate against a specified target for comparison.</param>
         /// <returns>Returns a function that evaluates against the specified argument <paramref name="other"/>.</returns>
-        public static Func<It<T>, FluentPredicate<T>> LessThan<T>(T other)
+        public static Func<IIt<T>, FluentPredicate<T>> LessThan<T>(T other)
         {
             return it => it.Is.LessThan(other);
         }
@@ -95,7 +95,7 @@ namespace Sugar
         /// <param name="other">The object to evaluate against a specified target for comparison.</param>
         /// <param name="comparer">The comparer to use when evaluating the expression.</param>
         /// <returns>Returns a function that evaluates against the specified argument <paramref name="other"/>.</returns>
-        public static Func<It<T>, FluentPredicate<T>> LessThan<T>(T other, IComparer<T> comparer)
+        public static Func<IIt<T>, FluentPredicate<T>> LessThan<T>(T other, IComparer<T> comparer)
         {
             return it => it.Is.LessThan(other, comparer);
         }
@@ -105,7 +105,7 @@ namespace Sugar
         /// </summary>
         /// <typeparam name="T">The type of object for comparison.</typeparam>
         /// <returns>Returns a function to evaluate against a fluent target.</returns>
-        public static Func<It<T>, FluentPredicate<T>> EqualTo<T>(T other)
+        public static Func<IIt<T>, FluentPredicate<T>> EqualTo<T>(T other)
         {
             return it => it.Is.EqualTo(other);
         }
@@ -117,7 +117,7 @@ namespace Sugar
         /// <param name="max">The maximum expected value.</param>
         /// <param name="comparer">A custom comparer used when evaluating the expression.</param>
         /// <returns>Returns a function for evaluating the expression against the specified values.</returns>
-        public static Func<It<T>, FluentPredicate<T>> AtMost<T>(T max, IComparer<T> comparer)
+        public static Func<IIt<T>, FluentPredicate<T>> AtMost<T>(T max, IComparer<T> comparer)
         {
             return it => it.Is.AtMost(max, comparer);
         }
@@ -128,7 +128,7 @@ namespace Sugar
         /// <typeparam name="T">The type to use for comparison.</typeparam>
         /// <param name="min">The minimum expected value.</param>
         /// <returns>Returns a function for evaluating the expression against the specified values.</returns>
-        public static Func<It<T>, FluentPredicate<T>> AtLeast<T>(T min)
+        public static Func<IIt<T>, FluentPredicate<T>> AtLeast<T>(T min)
         {
             return it => it.Is.AtLeast(min);
         }
@@ -140,7 +140,7 @@ namespace Sugar
         /// <param name="min">The minimum expected value.</param>
         /// <param name="comparer">A custom comparer used when evaluating the expression.</param>
         /// <returns>Returns a function for evaluating the expression against the specified values.</returns>
-        public static Func<It<T>, FluentPredicate<T>> AtLeast<T>(T min, IComparer<T> comparer)
+        public static Func<IIt<T>, FluentPredicate<T>> AtLeast<T>(T min, IComparer<T> comparer)
         {
             return it => it.Is.AtLeast(min, comparer);
         }
@@ -151,7 +151,7 @@ namespace Sugar
         /// <typeparam name="T">The type to use for comparison.</typeparam>
         /// <param name="target">The target value expected to be of matching sort order.</param>
         /// <returns>Returns a function for evaluating the expression against the specified values.</returns>
-        public static Func<It<T>, FluentPredicate<T>> SameAs<T>(T target)
+        public static Func<IIt<T>, FluentPredicate<T>> SameAs<T>(T target)
         {
             return it => it.Is.SameAs(target);
         }
@@ -163,7 +163,7 @@ namespace Sugar
         /// <param name="target">The target value expected to be of matching sort order.</param>
         /// <param name="comparer">A custom comparer used when evaluating the expression.</param>
         /// <returns>Returns a function for evaluating the expression against the specified values.</returns>
-        public static Func<It<T>, FluentPredicate<T>> SameAs<T>(T target, IComparer<T> comparer)
+        public static Func<IIt<T>, FluentPredicate<T>> SameAs<T>(T target, IComparer<T> comparer)
         {
             return it => it.Is.SameAs(target, comparer);
         }
