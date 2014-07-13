@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Sugar
@@ -22,6 +23,11 @@ namespace Sugar
         public static bool And(this bool self, params bool[] others)
         {
             return self && others.All();
+        }
+
+        public static bool And(this bool self, Func<bool, bool, bool> aggregator, params bool[] others)
+        {
+            return others.All(x => aggregator(self, x));
         }
 
         /// <summary>
@@ -48,20 +54,9 @@ namespace Sugar
             return self || others.Any();
         }
 
-        /// <summary>
-        /// Provides a fluent, explicit value comparison for true.
-        /// </summary>
-        public static bool IsTrue(this bool self)
+        public static bool Or(this bool self, Func<bool, bool, bool> aggregator, params bool[] others)
         {
-            return self;
-        }
-
-        /// <summary>
-        /// Provides a fluent, explicit value comparison for false.
-        /// </summary>
-        public static bool IsFalse(this bool self)
-        {
-            return self == false;
-        }
+            return others.Any(x => aggregator(self, x));
+        } 
     }
 }

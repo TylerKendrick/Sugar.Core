@@ -29,7 +29,7 @@ namespace Sugar
         public static FluentPredicate<T> Null<T>(IIt<T> it)
             where T : class 
         {
-            return it.Is.Default();
+            return it.Is.Null();
         }
 
         /// <summary>
@@ -39,6 +39,7 @@ namespace Sugar
         /// <param name="it">The specified target for comparison.</param>
         /// <returns>Returns a new instance of <see cref="FluentPredicate{T}"/> that resolves to true when the specified target is set to its default value.</returns>
         public static FluentPredicate<T> Default<T>(T it)
+            where T : struct
         {
             return Fluent.It(it).Is.Default();
         }
@@ -50,6 +51,7 @@ namespace Sugar
         /// <param name="it">The specified target for comparison.</param>
         /// <returns>Returns a new instance of <see cref="FluentPredicate{T}"/> that resolves to true when the specified target is set to its default value.</returns>
         public static FluentPredicate<T> Default<T>(IIt<T> it)
+            where T : struct
         {
             return it.Is.Default();
         }

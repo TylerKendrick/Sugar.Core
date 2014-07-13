@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Sugar.Extensions;
 
 namespace Sugar
 {

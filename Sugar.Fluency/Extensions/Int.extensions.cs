@@ -1,14 +1,12 @@
-﻿using Sugar.Extensions;
-
-namespace Sugar
+﻿namespace Sugar
 {
     public static class IntComparableExtensions
     {
-        public static FluentPredicate<int> IsEven(this IFluentExpression<int> self)
+        public static FluentPredicate<int> Even(this IFluentExpression<int> self)
         {
             return self.Generate(x=> (x & 1) == 0);
         }
-        public static FluentPredicate<int> IsOdd(this IFluentExpression<int> self)
+        public static FluentPredicate<int> Odd(this IFluentExpression<int> self)
         {
             return self.Generate(x => (x & 1) != 0);
         }

@@ -15,7 +15,7 @@ namespace Sugar.Linq
         public static IEnumerable<T> Where<T>(this IEnumerable<T> self,
             Func<IIt<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.Where(x => fluentExpression(Fluent.It(x)) == true);
+            return self.Where(fluentExpression.ToPredicate());
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Sugar.Linq
         public static bool Any<T>(this IEnumerable<T> self,
             Func<IIt<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.Any(x => fluentExpression(Fluent.It(x)));
+            return self.Any(fluentExpression.ToPredicate());
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Sugar.Linq
         public static bool All<T>(this IEnumerable<T> self,
             Func<IIt<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.All(x => fluentExpression(Fluent.It(x)));
+            return self.All(fluentExpression.ToPredicate());
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Sugar.Linq
         public static T Single<T>(this IEnumerable<T> self,
             Func<IIt<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.Single(x => fluentExpression(Fluent.It(x)));
+            return self.Single(fluentExpression.ToPredicate());
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Sugar.Linq
         public static T SingleOrDefault<T>(this IEnumerable<T> self,
             Func<IIt<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.SingleOrDefault(x => fluentExpression(Fluent.It(x)));
+            return self.SingleOrDefault(fluentExpression.ToPredicate());
         }
 
 
@@ -61,7 +61,7 @@ namespace Sugar.Linq
         public static T First<T>(this IEnumerable<T> self,
             Func<IIt<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.First(x => fluentExpression(Fluent.It(x)));
+            return self.First(fluentExpression.ToPredicate());
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Sugar.Linq
         public static T FirstOrDefault<T>(this IEnumerable<T> self,
             Func<IIt<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.FirstOrDefault(x => fluentExpression(Fluent.It(x)));
+            return self.FirstOrDefault(fluentExpression.ToPredicate());
         }
 
 
@@ -80,7 +80,7 @@ namespace Sugar.Linq
         public static T Last<T>(this IEnumerable<T> self,
             Func<IIt<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.Single(x => fluentExpression(Fluent.It(x)));
+            return self.Single(fluentExpression.ToPredicate());
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Sugar.Linq
         public static T LastOrDefault<T>(this IEnumerable<T> self,
             Func<IIt<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.LastOrDefault(x => fluentExpression(Fluent.It(x)));
+            return self.LastOrDefault(fluentExpression.ToPredicate());
         }
 
 
@@ -99,7 +99,12 @@ namespace Sugar.Linq
         public static int Count<T>(this IEnumerable<T> self,
             Func<IIt<T>, FluentPredicate<T>> fluentExpression)
         {
-            return self.Count(x => fluentExpression(Fluent.It(x)));
+            return self.Count(fluentExpression.ToPredicate());
+        }
+
+        private static Func<T, bool> ToPredicate<T>(this Func<IIt<T>, FluentPredicate<T>> fluentExpression)
+        {
+            return x => fluentExpression(Fluent.It(x));
         }
     }
 }

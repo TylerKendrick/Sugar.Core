@@ -1,6 +1,4 @@
-﻿using Sugar.Extensions;
-
-namespace Sugar
+﻿namespace Sugar
 {
     public static class DoubleComparableExtensions
     {

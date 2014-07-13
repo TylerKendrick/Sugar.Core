@@ -17,16 +17,7 @@ namespace Sugar.Fluency.Tests
         {
             return new IsFluentExpression<IFakeConcern>(_fakeConcern.Object);
         }
-
-        [TestMethod, TestCategory("Wiring Test")]
-        public void NotPropertyFulfillsExpectations()
-        {
-            var result = Concern.Not();
-
-            Assert.IsInstanceOfType(result, typeof(NotFluentExpression<IFakeConcern>));
-            Assert.IsNotNull(result);
-        }
-
+        
         [TestMethod]
         public void InMethodFulfillsExpectationsWhenCollectionDoesContainConcern()
         {

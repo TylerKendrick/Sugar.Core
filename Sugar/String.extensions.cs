@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Sugar
 {
@@ -18,7 +17,7 @@ namespace Sugar
         /// <returns>Returns a string delimited aggregate of the provided string collection.</returns>
         public static string Delimit(this IEnumerable<string> self, string delimiter = ", ")
         {
-            Func<string, bool> isNullOrEmptyOrWhitespace = x => Fluent.String(x)
+            Func<string, bool> isNullOrEmptyOrWhitespace = x => Fluent.It(x)
                 .Is.Null()
                 .Or.Empty()
                 .Or.Whitespace();

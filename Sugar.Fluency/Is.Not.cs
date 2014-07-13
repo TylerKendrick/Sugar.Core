@@ -18,7 +18,7 @@ namespace Sugar
             public static FluentPredicate<T> Null<T>(IIt<T> it)
                 where T : class
             {
-                return it.Is.Not().Default();
+                return it.Is.Not.Null();
             }
 
             /// <summary>
@@ -28,8 +28,9 @@ namespace Sugar
             /// <param name="it">The specified target for comparison.</param>
             /// <returns>Returns a new instance of <see cref="FluentPredicate{T}"/> that resolves to true when the specified target is set to its default value.</returns>
             public static FluentPredicate<T> Default<T>(IIt<T> it)
+                where T : struct
             {
-                return it.Is.Not().Default();
+                return it.Is.Not.Default();
             }
 
             /// <summary>
@@ -40,7 +41,7 @@ namespace Sugar
             /// <returns>Returns a function that evaluates against the specified argument <paramref name="other"/>.</returns>
             public static Func<T, FluentPredicate<T>> GreaterThan<T>(T other)
             {
-                return x => Fluent.It(x).Is.Not().GreaterThan(other);
+                return x => Fluent.It(x).Is.Not.GreaterThan(other);
             }
 
             /// <summary>
