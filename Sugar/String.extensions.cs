@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Sugar
 {
@@ -37,6 +38,11 @@ namespace Sugar
         public static string Format(this string self, params object[] args)
         {
             return string.Format(self, args);
+        }
+
+        public static byte[] FromBase64String(this string self)
+        {
+            return Convert.FromBase64String(self);
         }
     }
 }

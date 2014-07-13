@@ -16,6 +16,11 @@ namespace Sugar
             return BitConverter.ToBoolean(self, startIndex);
         }
 
+        public static string ToHex(this byte[] self)
+        {
+            return BitConverter.ToString(self).Replace("-", "");
+        }
+
         /// <summary>
         /// Returns a Unicode character converted from two bytes at a specified position in a byte array.
         /// </summary>
@@ -231,6 +236,16 @@ namespace Sugar
         public static byte Not(this byte self)
         {
             return (~self).Cast<byte>();
+        }
+
+        public static string ToBase64String(this byte[] self)
+        {
+            return Convert.ToBase64String(self);
+        }
+
+        public static string ToBase64String(this byte[] self, Base64FormattingOptions formattingOptions)
+        {
+            return Convert.ToBase64String(self, formattingOptions);
         }
     }
 }

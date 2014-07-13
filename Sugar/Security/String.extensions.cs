@@ -22,8 +22,7 @@ namespace Sugar.Security
         {
             var bytes = self.ToBytes(encoding);
             return hashAlgorithm.ComputeHash(bytes)
-                .ToString(0)
-                .Replace("-", "")
+                .ToHex()
                 .ToLower();
         }
 

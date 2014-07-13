@@ -1,6 +1,5 @@
-﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text;
+using Sugar.Extensions;
 
 namespace Sugar
 {
@@ -20,17 +19,7 @@ namespace Sugar
         {
             return self.Generate(x => x != null && string.IsNullOrEmpty(x.Trim()));
         }
-
-        public static FluentPredicate<string> Uri(this IFluentExpression<string> self)
-        {
-            return self.Generate(x => System.Uri.IsWellFormedUriString(x, UriKind.RelativeOrAbsolute));
-        }
-
-        public static FluentPredicate<string> Match(this IFluentExpression<string> self, Regex regex)
-        {
-            return self.Generate(regex.IsMatch);
-        }
-
+        
         public static FluentPredicate<string> StartsWith(this IFluentExpression<string> self, string match)
         {
             return self.Generate(x => x.StartsWith(match));
@@ -53,12 +42,6 @@ namespace Sugar
         public static FluentPredicate<string> Contains(this IFluentExpression<string> self, string value)
         {
             return self.Generate(x => x.Contains(value));
-        }
-
-        private static FluentPredicate<string> Generate(this IFluentExpression<string, FluentPredicate<string>> self, 
-            Func<string, bool> predicate)
-        {
-            return new FluentPredicate<string>(self.Context, predicate(self.Context));
         }
     }
 }

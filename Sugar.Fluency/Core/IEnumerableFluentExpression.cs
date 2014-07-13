@@ -6,13 +6,11 @@ namespace Sugar
     /// Provides fluent comparable expressions for enumerable types.
     /// </summary>
     /// <typeparam name="TItem">The type of item in the enumerable collection.</typeparam>
-    /// <typeparam name="TCollection">The type of the collection.</typeparam>
-    public interface IEnumerableFluentExpression<TItem, TCollection> : IFluentExpression<TCollection, FluentPredicate<TCollection>>
-        where TCollection : IEnumerable<TItem>
+    public interface IEnumerableFluentExpression<TItem> : IFluentExpression<IEnumerable<TItem>, FluentPredicate<IEnumerable<TItem>>>
     {
         /// <summary>
         /// Provides a fluent comparison to determine if the wrapped collection is empty.
         /// </summary>
-        FluentPredicate<TCollection> Empty();
+        FluentPredicate<IEnumerable<TItem>> Empty();
     }
 }

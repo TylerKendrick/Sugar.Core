@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Sugar.Extensions;
 
 namespace Sugar
 {
@@ -27,13 +27,6 @@ namespace Sugar
         public static FluentPredicate<float> NaN(this IFluentExpression<float> self)
         {
             return self.Generate(float.IsNaN);
-        }
-
-
-        public static FluentPredicate<float> Generate(this IFluentExpression<float, FluentPredicate<float>> self,
-            Func<float, bool> predicate)
-        {
-            return new FluentPredicate<float>(self.Context, predicate(self.Context));
         }
     }
 }

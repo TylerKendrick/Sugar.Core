@@ -8,22 +8,21 @@ namespace Sugar
     /// Provides fluent comparable expressions for enumerable types.
     /// </summary>
     /// <typeparam name="TItem">The type of item in the enumerable collection.</typeparam>
-    /// <typeparam name="TCollection">The type of the collection.</typeparam>
-    public class EnumerableFluentExpression<TItem, TCollection> : FluentExpression<TCollection, FluentPredicate<TCollection>>, IEnumerableFluentExpression<TItem, TCollection> 
-        where TCollection : IEnumerable<TItem>
+    public class EnumerableFluentExpression<TItem> : FluentExpression<IEnumerable<TItem>, 
+        FluentPredicate<IEnumerable<TItem>>>, IEnumerableFluentExpression<TItem>
     {
         /// <summary>
         /// Provides a fluent comparison to determine if the wrapped collection is empty.
         /// </summary>
-        public FluentPredicate<TCollection> Empty()
+        public FluentPredicate<IEnumerable<TItem>> Empty()
         {
-            return new FluentPredicate<TCollection>(Context, !Context.Any());
+            return new FluentPredicate<IEnumerable<TItem>>(Context, !Context.Any());
         }
 
         /// <summary>
         /// Wraps the collection in a comparable expression.
         /// </summary>
-        internal EnumerableFluentExpression(TCollection context) 
+        internal EnumerableFluentExpression(IEnumerable<TItem> context) 
             : base(context)
         {
         }
@@ -31,22 +30,22 @@ namespace Sugar
         /// <summary>
         /// Generates a new instance of <see cref="FluentPredicate{T}"/> for use by subsequent expressions.
         /// </summary>
-        protected override FluentPredicate<TCollection> GetDefaultExpression()
+        protected override FluentPredicate<IEnumerable<TItem>> GetDefaultExpression()
         {
-            return new FluentPredicate<TCollection>(Context, HandleIsDefault());
+            return new FluentPredicate<IEnumerable<TItem>>(Context, HandleIsDefault());
         }
 
         /// <summary>
         /// Generates a new instance of <see cref="FluentPredicate{T}"/> for use by subsequent expressions.
         /// </summary>
-        protected override FluentPredicate<TCollection> GetConditionalExpression(bool predicate)
+        protected override FluentPredicate<IEnumerable<TItem>> GetConditionalExpression(bool predicate)
         {
-            return new FluentPredicate<TCollection>(Context, predicate);
+            return new FluentPredicate<IEnumerable<TItem>>(Context, predicate);
         }
 
         private bool HandleIsDefault()
         {
-            var isEqual = RuntimeHelpers.Equals(Context, default(TCollection));
+            var isEqual = RuntimeHelpers.Equals(Context, default(IEnumerable<TItem>));
             return Evaluate(isEqual);
         }
     }

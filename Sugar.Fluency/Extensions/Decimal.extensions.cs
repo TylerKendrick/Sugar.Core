@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Sugar.Extensions;
 
 namespace Sugar
 {
@@ -11,12 +11,6 @@ namespace Sugar
         public static FluentPredicate<decimal> Negative(this IFluentExpression<decimal> self)
         {
             return self.Generate(x => x < 0);
-        }
-
-        public static FluentPredicate<decimal> Generate(this IFluentExpression<decimal, FluentPredicate<decimal>> self,
-            Func<decimal, bool> predicate)
-        {
-            return new FluentPredicate<decimal>(self.Context, predicate(self.Context));
         }
     }
 }

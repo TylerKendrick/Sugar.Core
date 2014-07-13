@@ -10,7 +10,7 @@
     /// <typeparam name="T">The kind of object being used for evaluation.</typeparam>
     /// <typeparam name="TComparable">The type used to negate logical expressions.</typeparam>
     /// <typeparam name="TLogical">The type used for logical expressions.</typeparam>
-    public interface IFluentPredicate<T, out TComparable, out TLogical> 
+    public interface IFluentPredicate<T, out TComparable, out TLogical> : IFluentPredicate
         where TComparable : IFluentExpression<T>
         where TLogical : ILogicalFluentExpression<T>, TComparable
     {
