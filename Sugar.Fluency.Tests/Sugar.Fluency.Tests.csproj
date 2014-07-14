@@ -59,6 +59,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ConditionalExpressionTests.cs" />
+    <Compile Include="FluentStaticTests.cs" />
+    <Compile Include="IsStaticTests.cs" />
+    <Compile Include="ItStaticTests.cs" />
     <Compile Include="NotComparableExpressionTests.cs" />
     <Compile Include="NotComparableExpressionTests.AtLeast.cs" />
     <Compile Include="NotComparableExpressionTests.AtMost.cs" />

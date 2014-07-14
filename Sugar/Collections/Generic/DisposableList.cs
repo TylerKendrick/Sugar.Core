@@ -24,15 +24,31 @@ namespace Sugar.Collections.Generic
             return GetEnumerator();
         }
 
+        /// <summary>
+        /// Adds an item to the collection.
+        /// </summary>
+        /// <param name="item">The item to add to the end of the collection.</param>
+        /// <returns>Returns a <see cref="Disposable{T}"/> object that removes itself from the collection once Dispose is called.</returns>
+        /// <remarks>
+        /// <example>
+        /// <code>var disposable = list.Add(new T());</code>
+        /// <code>disposable.Dispose();</code>
+        /// </example>
+        /// </remarks>
         public IDisposable Add(T item)
         {
             _handle.Add(item);
             return new Disposable<T>(item, x => _handle.Remove(x.Value));
         }
 
-        public IEnumerable<IDisposable> Add(params T[] items)
+        /// <summary>
+        /// Adds items to the collection.
+        /// </summary>
+        /// <param name="items">The items to add to the end of the collection.</param>
+        /// <returns>Returns an <see cref="IEnumerable{Disposable{T}}"/> object that removes themselves from the collection once Dispose is called.</returns>
+        public IDictionary<T, IDisposable> Add(params T[] items)
         {
-            return items.Select(Add);
+            return items.ToDictionary(x => x, Add);
         }
     }
 }

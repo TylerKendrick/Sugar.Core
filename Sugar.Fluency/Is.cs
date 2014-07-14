@@ -17,7 +17,7 @@ namespace Sugar
         public static FluentPredicate<T> Null<T>(T target)
             where T : class
         {
-            return new FluentPredicate<T>(target, target == null);
+            return Null(Fluent.It(target));
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Sugar
         public static FluentPredicate<T> Default<T>(T it)
             where T : struct
         {
-            return Fluent.It(it).Is.Default();
+            return Default(Fluent.It(it));
         }
 
         /// <summary>
@@ -119,6 +119,18 @@ namespace Sugar
         /// <param name="max">The maximum expected value.</param>
         /// <param name="comparer">A custom comparer used when evaluating the expression.</param>
         /// <returns>Returns a function for evaluating the expression against the specified values.</returns>
+        public static Func<IIt<T>, FluentPredicate<T>> AtMost<T>(T max)
+        {
+            return AtMost(max, Comparer<T>.Default);
+        }
+
+        /// <summary>
+        /// Determines sort order between comparable objects.
+        /// </summary>
+        /// <typeparam name="T">The type to use for comparison.</typeparam>
+        /// <param name="max">The maximum expected value.</param>
+        /// <param name="comparer">A custom comparer used when evaluating the expression.</param>
+        /// <returns>Returns a function for evaluating the expression against the specified values.</returns>
         public static Func<IIt<T>, FluentPredicate<T>> AtMost<T>(T max, IComparer<T> comparer)
         {
             return it => it.Is.AtMost(max, comparer);
@@ -168,6 +180,21 @@ namespace Sugar
         public static Func<IIt<T>, FluentPredicate<T>> SameAs<T>(T target, IComparer<T> comparer)
         {
             return it => it.Is.SameAs(target, comparer);
+        }
+
+        /// <summary>
+        /// Uses an <see cref="IComparer{T}"/> to determine if the wrapped object is within a specified range.
+        /// </summary>
+        public static Func<IIt<T>, FluentPredicate<T>> Between<T>(T min, T max)
+        {
+            return x => x.Is.Between(min, max);
+        }
+        /// <summary>
+        /// Uses an <see cref="IComparer{T}"/> to determine if the wrapped object is within a specified range.
+        /// </summary>
+        public static Func<IIt<T>, FluentPredicate<T>> Between<T>(T min, T max, IComparer<T> comparer)
+        {
+            return x => x.Is.Between(min, max, comparer);
         }
     }
 }

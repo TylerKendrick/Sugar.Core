@@ -25,11 +25,11 @@ namespace Sugar.Fluency.Tests
         [TestMethod]
         public void ItExpressionWithComparableExpressionReturnsExpectedResult()
         {
-            var expectation = new ConditionalExpression<IFakeConcern>(_fakeConcern, true);
+            var expectation = new FluentPredicate<IFakeConcern>(_fakeConcern, true);
             var result = Fluent.It(_fakeConcern, x => expectation);
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ConditionalExpression<IFakeConcern>));
+            Assert.IsInstanceOfType(result, typeof(FluentPredicate<IFakeConcern>));
             Assert.AreEqual(expectation, result);
             Assert.IsTrue(result);
         }

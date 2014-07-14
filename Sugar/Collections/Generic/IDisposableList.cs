@@ -15,13 +15,19 @@ namespace Sugar.Collections.Generic
         /// </summary>
         /// <param name="item">The item to add to the end of the collection.</param>
         /// <returns>Returns a <see cref="Disposable{T}"/> object that removes itself from the collection once Dispose is called.</returns>
+        /// <remarks>
+        /// <example>
+        /// <code>var disposable = list.Add(new T());</code>
+        /// <code>disposable.Dispose();</code>
+        /// </example>
+        /// </remarks>
         IDisposable Add(T item);
 
         /// <summary>
         /// Adds items to the collection.
         /// </summary>
         /// <param name="items">The items to add to the end of the collection.</param>
-        /// <returns>Returns an <see cref="IEnumerable{Disposable{T}}"/> object that removes themselves from the collection once Dispose is called.</returns>
-        IEnumerable<IDisposable> Add(params T[] items);
+        /// <returns>Returns a collection of disposable wrappers that remove themselves from the collection once Dispose is called.</returns>
+        IDictionary<T, IDisposable> Add(params T[] items);
     }
 }
