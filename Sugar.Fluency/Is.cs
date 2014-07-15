@@ -117,7 +117,6 @@ namespace Sugar
         /// </summary>
         /// <typeparam name="T">The type to use for comparison.</typeparam>
         /// <param name="max">The maximum expected value.</param>
-        /// <param name="comparer">A custom comparer used when evaluating the expression.</param>
         /// <returns>Returns a function for evaluating the expression against the specified values.</returns>
         public static Func<IIt<T>, FluentPredicate<T>> AtMost<T>(T max)
         {
