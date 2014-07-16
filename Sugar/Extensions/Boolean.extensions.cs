@@ -14,7 +14,7 @@ namespace Sugar
         /// </summary>
         public static bool And(this bool self, bool other)
         {
-            return self && other;
+            return Logical.And(self, other);
         }
 
         /// <summary>
@@ -22,12 +22,12 @@ namespace Sugar
         /// </summary>
         public static bool And(this bool self, params bool[] others)
         {
-            return self && others.All();
+            return Logical.And(self, others);
         }
 
         public static bool And(this bool self, Func<bool, bool, bool> aggregator, params bool[] others)
         {
-            return others.All(x => aggregator(self, x));
+            return Logical.And(self, aggregator, others);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Sugar
         /// </summary>
         public static bool Or(this bool self, bool other)
         {
-            return self || other;
+            return Logical.Or(self, other);
         }
 
         /// <summary>
@@ -51,12 +51,12 @@ namespace Sugar
         /// </summary>
         public static bool Or(this bool self, params bool[] others)
         {
-            return self || others.Any();
+            return Logical.Or(self, others);
         }
 
         public static bool Or(this bool self, Func<bool, bool, bool> aggregator, params bool[] others)
         {
-            return others.Any(x => aggregator(self, x));
+            return Logical.Or(self, aggregator, others);
         } 
     }
 }

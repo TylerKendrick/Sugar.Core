@@ -214,28 +214,28 @@ namespace Sugar
         /// </summary>
         public static byte And(this byte self, byte other)
         {
-            return (self & other).Cast<byte>();
+            return Bitwise.And(self, other);
         }
         /// <summary>
         /// Returns the bitwise or operation result between self and other.
         /// </summary>
         public static byte Or(this byte self, byte other)
         {
-            return (self | other).Cast<byte>();
+            return Bitwise.Or(self, other);
         }
         /// <summary>
         /// Returns the bitwise xor operation result between self and other.
         /// </summary>
         public static byte XOr(this byte self, byte other)
         {
-            return (self ^ other).Cast<byte>();
+            return Bitwise.XOr(self, other);
         }
         /// <summary>
         /// Returns the bitwise not operation result between self and other.
         /// </summary>
         public static byte Not(this byte self)
         {
-            return (~self).Cast<byte>();
+            return Bitwise.Not(self);
         }
 
         public static string ToBase64String(this byte[] self)
