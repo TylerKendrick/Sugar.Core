@@ -16,7 +16,7 @@ namespace Sugar
 
         public static FluentPredicate<string> Whitespace(this IFluentExpression<string> self)
         {
-            return self.Generate(x => x != null && string.IsNullOrEmpty(x.Trim()));
+            return self.Generate(x => x.IsNullOrWhitespace());
         }
         
         public static FluentPredicate<string> StartsWith(this IFluentExpression<string> self, string match)

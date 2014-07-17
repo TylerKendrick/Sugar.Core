@@ -11,37 +11,37 @@ namespace Sugar
 
         public static FluentPredicate<DateTime> Today(this IFluentExpression<DateTime> self)
         {
-            return self.Generate(x => DateTime.Today.Date == x.Date);
+            return self.Generate(x => x.IsToday());
         }
 
         public static FluentPredicate<DateTime> Yesterday(this IFluentExpression<DateTime> self)
         {
-            return self.Generate(x => DateTime.Today.Date.AddDays(-1) == x.Date);
+            return self.Generate(x => x.IsYesterday());
         }
 
         public static FluentPredicate<DateTime> Tomorrow(this IFluentExpression<DateTime> self)
         {
-            return self.Generate(x => DateTime.Today.Date.AddDays(1) == x.Date);
+            return self.Generate(x => x.IsTomorrow());
         }
 
         public static FluentPredicate<DateTime> SameTimeAs(this IFluentExpression<DateTime> self, DateTime other)
         {
-            return self.Generate(x => x.TimeOfDay == other.TimeOfDay);
+            return self.Generate(x => x.IsSameTimeAs(other));
         }
 
         public static FluentPredicate<DateTime> SameDateAs(this IFluentExpression<DateTime> self, DateTime other)
         {
-            return self.Generate(x => x.Date == other.Date);
+            return self.Generate(x => x.IsSameDateAs(other));
         }
 
         public static FluentPredicate<DateTime> SameYearAs(this IFluentExpression<DateTime> self, DateTime other)
         {
-            return self.Generate(x => x.Year == other.Year);
+            return self.Generate(x => x.IsSameYearAs(other));
         }
 
         public static FluentPredicate<DateTime> SameMonthAs(this IFluentExpression<DateTime> self, DateTime other)
         {
-            return self.Generate(x => x.Month == other.Month);
+            return self.Generate(x => x.IsSameMonthAs(other));
         }
 
         public static FluentPredicate<DateTime> DayOfWeek(this IFluentExpression<DateTime> self, DayOfWeek dayOfWeek)
@@ -80,7 +80,7 @@ namespace Sugar
 
         public static FluentPredicate<DateTime> MonthOfYear(this IFluentExpression<DateTime> self, MonthOfYear monthOfYear)
         {
-            return self.Generate(x => x.Month == (int) monthOfYear);
+            return self.Generate(x => x.IsMonthOfYear(monthOfYear));
         }
 
         public static FluentPredicate<DateTime> January(this IFluentExpression<DateTime> self)
@@ -134,7 +134,7 @@ namespace Sugar
 
         public static FluentPredicate<DateTime> LeapYear(this IFluentExpression<DateTime> self)
         {
-            return self.Generate(x => DateTime.IsLeapYear(x.Year));
+            return self.Generate(x => x.IsLeapYear());
         }
     }
 }

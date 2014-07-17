@@ -49,7 +49,6 @@
     <Compile Include="Extensions\BooleanFluentExtesions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\Fluent.extensions.cs" />
-    <Compile Include="MonthOfYear.cs" />
     <Compile Include="Reflection\Type.extensions.cs" />
     <Compile Include="Utilities\AndFluentExpression.cs" />
     <Compile Include="Core\FluentExpression.cs" />

@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bitwise.cs" />
+    <Compile Include="Bitwise.int.cs" />
+    <Compile Include="Bitwise.byte.cs" />
+    <Compile Include="DateTime.extensions.cs" />
     <Compile Include="Extensions\Action.curry.extensions.cs" />
     <Compile Include="Extensions\Action.extensions.cs" />
     <Compile Include="Extensions\Action.raise.extensions.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="Extensions\Enum.extensions.cs" />
     <Compile Include="Extensions\EventHandler.extensions.cs" />
     <Compile Include="Logical.cs" />
+    <Compile Include="MonthOfYear.cs" />
     <Compile Include="Utilities\ExecutionBlock.cs" />
     <Compile Include="Extensions\Func.extensions.cs" />
     <Compile Include="Extensions\GC.extensions.cs" />
@@ -64,7 +67,6 @@
     <Compile Include="Globalization\Number.extensions.cs" />
     <Compile Include="Globalization\String.extensions.cs" />
     <Compile Include="Extensions\IExecutionBlock.cs" />
-    <Compile Include="Extensions\Int.extensions.cs" />
     <Compile Include="IO\Stream.extensions.cs" />
     <Compile Include="IRange.cs" />
     <Compile Include="Lambda.cs" />

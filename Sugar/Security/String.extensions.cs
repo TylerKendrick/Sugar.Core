@@ -20,7 +20,7 @@ namespace Sugar.Security
         /// <returns>Returns the result of the hash algorithm applied to the string.</returns>
         public static string Encrypt(this string self, HashAlgorithm hashAlgorithm, Encoding encoding = null)
         {
-            var bytes = self.ToBytes(encoding);
+            var bytes = self.GetBytes(encoding);
             return hashAlgorithm.ComputeHash(bytes)
                 .ToHex()
                 .ToLower();
@@ -42,7 +42,7 @@ namespace Sugar.Security
             string password, string iv, Encoding encoding = null)
         {
             encoding = encoding ?? Encoding.UTF8;
-            var crypto = cryptoType.Create(password.ToBytes(encoding), iv.ToBytes(encoding));
+            var crypto = cryptoType.Create(password.GetBytes(encoding), iv.GetBytes(encoding));
             return Encrypt(self, crypto, encoding);
         }
         
@@ -50,7 +50,7 @@ namespace Sugar.Security
             Encoding encoding = null)
         {
             encoding = encoding ?? Encoding.UTF8;
-            var input = self.ToBytes(encoding);
+            var input = self.GetBytes(encoding);
             var output = input.Encrypt(symmetricAlgorithm);
             return Convert.ToBase64String(output);
         }
@@ -59,7 +59,7 @@ namespace Sugar.Security
             string password, string iv, Encoding encoding = null)
         {
             encoding = encoding ?? Encoding.UTF8;
-            var crypto = cryptoType.Create(password.ToBytes(encoding), iv.ToBytes(encoding));
+            var crypto = cryptoType.Create(password.GetBytes(encoding), iv.GetBytes(encoding));
             return Decrypt(self, crypto, encoding);
         }
         

@@ -16,6 +16,11 @@ namespace Sugar
             return BitConverter.ToBoolean(self, startIndex);
         }
 
+        /// <summary>
+        /// Uses a <see cref="BitConverter"/> to convert the provided byte array into a hex string representation.
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
         public static string ToHex(this byte[] self)
         {
             return BitConverter.ToString(self).Replace("-", "");
@@ -128,7 +133,7 @@ namespace Sugar
         /// <summary>
         /// Returns the specified Boolean value as an array of bytes.
         /// </summary>
-        public static byte[] ToBytes(this bool self)
+        public static byte[] GetBytes(this bool self)
         {
             return BitConverter.GetBytes(self);
         }
@@ -136,7 +141,7 @@ namespace Sugar
         /// <summary>
         /// Returns the specified Unicode character value as an array of bytes.
         /// </summary>
-        public static byte[] ToBytes(this char self)
+        public static byte[] GetBytes(this char self)
         {
             return BitConverter.GetBytes(self);
         }
@@ -145,7 +150,7 @@ namespace Sugar
         /// <summary>
         /// Returns the specified string value as an array of bytes.
         /// </summary>
-        public static byte[] ToBytes(this string self, Encoding encoding = null)
+        public static byte[] GetBytes(this string self, Encoding encoding = null)
         {
             encoding = encoding ?? Encoding.Default;
             return encoding.GetBytes(self);
@@ -156,7 +161,7 @@ namespace Sugar
         /// <summary>
         /// Returns the specified 32-bit signed integer value as an array of bytes.
         /// </summary>
-        public static byte[] ToBytes(this int self)
+        public static byte[] GetBytes(this int self)
         {
             return BitConverter.GetBytes(self);
         }
@@ -164,7 +169,7 @@ namespace Sugar
         /// <summary>
         /// Returns the specified 64-bit signed integer value as an array of bytes.
         /// </summary>
-        public static byte[] ToBytes(this long self)
+        public static byte[] GetBytes(this long self)
         {
             return BitConverter.GetBytes(self);
         }
@@ -172,7 +177,7 @@ namespace Sugar
         /// <summary>
         /// Returns the specified double-precision floating point value as an array of bytes.
         /// </summary>
-        public static byte[] ToBytes(this double self)
+        public static byte[] GetBytes(this double self)
         {
             return BitConverter.GetBytes(self);
         }
@@ -180,7 +185,7 @@ namespace Sugar
         /// <summary>
         /// Returns the specified single-precision floating point value as an array of bytes.
         /// </summary>
-        public static byte[] ToBytes(this float self)
+        public static byte[] GetBytes(this float self)
         {
             return BitConverter.GetBytes(self);
         }
@@ -188,7 +193,7 @@ namespace Sugar
         /// <summary>
         /// Returns the specified 32-bit unsigned integer value as an array of bytes.
         /// </summary>
-        public static byte[] ToBytes(this uint self)
+        public static byte[] GetBytes(this uint self)
         {
             return BitConverter.GetBytes(self);
         }
@@ -196,7 +201,7 @@ namespace Sugar
         /// <summary>
         /// Returns the specified 16-bit unsigned integer value as an array of bytes.
         /// </summary>
-        public static byte[] ToBytes(this ushort self)
+        public static byte[] GetBytes(this ushort self)
         {
             return BitConverter.GetBytes(self);
         }
@@ -204,45 +209,21 @@ namespace Sugar
         /// <summary>
         /// Returns the specified 64-bit unsigned integer value as an array of bytes.
         /// </summary>
-        public static byte[] ToBytes(this ulong self)
+        public static byte[] GetBytes(this ulong self)
         {
             return BitConverter.GetBytes(self);
         }
 
         /// <summary>
-        /// Returns the bitwise and operation result between self and other.
+        /// Converts the provided string into a base 64 encoded format with the default <see cref="Base64FormattingOptions"/>.
         /// </summary>
-        public static byte And(this byte self, byte other)
-        {
-            return Bitwise.And(self, other);
-        }
-        /// <summary>
-        /// Returns the bitwise or operation result between self and other.
-        /// </summary>
-        public static byte Or(this byte self, byte other)
-        {
-            return Bitwise.Or(self, other);
-        }
-        /// <summary>
-        /// Returns the bitwise xor operation result between self and other.
-        /// </summary>
-        public static byte XOr(this byte self, byte other)
-        {
-            return Bitwise.XOr(self, other);
-        }
-        /// <summary>
-        /// Returns the bitwise not operation result between self and other.
-        /// </summary>
-        public static byte Not(this byte self)
-        {
-            return Bitwise.Not(self);
-        }
-
         public static string ToBase64String(this byte[] self)
         {
             return Convert.ToBase64String(self);
         }
-
+        /// <summary>
+        /// Converts the provided string into a base 64 encoded format with the specified <see cref="Base64FormattingOptions"/>.
+        /// </summary>
         public static string ToBase64String(this byte[] self, Base64FormattingOptions formattingOptions)
         {
             return Convert.ToBase64String(self, formattingOptions);
