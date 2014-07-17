@@ -1,7 +1,5 @@
 ﻿namespace System
 {
-    using Utilities;
-
     /// <summary>
     /// Provides common operations with base <see cref="Object"/> instances as extension methods.
     /// </summary>
@@ -28,14 +26,17 @@
         /// </summary>
         public static void Require<T>(this T self, Func<T, bool> predicate)
         {
-            if (!predicate(self))
-            {
-                var value = predicate.ToString();
-                var message = "Predicate \"{0}\" evaluated as false.";
-                message = string.Format(message, value);
-                var exception = Error.Argument("predicate", message);
-                throw Error.Failure(message, exception);
-            }
+            System.Require.That(self, predicate);
+        }
+
+        /// <summary>
+        /// Executes an action on the caller and returns the caller.
+        /// </summary>
+        public static T Pipe<T>(this T self, Action<T> action)
+        {
+            System.Require.That(action != null);
+            action(self);
+            return self;
         }
     }
 }
