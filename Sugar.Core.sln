@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Fluency", "Sugar.Fluency\Sugar.Fluency.csproj", "{7428B889-EAEC-470F-A9C4-A0F8EBB7B84E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Fluency.Tests", "Sugar.Fluency.Tests\Sugar.Fluency.Tests.csproj", "{4E7FCD1E-FA14-49F0-8640-4345E8EA208E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{78875F91-74C8-4D88-B265-6B90E24AB968}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
@@ -23,14 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7428B889-EAEC-470F-A9C4-A0F8EBB7B84E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7428B889-EAEC-470F-A9C4-A0F8EBB7B84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7428B889-EAEC-470F-A9C4-A0F8EBB7B84E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7428B889-EAEC-470F-A9C4-A0F8EBB7B84E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E7FCD1E-FA14-49F0-8640-4345E8EA208E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E7FCD1E-FA14-49F0-8640-4345E8EA208E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E7FCD1E-FA14-49F0-8640-4345E8EA208E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E7FCD1E-FA14-49F0-8640-4345E8EA208E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79075702-AAD5-4342-83E5-0D2B4391F09F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79075702-AAD5-4342-83E5-0D2B4391F09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79075702-AAD5-4342-83E5-0D2B4391F09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
