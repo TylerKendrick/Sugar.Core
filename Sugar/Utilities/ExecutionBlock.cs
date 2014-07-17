@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace System.Utilities
 {
-    class ExecutionBlock : IExecutionBlock
+    internal class ExecutionBlock : IExecutionBlock
     {
         private readonly Action _tryAction;
         private readonly IDictionary<Type, Action<Exception>> _errors = new Dictionary<Type, Action<Exception>>();

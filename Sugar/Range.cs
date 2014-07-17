@@ -1,7 +1,7 @@
-﻿namespace System.Utilities
-{
-    using Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace System
+{
     /// <summary>
     /// Provides a start and end index of a specified type.
     /// </summary>

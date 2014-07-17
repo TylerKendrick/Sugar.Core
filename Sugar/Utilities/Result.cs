@@ -1,6 +1,6 @@
 ﻿namespace System.Utilities
 {
-    class Result : IResult
+    internal class Result : IResult
     {
         public bool Success { get; private set; }
 

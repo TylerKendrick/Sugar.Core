@@ -1,7 +1,7 @@
-﻿namespace System.Utilities
-{
-    using Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace System
+{
     public static class CustomComparer
     {
         public static IComparer<T> Create<T>(Func<T, T, int> comparer)

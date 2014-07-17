@@ -22,7 +22,7 @@
         public static T From<T>(this Random self, IEnumerable<T> collection)
         {
             self.Require();
-            collection.Require();
+            Require.That(collection != null);
 
             var array = collection.ToArray();
             var index = self.Next(0, array.Length);

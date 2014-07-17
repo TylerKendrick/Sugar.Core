@@ -15,7 +15,7 @@
         /// <returns>The target collection as an IEnumerable{object}</returns>
         public static IEnumerable<object> AsEnumerable(this IEnumerable self)
         {
-            return Enumerable.Cast<object>(self);
+            return self.Cast<object>();
         }
 
         /// <summary>
