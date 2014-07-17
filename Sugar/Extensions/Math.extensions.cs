@@ -1,7 +1,6 @@
-﻿using Calculator = System.Math;
-
-namespace Sugar.Math
+﻿namespace System
 {
+    using Calculator = Math;
     public static class MathExtensions
     {
         public static decimal Round(this decimal self, ushort precision)

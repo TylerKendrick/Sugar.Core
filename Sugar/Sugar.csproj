@@ -7,7 +7,7 @@
     <ProjectGuid>{6B0018DB-AFB6-444C-BB03-C0D6BEA9A491}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sugar</RootNamespace>
+    <RootNamespace>System</RootNamespace>
     <AssemblyName>Sugar</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="Bitwise.int.cs" />
     <Compile Include="Bitwise.byte.cs" />
-    <Compile Include="DateTime.extensions.cs" />
+    <Compile Include="Extensions\DateTime.extensions.cs" />
     <Compile Include="Extensions\Action.curry.extensions.cs" />
     <Compile Include="Extensions\Action.extensions.cs" />
     <Compile Include="Extensions\Action.raise.extensions.cs" />
@@ -58,6 +58,7 @@
     <Compile Include="Extensions\Double.extensions.cs" />
     <Compile Include="Extensions\Enum.extensions.cs" />
     <Compile Include="Extensions\EventHandler.extensions.cs" />
+    <Compile Include="Extensions\Float.extensions.cs" />
     <Compile Include="Logical.cs" />
     <Compile Include="MonthOfYear.cs" />
     <Compile Include="Utilities\ExecutionBlock.cs" />

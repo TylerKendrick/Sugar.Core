@@ -1,8 +1,8 @@
-﻿using System.ComponentModel;
-using System.Security.Cryptography;
-
-namespace Sugar.Security
+﻿namespace System.Security
 {
+    using ComponentModel;
+    using Cryptography;
+
     public static class Encryption
     {
         public static SymmetricAlgorithm Create(this SymmetricAlgorithmTypes cryptoType, byte[] key, byte[] iv)

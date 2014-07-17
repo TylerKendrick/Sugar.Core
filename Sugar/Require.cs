@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Provides fluent run-time assertions against <see cref="FluentPredicate{T}"/> objects.

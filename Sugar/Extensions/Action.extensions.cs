@@ -1,8 +1,7 @@
-﻿using System;
-using Sugar.Utilities;
-
-namespace Sugar
+﻿namespace System
 {
+    using Utilities;
+
     /// <summary>
     /// Simplifies action invocation and operations.
     /// </summary>
@@ -24,6 +23,9 @@ namespace Sugar
             return new Looper(self);
         }
 
+        /// <summary>
+        /// Wraps proceeding Catch/Finally blocks to allow passing control of blocks to other areas.
+        /// </summary>
         public static IExecutionBlock Try(this Action self)
         {
             return new ExecutionBlock(self);

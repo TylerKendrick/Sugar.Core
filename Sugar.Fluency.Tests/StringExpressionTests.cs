@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Sugar.Fluency.Tests
+namespace System.Fluency.Tests
 {
     [TestClass]
     public partial class StringExpressionTests : UnitTestOf<IFluentExpression<string>>

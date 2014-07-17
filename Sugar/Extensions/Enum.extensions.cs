@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sugar
+namespace System
 {
     /// <summary>
     /// Provides simplified invocation for common operations with <see cref="Enum"/> objects.

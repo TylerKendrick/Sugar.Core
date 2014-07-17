@@ -1,4 +1,4 @@
-﻿namespace Sugar.Utilities
+﻿namespace System.Utilities
 {
     class Result : IResult
     {

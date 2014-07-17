@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Sugar.Fluency.Tests
+namespace System.Fluency.Tests
 {
     public abstract class UnitTestOf<T>
     {

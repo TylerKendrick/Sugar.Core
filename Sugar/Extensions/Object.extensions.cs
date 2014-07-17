@@ -1,21 +1,31 @@
-﻿using System;
-using System.IO;
-using Sugar.Utilities;
-
-namespace Sugar
+﻿namespace System
 {
+    using Utilities;
+
+    /// <summary>
+    /// Provides common operations with base <see cref="Object"/> instances as extension methods.
+    /// </summary>
     public static class ObjectExtensions
     {
+        /// <summary>
+        /// Attempts to cast a value to a specified type with an optional fallback value.
+        /// </summary>
         public static T Cast<T>(this object self, T fallbackValue = default(T))
         {
             return self is T ? (T)self : fallbackValue;
         }
 
+        /// <summary>
+        /// Exposes Conver.ChangeType as an extension method with an optional fallback value.
+        /// </summary>
         public static TOut ConvertTo<TOut>(this object self, TOut fallbackValue = default(TOut))
         {
             return Convert.ChangeType(self, typeof (TOut)).Cast(fallbackValue);
         }
 
+        /// <summary>
+        /// Throws an expcetion of the provided predicate fails.
+        /// </summary>
         public static void Require<T>(this T self, Func<T, bool> predicate)
         {
             if (!predicate(self))
@@ -25,30 +35,6 @@ namespace Sugar
                 message = string.Format(message, value);
                 var exception = Error.Argument("predicate", message);
                 throw Error.Failure(message, exception);
-            }
-        }
-
-        public static void Require<T>(this T self, bool predicate)
-        {
-            if (!predicate)
-            {
-                throw new InvalidDataException();
-            }
-        }
-        
-        public static void Require<T>(this T self, Func<T, bool> predicate, string errorMessage)
-        {
-            if (!predicate(self))
-            {
-                throw new InvalidDataException(errorMessage);
-            }
-        }
-
-        public static void Require<T>(this T self, Func<T, bool> predicate, Exception innerException)
-        {
-            if (!predicate(self))
-            {
-                throw innerException;
             }
         }
     }

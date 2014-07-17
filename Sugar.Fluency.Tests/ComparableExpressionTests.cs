@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Sugar.Fluency.Tests
+namespace System.Fluency.Tests
 {
     [TestClass]
     public partial class ComparableExpressionTests : UnitTestOf<FluentExpression<IFakeConcern>>

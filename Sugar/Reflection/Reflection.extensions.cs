@@ -1,8 +1,7 @@
-﻿using System;
-using System.Linq.Expressions;
-
-namespace Sugar.Reflection
+﻿namespace System.Reflection
 {
+    using Linq.Expressions;
+
     /// <summary>
     /// Simplifies invocations of common reflection methods.
     /// </summary>

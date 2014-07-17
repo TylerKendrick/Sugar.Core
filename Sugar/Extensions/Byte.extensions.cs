@@ -1,8 +1,7 @@
-﻿using System;
-using System.Text;
-
-namespace Sugar
+﻿namespace System
 {
+    using Text;
+
     /// <summary>
     /// Provides extension methods to simplify common operations with a System.BitConverter.
     /// </summary>

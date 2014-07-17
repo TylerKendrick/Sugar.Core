@@ -1,8 +1,7 @@
-﻿using System;
-using Sugar.Utilities;
-
-namespace Sugar
+﻿namespace System
 {
+    using Utilities;
+
     /// <summary>
     /// Used to provide fluent conditional invocations.
     /// </summary>

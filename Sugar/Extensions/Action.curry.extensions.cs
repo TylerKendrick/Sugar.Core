@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sugar
+﻿namespace System
 {
     public static partial class ActionExtensions
     {

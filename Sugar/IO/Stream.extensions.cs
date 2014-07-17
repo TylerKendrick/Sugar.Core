@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-namespace Sugar.IO
+﻿namespace System.IO
 {
     /// <summary>
     /// Simplifies common Stream operations.

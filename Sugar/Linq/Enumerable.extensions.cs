@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Sugar.Linq
+﻿namespace System.Linq
 {
+    using Collections;
+    using Collections.Generic;
+
     /// <summary>
     /// Provides common operations with enumerables not present in Linq for the non-generic IEnumerable.
     /// </summary>

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Sugar.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-namespace Sugar.Utilities
+namespace System.Utilities
 {
     class ExecutionBlock : IExecutionBlock
     {

@@ -1,4 +1,4 @@
-﻿namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Provides common operations with struct objects as extention methods.

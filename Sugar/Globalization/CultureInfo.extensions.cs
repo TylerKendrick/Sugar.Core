@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-
-namespace Sugar.Globalization
+﻿namespace System.Globalization
 {
     /// <summary>
     /// Used to simplify the use of <see cref="CultureInfo"/> for use with string formatting.

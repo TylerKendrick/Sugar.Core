@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Sugar.Linq
+﻿namespace System.Linq
 {
+    using Collections.Generic;
+
     /// <summary>
     /// Exposes additional add and remove overloaded methods to collections.
     /// </summary>
@@ -29,7 +27,7 @@ namespace Sugar.Linq
         /// <returns></returns>
         public static bool Remove<T>(this ICollection<T> self, Func<T, bool> predicate)
         {
-            return self.Where(predicate).All(x => self.Remove(x));
+            return self.Where(predicate).All(self.Remove);
         }
     }
 }

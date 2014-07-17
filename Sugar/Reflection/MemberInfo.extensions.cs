@@ -1,7 +1,4 @@
-﻿using System;
-using System.Reflection;
-
-namespace Sugar.Reflection
+﻿namespace System.Reflection
 {
     /// <summary>
     /// Simplifies accessing members of a type.

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Sugar
+namespace System
 {
     /// <summary>
     /// Provides a start and end index.

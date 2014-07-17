@@ -1,8 +1,7 @@
-﻿using System;
-using Sugar.Utilities;
-
-namespace Sugar
+﻿namespace System
 {
+    using Utilities;
+
     public class Otherwise : IBlock
     {
         private readonly Action _action;

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Sugar
+﻿namespace System
 {
+    using Collections.Generic;
+
     /// <summary>
     /// Provides non-fluent comparison operations against generic types.
     /// </summary>

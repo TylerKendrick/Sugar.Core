@@ -1,9 +1,7 @@
-﻿using System;
-using System.Globalization;
-using System.Threading;
-
-namespace Sugar.Globalization
+﻿namespace System.Globalization
 {
+    using Threading;
+
     /// <summary>
     /// Provides extensions to simplify string formatting.
     /// </summary>

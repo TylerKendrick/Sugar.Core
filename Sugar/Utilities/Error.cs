@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sugar.Utilities
+﻿namespace System.Utilities
 {
     internal static class Error
     {

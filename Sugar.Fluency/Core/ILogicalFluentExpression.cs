@@ -1,4 +1,4 @@
-﻿namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Provides an <see cref="IsFluentExpression{T}"/> for access to the <see cref="NotFluentExpression{T}"/> property.

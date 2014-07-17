@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sugar
+﻿namespace System
 {
     public static class DateTimeExtensions
     {
@@ -78,58 +76,58 @@ namespace Sugar
             return self.Generate(x => x.DayOfWeek == System.DayOfWeek.Sunday);
         }
 
-        public static FluentPredicate<DateTime> MonthOfYear(this IFluentExpression<DateTime> self, MonthOfYear monthOfYear)
+        public static FluentPredicate<DateTime> MonthOfYear(this IFluentExpression<DateTime> self, System.MonthOfYear monthOfYear)
         {
             return self.Generate(x => x.IsMonthOfYear(monthOfYear));
         }
 
         public static FluentPredicate<DateTime> January(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.January);
+            return MonthOfYear(self, System.MonthOfYear.January);
         }
         public static FluentPredicate<DateTime> February(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.February);
+            return MonthOfYear(self, System.MonthOfYear.February);
         }
         public static FluentPredicate<DateTime> March(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.March);
+            return MonthOfYear(self, System.MonthOfYear.March);
         }
         public static FluentPredicate<DateTime> April(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.April);
+            return MonthOfYear(self, System.MonthOfYear.April);
         }
         public static FluentPredicate<DateTime> May(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.May);
+            return MonthOfYear(self, System.MonthOfYear.May);
         }
         public static FluentPredicate<DateTime> June(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.June);
+            return MonthOfYear(self, System.MonthOfYear.June);
         }
         public static FluentPredicate<DateTime> July(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.July);
+            return MonthOfYear(self, System.MonthOfYear.July);
         }
         public static FluentPredicate<DateTime> August(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.August);
+            return MonthOfYear(self, System.MonthOfYear.August);
         }
         public static FluentPredicate<DateTime> September(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.September);
+            return MonthOfYear(self, System.MonthOfYear.September);
         }
         public static FluentPredicate<DateTime> October(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.October);
+            return MonthOfYear(self, System.MonthOfYear.October);
         }
         public static FluentPredicate<DateTime> November(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.November);
+            return MonthOfYear(self, System.MonthOfYear.November);
         }
         public static FluentPredicate<DateTime> December(this IFluentExpression<DateTime> self)
         {
-            return MonthOfYear(self, Sugar.MonthOfYear.December);
+            return MonthOfYear(self, System.MonthOfYear.December);
         }
 
         public static FluentPredicate<DateTime> LeapYear(this IFluentExpression<DateTime> self)

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sugar
+﻿namespace System.Extensions
 {
     public static class GCExtensions
     {

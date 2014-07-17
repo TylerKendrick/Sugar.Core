@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sugar.Linq
+namespace System.Linq
 {
     /// <summary>
     /// Provides extensions to common Linq operations to allow for easier use of Fluent expressions.

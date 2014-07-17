@@ -1,4 +1,4 @@
-﻿namespace Sugar.Security
+﻿namespace System.Security
 {
     /// <summary>
     /// An enumeration detailing the default supported hash algorithms provided by .NET

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Sugar
+namespace System
 {
     /// <summary>
     /// Provides fluent comparable expressions for enumerable types.

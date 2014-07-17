@@ -1,4 +1,4 @@
-﻿namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Provides predicate comparable expressions for fluent evaluation.

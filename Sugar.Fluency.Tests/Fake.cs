@@ -1,6 +1,6 @@
 ﻿using Moq;
 
-namespace Sugar.Fluency.Tests
+namespace System.Fluency.Tests
 {
     public class Fake<T> : Mock<T> where T : class
     {

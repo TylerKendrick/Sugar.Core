@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Sugar.Utilities
+﻿namespace System.Utilities
 {
+    using Collections.Generic;
+
     public static class CustomComparer
     {
         public static IComparer<T> Create<T>(Func<T, T, int> comparer)

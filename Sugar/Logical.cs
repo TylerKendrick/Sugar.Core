@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
-namespace Sugar
+namespace System
 {
     public static class Logical
     {
@@ -45,6 +44,11 @@ namespace Sugar
         public static bool Or(bool self, Func<bool, bool, bool> aggregator, params bool[] others)
         {
             return others.Any(x => aggregator(self, x));
+        }
+
+        public static bool Not(bool self)
+        {
+            return !self;
         }
     }
 }

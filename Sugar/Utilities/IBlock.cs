@@ -1,4 +1,4 @@
-﻿namespace Sugar
+﻿namespace System
 {
     public interface IBlock : IBlock<IResult> { }
 

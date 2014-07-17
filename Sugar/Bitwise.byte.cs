@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
-namespace Sugar
+namespace System
 {
     /// <summary>
     /// Exposes bitwise operators as methods to allow them to be passed as first class functions.

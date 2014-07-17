@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Sugar
+﻿namespace System
 {
+    using Collections.Generic;
+    using Linq;
+
     /// <summary>
     /// Provides fluent extensions to boolean types.
     /// </summary>

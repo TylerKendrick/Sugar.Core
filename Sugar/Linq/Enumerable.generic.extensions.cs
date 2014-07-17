@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sugar.Utilities;
-
-namespace Sugar.Linq
+﻿namespace System.Linq
 {
+    using Collections.Generic;
+    using Utilities;
+
     /// <summary>
     /// Provides extension methods to perform common operations with enumerables.
     /// </summary>

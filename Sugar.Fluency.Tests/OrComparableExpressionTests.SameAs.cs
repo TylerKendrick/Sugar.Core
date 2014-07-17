@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Sugar.Fluency.Tests
+namespace System.Fluency.Tests
 {
     public partial class OrComparableExpressionTests
     {

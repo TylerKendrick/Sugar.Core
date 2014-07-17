@@ -1,11 +1,9 @@
-﻿using System;
-using System.Security;
-using System.Security.Cryptography;
-using System.Text;
-using Sugar.Linq;
-
-namespace Sugar.Security
+﻿namespace System.Security
 {
+    using Cryptography;
+    using Text;
+    using Linq;
+
     /// <summary>
     /// Provides simplified invocations for boilerplate construction of common crypto operations with strings.
     /// </summary>

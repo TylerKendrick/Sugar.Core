@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-
-namespace Sugar.Globalization
+﻿namespace System.Globalization
 {
     /// <summary>
     /// Provides extensions to simplify precision number formatting.

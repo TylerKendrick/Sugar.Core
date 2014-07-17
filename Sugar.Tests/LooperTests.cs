@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace Sugar.Core.Tests
+namespace System.Core.Tests
 {
     [TestFixture]
     public class LooperTests

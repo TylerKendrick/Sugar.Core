@@ -1,4 +1,4 @@
-﻿namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Provides additional expressions for fluent evaluation.

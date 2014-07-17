@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Exposes common operations with DateTime objects as extension methods.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sugar.Fluency.Tests
+namespace System.Fluency.Tests
 {
     public interface IFakeConcern : IComparable<IFakeConcern>
     {

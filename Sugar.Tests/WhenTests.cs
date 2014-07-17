@@ -1,7 +1,7 @@
 ﻿using System;
 using Moq;
 using NUnit.Framework;
-namespace Sugar.Tests
+namespace System.Tests
 {
     [TestFixture]
     public class WhenTests

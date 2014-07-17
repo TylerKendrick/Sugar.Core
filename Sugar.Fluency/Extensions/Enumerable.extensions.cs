@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Sugar
+namespace System
 {
     public static class EnumerableComparableExtensions
     {

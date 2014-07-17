@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Utilities;
 using NUnit.Framework;
-using Sugar.Utilities;
 
-namespace Sugar.Core.Tests
+namespace System.Core.Tests
 {
     [TestFixture]
     public class RandomTests

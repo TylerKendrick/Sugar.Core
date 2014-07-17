@@ -1,4 +1,4 @@
-﻿namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Evaluates in the expression chain as a logical AND operation.
@@ -9,7 +9,7 @@
         /// Wraps the context in a new instance of <see cref="IsFluentExpression{T}"/>.
         /// </summary>
         internal AndFluentExpression(T context, bool offset = true)
-            : base(context, x => x && offset)
+            : base(context, x => Logical.And(x, offset))
         {
         }
     }

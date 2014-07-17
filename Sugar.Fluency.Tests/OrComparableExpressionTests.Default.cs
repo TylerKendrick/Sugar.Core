@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Sugar.Fluency.Tests
+namespace System.Fluency.Tests
 {
     public partial class OrComparableExpressionTests
     {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Treats loop operations as first class objects.

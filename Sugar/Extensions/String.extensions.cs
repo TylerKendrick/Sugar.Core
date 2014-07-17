@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Sugar
+﻿namespace System
 {
+    using Collections.Generic;
+    using Linq;
+
     /// <summary>
     /// Provides common operations with <see cref="System.String"/> objects as extension methods.
     /// </summary>

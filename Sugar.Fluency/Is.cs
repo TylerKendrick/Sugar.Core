@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Sugar
+namespace System
 {
     /// <summary>
     /// Returns Conditional expression with a closed context for evaluation of the expression.

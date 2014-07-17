@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
-namespace Sugar
+namespace System
 {
     public static partial class Bitwise
     {

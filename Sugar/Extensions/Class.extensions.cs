@@ -1,8 +1,7 @@
-﻿using System;
-using Sugar.Utilities;
-
-namespace Sugar
+﻿namespace System
 {
+    using Utilities;
+
     /// <summary>
     /// Provides common extensions for objects with the class constraint.
     /// </summary>

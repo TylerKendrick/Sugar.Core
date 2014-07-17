@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using Sugar.Utilities;
-
-namespace Sugar
+﻿namespace System
 {
+    using Collections.Generic;
+    using Globalization;
+    using Linq;
+    using Utilities;
+
     /// <summary>
     /// Provides random values from numeric types, collections, and datetime objects.
     /// </summary>

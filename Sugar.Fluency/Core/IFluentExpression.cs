@@ -1,4 +1,4 @@
-﻿namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Provides a new instance of a <see cref="FluentPredicate{T}"/> for expressions common to all object types.

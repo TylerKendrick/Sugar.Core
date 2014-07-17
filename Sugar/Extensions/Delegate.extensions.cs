@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-
-namespace Sugar
+﻿namespace System
 {
+    using Collections.Generic;
+    using Reflection;
+
     /// <summary>
     /// Simplifies construction of delegates from reflected types.
     /// </summary>

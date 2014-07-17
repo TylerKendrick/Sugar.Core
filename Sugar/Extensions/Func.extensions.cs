@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using Sugar.Utilities;
-
-namespace Sugar
+﻿namespace System
 {
+    using Collections.Generic;
+    using Linq.Expressions;
+
     public static class FuncExtensions
     {
         public static Predicate<T> ToPredicate<T>(this Func<T, bool> self)

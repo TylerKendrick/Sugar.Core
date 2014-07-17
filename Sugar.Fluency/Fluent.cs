@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sugar
+namespace System
 {
     /// <summary>
     /// Exposes fluent expression syntax through a static interface.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sugar.Reflection
+namespace System.Reflection
 {
     public static class TypeFluentExpressionExtensions
     {

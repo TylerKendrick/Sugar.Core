@@ -2,7 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 
-namespace Sugar.Tests
+namespace System.Tests
 {
     [TestFixture]
     public partial class YieldTests

@@ -1,14 +1,14 @@
-﻿namespace Sugar
+﻿namespace System
 {
     public static class DoubleComparableExtensions
     {
         public static FluentPredicate<double> Positive(this IFluentExpression<double> self)
         {
-            return self.Generate(x => x >= 0);
+            return self.Generate(x => x.IsPositive());
         }
         public static FluentPredicate<double> Negative(this IFluentExpression<double> self)
         {
-            return self.Generate(x => x < 0);
+            return self.Generate(x => x.IsNegative());
         }
         public static FluentPredicate<double> PositiveInfinity(this IFluentExpression<double> self)
         {

@@ -1,4 +1,4 @@
-﻿namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Negates proceeding <see cref="FluentExpression{T}"/> results.
@@ -9,7 +9,7 @@
         /// Provides a context for evaluation.
         /// </summary>
         internal NotFluentExpression(T context)
-            : base(context, x => !x)
+            : base(context, Logical.Not)
         {
         }
     }

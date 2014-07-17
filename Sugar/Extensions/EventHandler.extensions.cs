@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Providers simplified operations with <see cref="EventHandler"/> objects.

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sugar
+﻿namespace System
 {
     /// <summary>
     /// Provides extension methods that simplify common operations with a System.Buffer

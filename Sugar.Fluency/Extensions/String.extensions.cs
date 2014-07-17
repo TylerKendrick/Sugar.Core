@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Sugar
+namespace System
 {
     public static class StringComparableExtensions
     {

@@ -1,4 +1,4 @@
-﻿namespace Sugar.Security
+﻿namespace System.Security
 {
     public enum SymmetricAlgorithmTypes
     {

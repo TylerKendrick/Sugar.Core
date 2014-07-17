@@ -1,7 +1,7 @@
-﻿using System.Security.Cryptography;
-
-namespace Sugar.Security
+﻿namespace System.Security
 {
+    using Cryptography;
+
     public static class ByteArrayExtensions
     {
         public static byte[] Encrypt(this byte[] self, SymmetricAlgorithmTypes cryptoTypes,

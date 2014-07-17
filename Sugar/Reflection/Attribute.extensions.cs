@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Sugar.Reflection
+﻿namespace System.Reflection
 {
+    using Collections.Generic;
+    using Linq;
+
     /// <summary>
     /// Simplifies code for accessing Attributes.
     /// </summary>
