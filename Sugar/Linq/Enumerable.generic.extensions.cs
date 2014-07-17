@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sugar.Utilities;
 
 namespace Sugar.Linq
 {
@@ -79,7 +80,8 @@ namespace Sugar.Linq
         /// <param name="target">The comparable collection.</param>
         /// <param name="predicate">The method for comparison.</param>
         /// <returns>Returns false if the predicate returns false against all matches.</returns>
-        public static bool MatchAny<TIn, TOut>(this IEnumerable<TIn> self, IEnumerable<TIn> target, Func<TIn, TOut> predicate)
+        public static bool MatchAny<TIn, TOut>(this IEnumerable<TIn> self, 
+            IEnumerable<TIn> target, Func<TIn, TOut> predicate)
         {
             return self.Any(x => target.Any(y => predicate(x).Equals(predicate(y))));
         }
@@ -105,7 +107,8 @@ namespace Sugar.Linq
         /// <param name="target">The comparable collection.</param>
         /// <param name="predicate">The method for comparison.</param>
         /// <returns>Returns false if the predicate returns false against any matches.</returns>
-        public static bool MatchAll<TIn, TOut>(this IEnumerable<TIn> self, IEnumerable<TIn> target, Func<TIn, TOut> predicate)
+        public static bool MatchAll<TIn, TOut>(this IEnumerable<TIn> self, 
+            IEnumerable<TIn> target, Func<TIn, TOut> predicate)
         {
             return self.All(x => target.Any(y => predicate(x).Equals(predicate(y))));
         }
@@ -143,18 +146,19 @@ namespace Sugar.Linq
         /// <param name="selector">Applies a selection to aggregated items.</param>
         /// <param name="comparer">An optional custom comparer.</param>
         /// <returns>The greatest value in the filtered selection.</returns>
-        public static TItem Max<TItem, TValue>(this IEnumerable<TItem> items, Func<TItem, TValue> selector, IComparer<TValue> comparer = null)
+        public static TItem Max<TItem, TValue>(this IEnumerable<TItem> items, 
+            Func<TItem, TValue> selector, IComparer<TValue> comparer = null)
             where TItem : class
             where TValue : IComparable
         {
             comparer = comparer ?? Comparer<TValue>.Default;
 
-            return items.Where(Is.Not.Null).Aggregate((x, y) =>
+            return items.Maybe().Aggregate((x, y) =>
             {
                 var xValue = selector(x);
                 var yValue = selector(y);
 
-                return Fluent.It(yValue, Is.GreaterThan(xValue, comparer)) ? y : x;
+                return yValue.IsGreaterThan(xValue, comparer) ? y : x;
             });
         }
 
@@ -167,16 +171,17 @@ namespace Sugar.Linq
         /// <param name="selector">Applies a selection to aggregated items.</param>
         /// <param name="comparer">An optional custom comparer.</param>
         /// <returns>The smallest value in the filtered selection.</returns>
-        public static TItem Min<TItem, TValue>(this IEnumerable<TItem> items, Func<TItem, TValue> selector, IComparer<TValue> comparer = null)
+        public static TItem Min<TItem, TValue>(this IEnumerable<TItem> items, 
+            Func<TItem, TValue> selector, IComparer<TValue> comparer = null)
             where TItem : class
             where TValue : IComparable
         {
-            return items.Where(Is.Not.Null).Aggregate((x, y) =>
+            return items.Maybe().Aggregate((x, y) =>
             {
                 var xValue = selector(x);
                 var yValue = selector(y);
 
-                return Fluent.It(yValue, Is.LessThan(xValue)) ? y : x;
+                return yValue.IsLessThan(xValue) ? y : x;
             });
         }
 
@@ -192,7 +197,7 @@ namespace Sugar.Linq
         public static IOrderedEnumerable<TIn> OrderBy<TIn, TOut>(this IEnumerable<TIn> self, 
             Func<TIn, TOut> selector, Func<TOut, TOut, int> comparison)
         {
-            var comparer = comparison.ToComparer();
+            var comparer = CustomComparer.Create(comparison);
             return self.OrderBy(selector, comparer);
         }
 
@@ -208,7 +213,7 @@ namespace Sugar.Linq
         public static IOrderedEnumerable<TIn> OrderByDescending<TIn, TOut>(this IEnumerable<TIn> self, 
             Func<TIn, TOut> selector, Func<TOut, TOut, int> comparison)
         {
-            var comparer = comparison.ToComparer();
+            var comparer = CustomComparer.Create(comparison);
             return self.OrderByDescending(selector, comparer);
         }
 
@@ -221,10 +226,117 @@ namespace Sugar.Linq
         /// <param name="selector">The selection expression.</param>
         /// <returns>All selected non-null entries.</returns>
         public static IEnumerable<TOut> Maybe<TIn, TOut>(this IEnumerable<TIn> self, Func<TIn, TOut> selector)
-            where TIn : class 
+            where TIn : class
             where TOut : class
         {
-            return self.Where(Is.Not.Null).Select(selector);
+            return self.Where(x => x != null).Select(selector);
+        }
+
+        /// <summary>
+        /// Applies a selector to the source collection to filter by all non-null entries.
+        /// </summary>
+        /// <typeparam name="TIn">The type in the source collection.</typeparam>
+        /// <param name="self">The source collection.</param>
+        /// <returns>All selected non-null entries.</returns>
+        public static IEnumerable<TIn> Maybe<TIn>(this IEnumerable<TIn> self)
+            where TIn : class
+        {
+            return self.Where(x => x != null);
+        }
+
+        /// <summary>
+        /// Returns the first element of a sequence, or a fallback value if the sequence contains no elements.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of <paramref name="self"/>.</typeparam>
+        /// <param name="self">The <see cref="IEnumerable{T}"/> to return the first element of.</param>
+        /// <param name="fallback">The value to provide if the collection is empty.</param>
+        /// <returns>
+        /// <paramref name="fallback"/> if <paramref name="self"/> is empty; otherwise, the first element in <paramref name="self"/>.
+        /// </returns>
+        public static T FirstOrFallback<T>(this IEnumerable<T> self, T fallback)
+        {
+            var enumerable = self as T[] ?? self.ToArray();
+            return enumerable.Any() ? enumerable.First() : fallback;
+        }
+
+        /// <summary>
+        /// Returns the first element of a sequence, or a fallback value if the sequence contains no elements.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of <paramref name="self"/>.</typeparam>
+        /// <param name="self">The <see cref="IEnumerable{T}"/> to return the first element of.</param>
+        /// <param name="selector">A function to test each element for a condition.</param>
+        /// <param name="fallback">The value to provide if the collection is empty.</param>
+        /// <returns>
+        /// <paramref name="fallback"/> if <paramref name="self"/> is empty; otherwise, the first element in <paramref name="self"/>.
+        /// </returns>
+        public static T FirstOrFallback<T>(this IEnumerable<T> self, Func<T, bool> selector, T fallback)
+        {
+            var enumerable = self as T[] ?? self.ToArray();
+            return enumerable.Any(selector) ? enumerable.First(selector) : fallback;
+        }
+
+        /// <summary>
+        /// Returns the last element of a sequence, or a fallback value if the sequence contains no elements.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of <paramref name="self"/>.</typeparam>
+        /// <param name="self">The <see cref="IEnumerable{T}"/> to return the last element of.</param>
+        /// <param name="fallback">The value to provide if the collection is empty.</param>
+        /// <returns>
+        /// <paramref name="fallback"/> if <paramref name="self"/> is empty; otherwise, the last element in <paramref name="self"/>.
+        /// </returns>
+        public static T LastOrFallback<T>(this IEnumerable<T> self, T fallback)
+        {
+            var enumerable = self as T[] ?? self.ToArray();
+            return enumerable.Any() ? enumerable.Last() : fallback;
+        }
+
+        /// <summary>
+        /// Returns the last element of a sequence, or a fallback value if the sequence contains no elements.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of <paramref name="self"/>.</typeparam>
+        /// <param name="self">The <see cref="IEnumerable{T}"/> to return the last element of.</param>
+        /// <param name="selector">A function to test each element for a condition.</param>
+        /// <param name="fallback">The value to provide if the collection is empty.</param>
+        /// <returns>
+        /// <paramref name="fallback"/> if <paramref name="self"/> is empty; otherwise, the last element in <paramref name="self"/>.
+        /// </returns>
+        public static T LastOrFallback<T>(this IEnumerable<T> self, Func<T, bool> selector, T fallback)
+        {
+            var enumerable = self as T[] ?? self.ToArray();
+            return enumerable.Any(selector) ? enumerable.Last(selector) : fallback;
+        }
+
+
+        /// <summary>
+        /// Returns the only element of a sequence, or a fallback value if the sequence contains no elements.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of <paramref name="self"/>.</typeparam>
+        /// <param name="self">The <see cref="IEnumerable{T}"/> to return the only element of.</param>
+        /// <param name="fallback">The value to provide if the collection is empty.</param>
+        /// <returns>
+        /// <paramref name="fallback"/> if <paramref name="self"/> is empty; otherwise, the only element in <paramref name="self"/>.
+        /// </returns>
+        public static T SingleOrFallback<T>(this IEnumerable<T> self, T fallback)
+        {
+            var enumerable = self as T[] ?? self.ToArray();
+            return enumerable.Any() ? enumerable.Single() : fallback;
+        }
+
+
+        /// <summary>
+        /// Returns the only element of a sequence, or a fallback value if the sequence contains no elements.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of <paramref name="self"/>.</typeparam>
+        /// <param name="self">The <see cref="IEnumerable{T}"/> to return the only element of.</param>
+        /// <param name="selector">A function to test each element for a condition.</param>
+        /// <param name="fallback">The value to provide if the collection is empty.</param>
+        /// <returns>
+        /// <paramref name="fallback"/> if <paramref name="self"/> is empty; otherwise, the only element in <paramref name="self"/>.
+        /// </returns>
+        public static T SingleOrFallback<T>(this IEnumerable<T> self, Func<T, bool> selector, T fallback)
+        {
+            var enumerable = self as T[] ?? self.ToArray();
+            return enumerable.Any(selector) ? enumerable.Single(selector) : fallback;
         }
     }
 }

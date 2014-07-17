@@ -1,5 +1,4 @@
 ﻿using System;
-using Sugar.Observables;
 
 namespace Sugar
 {
@@ -23,30 +22,6 @@ namespace Sugar
             where T : EventArgs
         {
             if (self != null) self(sender, e);
-        }
-
-        /// <summary>
-        /// Returns a <see cref="IDisposable"/> context to the subscribed listener.
-        /// </summary>
-        public static IDisposable Subscribe(this EventHandler self, EventHandler listener)
-        {
-            self.Require();
-            listener.Require();
-
-            self += listener;
-            return new Disposable(() => self -= listener);
-        }
-
-        /// <summary>
-        /// Returns a <see cref="IDisposable"/> context to the subscribed listener.
-        /// </summary>
-        public static IDisposable Subscribe<T>(this EventHandler<T> self, EventHandler<T> listener) 
-            where T : EventArgs
-        {
-            self.Require();
-            listener.Require();
-            self += listener;
-            return new Disposable(() => self -= listener);
         }
 
         /// <summary>

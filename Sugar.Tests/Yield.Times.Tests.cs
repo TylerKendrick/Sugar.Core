@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using NUnit.Framework;
 
@@ -21,7 +20,7 @@ namespace Sugar.Tests
         {
             var result = Yield.Times<int>(-1, (i, x) => i);
 
-            Assert.Throws<InvalidDataException>(() => result.ToArray());
+            Assert.Throws<InvalidOperationException>(() => result.ToArray());
         }
 
         [Test]
@@ -29,7 +28,7 @@ namespace Sugar.Tests
         {
             var result = Yield.Times<int>(0, (i, x) => x);
 
-            Assert.Throws<InvalidDataException>(() => result.ToArray());
+            Assert.Throws<InvalidOperationException>(() => result.ToArray());
         }
 
         [Test]

@@ -11,14 +11,14 @@ namespace Sugar.Utilities
 
         public static ArgumentNullException NullArgument(string paramName = null, string message = null)
         {
-            return Fluent.It(message, Is.Not.Null)
+            return message.IsNotNull()
                 ? new ArgumentNullException(paramName)
                 : new ArgumentNullException(paramName, message);
         }
 
         public static ArgumentException Argument(string paramName = null, string message = null)
         {
-            return Fluent.It(message, Is.Not.Null)
+            return message.IsNotNull()
                 ? new ArgumentException(paramName)
                 : new ArgumentException(paramName, message);
         }

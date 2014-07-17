@@ -54,7 +54,7 @@ namespace Sugar
         /// <returns>The results return by the generator function.</returns>
         public static IEnumerable<T> Times<T>(int count, T initial, Func<int, T, T> generator)
         {
-            Require.That(count, Is.AtLeast(1));
+            Require.That(count.IsAtLeast(1));
             generator.Require();
 
             var previous = initial;
@@ -75,7 +75,7 @@ namespace Sugar
         /// <returns>The results return by the generator function.</returns>
         public static IEnumerable<T> Times<T>(int count, Func<int, T> generator)
         {
-            Require.That(count, Is.AtLeast(1));
+            Require.That(count.IsAtLeast(1));
             generator.Require();
 
             for (var i = 0; i < count; i++)

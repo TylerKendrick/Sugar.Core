@@ -57,7 +57,7 @@ namespace Sugar
         /// <param name="count">The number of times to execute the action.</param>
         public void Times(int count)
         {
-            Require.That(count, Is.GreaterThan(0));
+            Require.That(count.IsGreaterThan(0));
             for (var i = 0; i < count; i++)
             {
                 Action();

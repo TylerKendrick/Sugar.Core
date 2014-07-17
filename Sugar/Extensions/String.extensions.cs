@@ -17,16 +17,11 @@ namespace Sugar
         /// <returns>Returns a string delimited aggregate of the provided string collection.</returns>
         public static string Delimit(this IEnumerable<string> self, string delimiter = ", ")
         {
-            Func<string, bool> isNullOrEmptyOrWhitespace = x => Fluent.It(x)
-                .Is.Null()
-                .Or.Empty()
-                .Or.Whitespace();
-
-            return self.Aggregate((first, second) => isNullOrEmptyOrWhitespace(first)
-                ? isNullOrEmptyOrWhitespace(second)
+            return self.Aggregate((first, second) => first.IsNullOrWhitespace()
+                ? second.IsNullOrWhitespace()
                     ? string.Empty
                     : second
-                : isNullOrEmptyOrWhitespace(second)
+                : second.IsNullOrWhitespace()
                     ? first
                     : string.Format("{0}{2}{1}", first, second, delimiter));
         }
@@ -42,6 +37,26 @@ namespace Sugar
         public static byte[] FromBase64String(this string self)
         {
             return Convert.FromBase64String(self);
+        }
+
+        public static bool IsNotNull(this string self)
+        {
+            return self != null;
+        }
+
+        public static bool IsNull(this string self)
+        {
+            return self == null;
+        }
+
+        public static bool IsNullOrWhitespace(this string self)
+        {
+            return string.IsNullOrEmpty(self.Trim());
+        }
+
+        public static bool IsNullOrEmpty(this string self)
+        {
+            return string.IsNullOrEmpty(self);
         }
     }
 }

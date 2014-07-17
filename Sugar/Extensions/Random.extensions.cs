@@ -130,38 +130,38 @@ namespace Sugar
             var result = new DateTime();
             
             yearRange = yearRange ?? Range.From(min.Year, max.Year);
-            yearRange.Start.Require(Is.AtLeast(min.Year));
+            yearRange.Start.Require(x => x.IsAtLeast(min.Year));
             result = result.AddYears(yearRange.Random(randomGenerator));
 
             monthRange = monthRange ?? Range.From(1, 12);
-            monthRange.Start.Require(Is.GreaterThan(0));
-            monthRange.Start.Require(Is.LessThan(13));
+            monthRange.Start.Require(x => x.IsGreaterThan(0));
+            monthRange.Start.Require(x => x.IsLessThan(13));
             result = result.AddMonths(monthRange.Random(randomGenerator));
 
             var daysInMonth = DateTime.DaysInMonth(result.Year, result.Month);
             dayRange = dayRange ?? Range.From(1, daysInMonth);
-            dayRange.Start.Require(Is.GreaterThan(0));
-            dayRange.Start.Require(Is.LessThan(daysInMonth));
+            dayRange.Start.Require(x => x.IsGreaterThan(0));
+            dayRange.Start.Require(x => x.IsLessThan(daysInMonth));
             result = result.AddDays(dayRange.Random(randomGenerator));
 
             hourRange = hourRange ?? Range.From(1, 24);
-            hourRange.Start.Require(Is.GreaterThan(0));
-            hourRange.Start.Require(Is.LessThan(24));
+            hourRange.Start.Require(x => x.IsGreaterThan(0));
+            hourRange.Start.Require(x => x.IsLessThan(24));
             result = result.AddHours(hourRange.Random(randomGenerator));
 
             minuteRange = minuteRange ?? Range.From(0, 60);
-            minuteRange.Start.Require(Is.GreaterThan(-1));
-            minuteRange.Start.Require(Is.LessThan(60));
+            minuteRange.Start.Require(x => x.IsGreaterThan(-1));
+            minuteRange.Start.Require(x => x.IsLessThan(60));
             result = result.AddMinutes(minuteRange.Random(randomGenerator));
 
             secondRange = secondRange ?? Range.From(0, 60);
-            secondRange.Start.Require(Is.GreaterThan(-1));
-            secondRange.Start.Require(Is.LessThan(60));
+            secondRange.Start.Require(x => x.IsGreaterThan(-1));
+            secondRange.Start.Require(x => x.IsLessThan(60));
             result = result.AddSeconds(secondRange.Random(randomGenerator));
 
             millisecondRange = millisecondRange ?? Range.From(0, 1000);
-            millisecondRange.Start.Require(Is.GreaterThan(-1));
-            millisecondRange.Start.Require(Is.LessThan(1000));
+            millisecondRange.Start.Require(x => x.IsGreaterThan(-1));
+            millisecondRange.Start.Require(x => x.IsLessThan(1000));
             result = result.AddMilliseconds(millisecondRange.Random(randomGenerator));
 
             return result;

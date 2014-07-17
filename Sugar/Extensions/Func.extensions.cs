@@ -19,12 +19,7 @@ namespace Sugar
         {
             return x => self(x);
         }
-
-        public static IComparer<T> ToComparer<T>(this Func<T, T, int> comparer)
-        {
-            return new CustomComparer<T>(comparer);
-        }
-
+        
         public static Func<TIn, TOut> Memoize<TIn, TOut>(this Func<TIn, TOut> self)
         {
             self.Require();

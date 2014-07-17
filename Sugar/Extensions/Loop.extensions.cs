@@ -76,8 +76,8 @@ namespace Sugar
         /// <param name="action">The action for invocation in the loop.</param>
         public static void Times(int start, int end, Action<int> action)
         {
+            Require.That(start.IsLessThan(end));
             action.Require();
-            Require.That(start, Is.LessThan(end));
 
             for (var i = start; i < end; i++)
             {

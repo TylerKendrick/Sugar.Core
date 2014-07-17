@@ -8,6 +8,53 @@ namespace Sugar
     /// </summary>
     public static class Comparable
     {
+        public static bool IsAtMost<T>(this T self, T other)
+        {
+            return IsAtMost(self, other, null);
+        }
+        public static bool IsAtMost<T>(this T self, T other, IComparer<T> comparer)
+        {
+            comparer = comparer ?? Comparer<T>.Default;
+            return comparer.Compare(self, other) <= 0;
+        }
+        public static bool IsAtLeast<T>(this T self, T other)
+        {
+            return IsAtLeast(self, other, null);
+        }
+        public static bool IsAtLeast<T>(this T self, T other, IComparer<T> comparer)
+        {
+            comparer = comparer ?? Comparer<T>.Default;
+            var result = comparer.Compare(self, other);
+            return result >= 0;
+        }
+        public static bool IsLessThan<T>(this T self, T other)
+        {
+            return IsLessThan(self, other, null);
+        }
+        public static bool IsLessThan<T>(this T self, T other, IComparer<T> comparer)
+        {
+            comparer = comparer ?? Comparer<T>.Default;
+            return comparer.Compare(self, other) < 0;
+        }
+        public static bool IsGreaterThan<T>(this T self, T other)
+        {
+            return IsGreaterThan(self, other, null);
+        }
+        public static bool IsGreaterThan<T>(this T self, T other, IComparer<T> comparer)
+        {
+            comparer = comparer ?? Comparer<T>.Default;
+            return comparer.Compare(self, other) > 0;
+        }
+        public static bool IsSameAs<T>(this T self, T other)
+        {
+            return IsSameAs(self, other, null);
+        }
+        public static bool IsSameAs<T>(this T self, T other, IComparer<T> comparer)
+        {
+            comparer = comparer ?? Comparer<T>.Default;
+            return comparer.Compare(self, other) == 0;
+        }
+
         /// <summary>
         /// Limits the value by a comparable maximum value.
         /// </summary>
@@ -18,7 +65,7 @@ namespace Sugar
         public static T Limit<T>(this T value, T max, IComparer<T> comparer = null)
         {
             comparer = comparer ?? Comparer<T>.Default;
-            return Fluent.It(value, Is.AtMost(max, comparer)) ? value : max;
+            return value.IsAtMost(max, comparer) ? value : max;
         }
 
         /// <summary>
@@ -32,14 +79,13 @@ namespace Sugar
         public static T Limit<T>(this T value, T min, T max, IComparer<T> comparer = null)
         {
             comparer = comparer ?? Comparer<T>.Default;
-            Require.That(min, Is.LessThan(max, comparer));
+            Require.That(min.IsLessThan(max, comparer));
 
-            var it = Fluent.It(value);
-            return it.Is.AtLeast(min, comparer)
-                ? it.Is.AtMost(max, comparer)
+            return value.IsAtLeast(min, comparer)
+                ? value.IsAtMost(max, comparer)
                     ? value
                     : max
-                : it.Is.AtMost(max, comparer)
+                : value.IsAtMost(max, comparer)
                     ? min
                     : max;
         }
@@ -55,14 +101,13 @@ namespace Sugar
             where T : IComparable<T>
         {
             comparer = comparer ?? Comparer<T>.Default;
-            Require.That(range.Start, Is.LessThan(range.End, comparer));
+            Require.That(range.Start.IsLessThan(range.End, comparer));
 
-            var it = Fluent.It(value);
-            return it.Is.AtLeast(range.Start, comparer)
-                ? it.Is.AtMost(range.End, comparer)
+            return value.IsAtLeast(range.Start, comparer)
+                ? value.IsAtMost(range.End, comparer)
                     ? value
                     : range.End
-                : it.Is.AtMost(range.End, comparer)
+                : value.IsAtMost(range.End, comparer)
                     ? range.Start
                     : range.End;
         }

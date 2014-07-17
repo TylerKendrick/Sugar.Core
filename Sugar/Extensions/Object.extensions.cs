@@ -28,22 +28,14 @@ namespace Sugar
             }
         }
 
-        public static void Require<T>(this T self, FluentPredicate<T> predicate)
+        public static void Require<T>(this T self, bool predicate)
         {
             if (!predicate)
             {
                 throw new InvalidDataException();
             }
         }
-
-        public static void Require<T>(this T self, Func<IIt<T>, FluentPredicate<T>> predicate)
-        {
-            if (!Fluent.It(self, predicate))
-            {
-                throw new InvalidDataException();
-            }
-        }
-
+        
         public static void Require<T>(this T self, Func<T, bool> predicate, string errorMessage)
         {
             if (!predicate(self))

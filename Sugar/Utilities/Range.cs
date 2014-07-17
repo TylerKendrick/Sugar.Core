@@ -36,7 +36,7 @@ namespace Sugar.Utilities
         /// <param name="comparer">Uses <see cref="Comparer{T}"/>.Default if left null.</param>
         protected internal Range(T start, T end, IComparer<T> comparer = null)
         {
-            Require.That(start, Is.LessThan(end));
+            Require.That(start.IsLessThan(end));
             _comparer = comparer ?? Comparer<T>.Default;
             Start = start; 
             End = end;
@@ -49,8 +49,8 @@ namespace Sugar.Utilities
         {
             comparer = comparer ?? _comparer;
 
-            return Fluent.It(value, Is.AtLeast(Start, comparer))
-                .And.Is.LessThan(End, comparer);
+            return value.IsAtLeast(Start, comparer)
+                && value.IsLessThan(End, comparer);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Sugar.Utilities
         public IEnumerable<T> AsEnumerable(Func<T, T> factoryMethod)
         {
             var current = Start;
-            while (Fluent.It(current, Is.LessThan(End)))
+            while (current.IsLessThan(End))
             {
                 yield return current;
                 current = factoryMethod(current);

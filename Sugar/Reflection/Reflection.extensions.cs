@@ -17,7 +17,7 @@ namespace Sugar.Reflection
         /// <param name="expression">The <see cref="MemberExpression"/> used to evaluate against the TCaller.</param>
         public static string NameOf<TCaller, TMember>(this TCaller self, Expression<Func<TCaller, TMember>> expression)
         {
-            expression.Body.NodeType.Require(Is.SameAs(ExpressionType.MemberAccess));
+            expression.Body.NodeType.Require(x => x == ExpressionType.MemberAccess);
 
             return expression
                 .Cast<MemberExpression>()
