@@ -11,7 +11,7 @@
         /// Wraps an action in a looper object.
         /// </summary>
         /// <param name="action">The required action to wrap.</param>
-        public Looper(Action action)
+        internal Looper(Action action)
         {
             action.Require();
             Action = action;
