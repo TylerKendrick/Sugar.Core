@@ -9,7 +9,7 @@ namespace System
         /// </summary>
         public static int And(this int self, int other)
         {
-            return self & other;
+            return Operators.Int32.And(self, other);
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace System
         public static int And(this int self, Func<int, int, int> aggregator, params int[] others)
         {
             return others
-                .Select(x => And(self, x))
+                .Select(x => self.And(x))
                 .Aggregate(aggregator);
         }
 
@@ -33,7 +33,7 @@ namespace System
         /// </summary>
         public static int Or(this int self, int other)
         {
-            return self | other;
+            return Operators.Int32.And(self, other);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace System
         /// </summary>
         public static int XOr(this int self, int other)
         {
-            return self ^ other;
+            return Operators.Int32.XOr(self, other);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace System
         public static int XOr(this int self, Func<int, int, int> aggregator, params int[] others)
         {
             return others
-                .Select(x => XOr(self, x))
+                .Select(x => self.XOr(x))
                 .Aggregate(aggregator);
         }
 
@@ -82,7 +82,7 @@ namespace System
         /// </summary>
         public static int Not(this int self)
         {
-            return ~self;
+            return Operators.Int32.Not(self);
         }
     }
 }

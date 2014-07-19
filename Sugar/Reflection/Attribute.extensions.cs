@@ -17,9 +17,7 @@
         /// <param name="instance">The instance to inspect with reflection.</param>
         public static TAttribute Parse<T>(T instance)
         {
-            return instance.GetType()
-                .GetCustomAttributes(false)
-                .OfType<TAttribute>()
+            return ParseMany(instance)
                 .FirstOrDefault();
         }
 
@@ -29,9 +27,7 @@
         /// <typeparam name="T">The type of the provided instance.</typeparam>
         public static TAttribute Parse<T>()
         {
-            return typeof(T)
-                .GetCustomAttributes(false)
-                .OfType<TAttribute>()
+            return ParseMany<T>()
                 .FirstOrDefault();
         }
 
@@ -42,9 +38,7 @@
         /// <param name="instance">The instance to inspect with reflection.</param>
         public static IEnumerable<TAttribute> ParseMany<T>(T instance)
         {
-            return instance.GetType()
-                .GetCustomAttributes(false)
-                .OfType<TAttribute>();
+            return ParseMany(instance, false);
         }
 
         /// <summary>
@@ -53,9 +47,7 @@
         /// <typeparam name="T">The type of the provided instance.</typeparam>
         public static IEnumerable<TAttribute> ParseMany<T>()
         {
-            return typeof (T)
-                .GetCustomAttributes(false)
-                .OfType<TAttribute>();
+            return ParseMany<T>(false);
         }
 
         /// <summary>

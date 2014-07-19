@@ -23,5 +23,29 @@
                 throw Error.NullArgument(name, message);
             }
         }
+
+        public static T Ensure<T>(this T self)
+            where T : class, new()
+        {
+            return self ?? new T();
+        }
+        public static T Ensure<T, TFallback>(this T self)
+            where T : class
+            where TFallback : class, T, new()
+        {
+            return self ?? new TFallback();
+        }
+        public static T Ensure<T, TFallback>(this T self, TFallback fallback)
+            where T : class
+            where TFallback : class, T, new()
+        {
+            return self ?? fallback ?? new TFallback();
+        }
+
+        public static T Ensure<T>(this T self, Func<T> fallbackGenerator)
+            where T : class
+        {
+            return self ?? fallbackGenerator();
+        }
     }
 }

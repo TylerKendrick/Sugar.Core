@@ -40,9 +40,9 @@
   <ItemGroup>
     <Compile Include="Bitwise.int.cs" />
     <Compile Include="Bitwise.byte.cs" />
+    <Compile Include="EqualityComparer.cs" />
     <Compile Include="Extensions\Array.extensions.cs" />
     <Compile Include="Extensions\DateTime.extensions.cs" />
-    <Compile Include="Extensions\Action.curry.extensions.cs" />
     <Compile Include="Extensions\Action.extensions.cs" />
     <Compile Include="Extensions\Action.raise.extensions.cs" />
     <Compile Include="Extensions\Boolean.extensions.cs" />
@@ -52,12 +52,23 @@
     <Compile Include="Extensions\Comparable.extensions.cs" />
     <Compile Include="Extensions\Decimal.extensions.cs" />
     <Compile Include="Extensions\Delegate.extensions.cs" />
+    <Compile Include="Extensions\Dictionary.cs" />
     <Compile Include="Extensions\Double.extensions.cs" />
     <Compile Include="Extensions\Enum.extensions.cs" />
     <Compile Include="Extensions\EventHandler.extensions.cs" />
     <Compile Include="Extensions\Float.extensions.cs" />
     <Compile Include="Logical.cs" />
     <Compile Include="MonthOfYear.cs" />
+    <Compile Include="Operators.cs" />
+    <Compile Include="OperatorsBoolean.cs" />
+    <Compile Include="OperatorsByte.cs" />
+    <Compile Include="OperatorsDecimal.cs" />
+    <Compile Include="OperatorsDouble.cs" />
+    <Compile Include="OperatorsExtensions.cs" />
+    <Compile Include="OperatorsFloat.cs" />
+    <Compile Include="OperatorsInt32.cs" />
+    <Compile Include="OperatorsLong.cs" />
+    <Compile Include="OperatorsString.cs" />
     <Compile Include="Utilities\ExecutionBlock.cs" />
     <Compile Include="Extensions\Func.extensions.cs" />
     <Compile Include="Extensions\GC.extensions.cs" />

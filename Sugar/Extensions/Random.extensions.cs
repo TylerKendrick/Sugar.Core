@@ -3,7 +3,6 @@
     using Collections.Generic;
     using Globalization;
     using Linq;
-    using Utilities;
 
     /// <summary>
     /// Provides random values from numeric types, collections, and datetime objects.
@@ -50,8 +49,9 @@
         /// <returns>The item selected from the randomly generated index.</returns>
         public static T Random<T>(this IEnumerable<T> self, Random randomGenerator = null)
         {
-            randomGenerator = randomGenerator ?? RandomGenerator;
-            return randomGenerator.From(self);
+            return randomGenerator
+                .Ensure(RandomGenerator)
+                .From(self);
         }
 
         /// <summary>
@@ -63,8 +63,9 @@
         public static int Random(this IRange<int> self, Random randomGenerator = null)
         {
             self.Require();
-            randomGenerator = randomGenerator ?? RandomGenerator;
-            return randomGenerator.Next(self.Start, self.End);
+            return randomGenerator
+                .Ensure(RandomGenerator)
+                .Next(self.Start, self.End);
         }
 
         /// <summary>
@@ -97,8 +98,10 @@
         {
             self.Require();
             factoryMethod.Require();
+
             randomGenerator = randomGenerator ?? RandomGenerator;
-            return new Range<T>(min, max).Random(factoryMethod, randomGenerator);
+            return Range.From(min, max)
+                .Random(factoryMethod, randomGenerator);
         }
 
         /// <summary>
@@ -126,44 +129,44 @@
             var min = calendar.MinSupportedDateTime;
 
             randomGenerator = randomGenerator ?? self;
-            var result = new DateTime();
             
             yearRange = yearRange ?? Range.From(min.Year, max.Year);
             yearRange.Start.Require(x => x.IsAtLeast(min.Year));
-            result = result.AddYears(yearRange.Random(randomGenerator));
+            var years = yearRange.Random(randomGenerator);
 
             monthRange = monthRange ?? Range.From(1, 12);
             monthRange.Start.Require(x => x.IsGreaterThan(0));
             monthRange.Start.Require(x => x.IsLessThan(13));
-            result = result.AddMonths(monthRange.Random(randomGenerator));
+            var months = monthRange.Random(randomGenerator);
 
-            var daysInMonth = DateTime.DaysInMonth(result.Year, result.Month);
+            var daysInMonth = DateTime.DaysInMonth(years, months);
             dayRange = dayRange ?? Range.From(1, daysInMonth);
             dayRange.Start.Require(x => x.IsGreaterThan(0));
             dayRange.Start.Require(x => x.IsLessThan(daysInMonth));
-            result = result.AddDays(dayRange.Random(randomGenerator));
+            var days = dayRange.Random(randomGenerator);
 
             hourRange = hourRange ?? Range.From(1, 24);
             hourRange.Start.Require(x => x.IsGreaterThan(0));
             hourRange.Start.Require(x => x.IsLessThan(24));
-            result = result.AddHours(hourRange.Random(randomGenerator));
+            var hours = hourRange.Random(randomGenerator);
 
             minuteRange = minuteRange ?? Range.From(0, 60);
             minuteRange.Start.Require(x => x.IsGreaterThan(-1));
             minuteRange.Start.Require(x => x.IsLessThan(60));
-            result = result.AddMinutes(minuteRange.Random(randomGenerator));
+            var minutes = minuteRange.Random(randomGenerator);
 
             secondRange = secondRange ?? Range.From(0, 60);
             secondRange.Start.Require(x => x.IsGreaterThan(-1));
             secondRange.Start.Require(x => x.IsLessThan(60));
-            result = result.AddSeconds(secondRange.Random(randomGenerator));
+            var seconds = secondRange.Random(randomGenerator);
 
             millisecondRange = millisecondRange ?? Range.From(0, 1000);
             millisecondRange.Start.Require(x => x.IsGreaterThan(-1));
             millisecondRange.Start.Require(x => x.IsLessThan(1000));
-            result = result.AddMilliseconds(millisecondRange.Random(randomGenerator));
+            var milliseconds = millisecondRange.Random(randomGenerator);
 
-            return result;
+            return new DateTime(years, months, days, hours, 
+                minutes, seconds, milliseconds, calendar, kind);
         }
     }
 }

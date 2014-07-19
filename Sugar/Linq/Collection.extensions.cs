@@ -13,7 +13,7 @@
         /// <typeparam name="T">The type of item in the collection.</typeparam>
         /// <param name="self">The target collection.</param>
         /// <param name="args">The list of arguments to add.</param>
-        public static void Add<T>(this ICollection<T> self, params T[] args)
+        public static void AddMany<T>(this ICollection<T> self, params T[] args)
         {
             self.ForEach(self.Add);
         }

@@ -12,7 +12,9 @@ namespace System
         /// </summary>
         public static byte And(this byte self, byte other)
         {
-            return (self & other).Cast<byte>();
+            return Operators.Byte
+                .And(self, other)
+                .Cast<byte>();
         }
 
         /// <summary>
@@ -27,7 +29,7 @@ namespace System
         public static byte And(this byte self, Func<byte, byte, byte> aggregator, params byte[] others)
         {
             return others
-                .Select(x => And(self, x))
+                .Select(x => self.And(x))
                 .Aggregate(aggregator);
         }
 
@@ -36,7 +38,9 @@ namespace System
         /// </summary>
         public static byte Or(this byte self, byte other)
         {
-            return (self | other).Cast<byte>();
+            return Operators.Byte
+                .Or(self, other)
+                .Cast<byte>();
         }
 
         /// <summary>
@@ -51,7 +55,7 @@ namespace System
         public static byte Or(this byte self, Func<byte, byte, byte> aggregator, params byte[] others)
         {
             return others
-                .Select(x => Or(self, x))
+                .Select(x => self.Or(x))
                 .Aggregate(aggregator);
         }
 
@@ -60,7 +64,9 @@ namespace System
         /// </summary>
         public static byte XOr(this byte self, byte other)
         {
-            return (self ^ other).Cast<byte>();
+            return Operators.Byte
+                .XOr(self, other)
+                .Cast<byte>();
         }
 
         /// <summary>
@@ -75,7 +81,7 @@ namespace System
         public static byte XOr(this byte self, Func<byte, byte, byte> aggregator, params byte[] others)
         {
             return others
-                .Select(x => XOr(self, x))
+                .Select(x => self.XOr(x))
                 .Aggregate(aggregator);
         }
 
@@ -85,7 +91,9 @@ namespace System
         /// </summary>
         public static byte Not(this byte self)
         {
-            return (~self).Cast<byte>();
+            return Operators.Byte
+                .Not(self)
+                .Cast<byte>();
         }
     }
 }

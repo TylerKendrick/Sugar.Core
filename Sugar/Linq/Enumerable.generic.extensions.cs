@@ -1,7 +1,6 @@
 ﻿namespace System.Linq
 {
     using Collections.Generic;
-    using Utilities;
 
     /// <summary>
     /// Provides extension methods to perform common operations with enumerables.

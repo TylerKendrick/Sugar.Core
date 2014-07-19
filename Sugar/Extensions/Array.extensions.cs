@@ -6,6 +6,26 @@ namespace System
 {
     public static class ArrayExtensions
     {
+        public static void CopyIndex(this Array self, int from, int to)
+        {
+            var item = self.GetValue(from);
+            self.SetValue(item, to);
+        }
+
+        public static void CopyIndex(this Array self, int from, params int[] to)
+        {
+            Action<int> partial = x => CopyIndex(self, from, x);
+            to.ForEach(partial);
+        }
+
+        public static void Swap(this Array self, int left, int right)
+        {
+            var leftItem = self.GetValue(left);
+            var rightItem = self.GetValue(right);
+            self.SetValue(leftItem, right);
+            self.SetValue(rightItem, left);
+        }
+
         public static void Clear(this Array self, int index, int length)
         {
             Array.Clear(self, index, length);
