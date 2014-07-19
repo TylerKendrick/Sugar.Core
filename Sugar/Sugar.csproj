@@ -40,6 +40,9 @@
   <ItemGroup>
     <Compile Include="Bitwise.int.cs" />
     <Compile Include="Bitwise.byte.cs" />
+    <Compile Include="Collections\Generic\DictionaryExtensions.cs" />
+    <Compile Include="Collections\Generic\HashSetExtensions.cs" />
+    <Compile Include="Collections\HashTable.extensions.cs" />
     <Compile Include="EqualityComparer.cs" />
     <Compile Include="Extensions\Array.extensions.cs" />
     <Compile Include="Extensions\DateTime.extensions.cs" />
@@ -60,15 +63,17 @@
     <Compile Include="Logical.cs" />
     <Compile Include="MonthOfYear.cs" />
     <Compile Include="Operators.cs" />
-    <Compile Include="OperatorsBoolean.cs" />
-    <Compile Include="OperatorsByte.cs" />
-    <Compile Include="OperatorsDecimal.cs" />
-    <Compile Include="OperatorsDouble.cs" />
-    <Compile Include="OperatorsExtensions.cs" />
-    <Compile Include="OperatorsFloat.cs" />
-    <Compile Include="OperatorsInt32.cs" />
-    <Compile Include="OperatorsLong.cs" />
-    <Compile Include="OperatorsString.cs" />
+    <Compile Include="Operators.Boolean.cs" />
+    <Compile Include="Operators.Byte.cs" />
+    <Compile Include="Operators.DateTime.cs" />
+    <Compile Include="Operators.Decimal.cs" />
+    <Compile Include="Operators.Double.cs" />
+    <Compile Include="Operators.extensions.cs" />
+    <Compile Include="Operators.Float.cs" />
+    <Compile Include="Operators.Int32.cs" />
+    <Compile Include="Operators.Long.cs" />
+    <Compile Include="Operators.String.cs" />
+    <Compile Include="Operators.TimeSpan.cs" />
     <Compile Include="Utilities\ExecutionBlock.cs" />
     <Compile Include="Extensions\Func.extensions.cs" />
     <Compile Include="Extensions\GC.extensions.cs" />
@@ -112,6 +117,7 @@
     <Compile Include="When.cs" />
     <Compile Include="Yield.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
