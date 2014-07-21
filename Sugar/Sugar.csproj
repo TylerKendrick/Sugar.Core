@@ -68,6 +68,9 @@
     <Compile Include="Operators.DateTime.cs" />
     <Compile Include="Operators.Decimal.cs" />
     <Compile Include="Operators.Double.cs" />
+    <Compile Include="Operators.extensions.functional.cs" />
+    <Compile Include="Operators.extensions.ToExpression.cs" />
+    <Compile Include="Operators.extensions.ToFunc.cs" />
     <Compile Include="Operators.extensions.cs" />
     <Compile Include="Operators.Float.cs" />
     <Compile Include="Operators.Int32.cs" />
