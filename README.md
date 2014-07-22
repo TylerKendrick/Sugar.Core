@@ -1,27 +1,43 @@
-Sugar
+Sugar .NET
 ==========
 
-Adds sweet, simple, syntactic sugar to C#.  Reduces boilerplate code, improves readability, and increases productivity.
+Adds sweet, simple, syntactic sugar to the .NET framework.  Reduces boilerplate code, improves readability, and increases developer productivity.
+
+==========
+
+## Key Features: ##
+
+- LINQ extensions
+- Operator delegates
+- Loops as functions.
+- Functional Extensions (curry, apply, etc.)
+- Inversion of Control for try/catch/finally blocks.
+- Conversion between common BCL types.
+- Implements BCL Static methods as extension methods.
+
+
+## License ##
+
+The MIT License (MIT)
+
+Copyright (c) 2014 Tyler Kendrick
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ---
-
-##Object Extensions:##
-
-```
-var myConcern = 3;
-Fluent.It(myConcern, Is.AtLeast(0));
-Fluent.It(myConcern, Is.AtMost(5));
-Fluent.It(myConcern, Is.AtLeast(0)).And.AtMost(5);
-Fluent.It(myConcern, Is.Between(0, 5));
-```
----
-
-##Enumerable Extensions:##
-
----
-
-##Linq Extensions:##
-```
-var collection = Enumerable.Repeat(0, 5);
-collection.Where(Is.Between(0, 5));
-```
