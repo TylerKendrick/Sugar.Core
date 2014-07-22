@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace System
+﻿namespace System.Collections.Generic
 {
     public static class Dictionary
     {

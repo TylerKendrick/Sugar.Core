@@ -57,7 +57,7 @@
     <Compile Include="Extensions\Comparable.extensions.cs" />
     <Compile Include="Extensions\Decimal.extensions.cs" />
     <Compile Include="Extensions\Delegate.extensions.cs" />
-    <Compile Include="Extensions\Dictionary.cs" />
+    <Compile Include="Collections\Generic\Dictionary.cs" />
     <Compile Include="Extensions\Double.extensions.cs" />
     <Compile Include="Extensions\Enum.extensions.cs" />
     <Compile Include="Extensions\EventHandler.extensions.cs" />
