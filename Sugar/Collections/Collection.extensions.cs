@@ -1,6 +1,7 @@
-﻿namespace System.Linq
+﻿namespace System
 {
     using Collections.Generic;
+    using Linq;
 
     /// <summary>
     /// Exposes additional add and remove overloaded methods to collections.

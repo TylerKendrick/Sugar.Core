@@ -1,4 +1,6 @@
-﻿namespace System.Security
+﻿using System.Collections.Generic;
+
+namespace System.Security
 {
     using Cryptography;
     using Text;

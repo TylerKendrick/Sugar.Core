@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Tests;
 using Moq;
 using NUnit.Framework;
-namespace System.Tests
+
+namespace Sugar.Tests
 {
     [TestFixture]
     public class WhenTests
@@ -17,8 +19,7 @@ namespace System.Tests
             Action action = new Mock<IFakeConcern>().Object.Action;
             var result = action.When(() => true);
 
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result, Is.InstanceOf<When>());
+            Assert.That(result, Is.InstanceOf<When>().And.Not.Null);
         }
 
         [Test]
@@ -27,8 +28,7 @@ namespace System.Tests
             Action action = new Mock<IFakeConcern>().Object.Action;
             var result = action.When(() => false);
 
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result, Is.InstanceOf<When>());
+            Assert.That(result, Is.InstanceOf<When>().And.Not.Null);
         }
 
         [Test]
@@ -41,8 +41,7 @@ namespace System.Tests
             var result = action.When(() => false)
                 .Otherwise(otherAction);
 
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result, Is.InstanceOf<Otherwise>());
+            Assert.That(result, Is.InstanceOf<Otherwise>().And.Not.Null);
         }
 
         [Test]

@@ -40,7 +40,9 @@
   <ItemGroup>
     <Compile Include="Bitwise.int.cs" />
     <Compile Include="Bitwise.byte.cs" />
+    <Compile Include="Collections\Enumerable.extensions.cs" />
     <Compile Include="Collections\Generic\DictionaryExtensions.cs" />
+    <Compile Include="Collections\Generic\Enumerable.extensions.cs" />
     <Compile Include="Collections\Generic\HashSetExtensions.cs" />
     <Compile Include="Collections\HashTable.extensions.cs" />
     <Compile Include="EqualityComparer.cs" />
@@ -87,7 +89,7 @@
     <Compile Include="IO\Stream.extensions.cs" />
     <Compile Include="IRange.cs" />
     <Compile Include="Lambda.cs" />
-    <Compile Include="Linq\Collection.extensions.cs" />
+    <Compile Include="Collections\Collection.extensions.cs" />
     <Compile Include="Linq\Enumerable.extensions.cs" />
     <Compile Include="Linq\Enumerable.generic.extensions.cs" />
     <Compile Include="Extensions\Loop.extensions.cs" />
