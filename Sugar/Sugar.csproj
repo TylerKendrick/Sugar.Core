@@ -62,6 +62,9 @@
     <Compile Include="Extensions\Enum.extensions.cs" />
     <Compile Include="Extensions\EventHandler.extensions.cs" />
     <Compile Include="Extensions\Float.extensions.cs" />
+    <Compile Include="IConfiguration.cs" />
+    <Compile Include="IInvocationResult.cs" />
+    <Compile Include="ITryConfiguration.cs" />
     <Compile Include="Logical.cs" />
     <Compile Include="MonthOfYear.cs" />
     <Compile Include="Operators.cs" />
@@ -79,13 +82,15 @@
     <Compile Include="Operators.Long.cs" />
     <Compile Include="Operators.String.cs" />
     <Compile Include="Operators.TimeSpan.cs" />
-    <Compile Include="Utilities\ExecutionBlock.cs" />
+    <Compile Include="InvocationResult.cs" />
+    <Compile Include="TryBlock.Configuration.cs" />
+    <Compile Include="TryBlock.cs" />
     <Compile Include="Extensions\Func.extensions.cs" />
     <Compile Include="Extensions\GC.extensions.cs" />
     <Compile Include="Globalization\CultureInfo.extensions.cs" />
     <Compile Include="Globalization\Number.extensions.cs" />
     <Compile Include="Globalization\String.extensions.cs" />
-    <Compile Include="IExecutionBlock.cs" />
+    <Compile Include="ITryBlock.cs" />
     <Compile Include="IO\Stream.extensions.cs" />
     <Compile Include="IRange.cs" />
     <Compile Include="Lambda.cs" />
@@ -115,6 +120,7 @@
     <Compile Include="Extensions\String.extensions.cs" />
     <Compile Include="Extensions\Struct.extensions.cs" />
     <Compile Include="CustomComparer.cs" />
+    <Compile Include="Utilities\TryConfiguration.cs" />
     <Compile Include="Utilities\Error.cs" />
     <Compile Include="Otherwise.cs" />
     <Compile Include="Range.cs" />

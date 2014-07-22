@@ -1,7 +1,5 @@
 ﻿namespace System
 {
-    using Utilities;
-
     /// <summary>
     /// Simplifies action invocation and operations.
     /// </summary>
@@ -26,9 +24,17 @@
         /// <summary>
         /// Wraps proceeding Catch/Finally blocks to allow passing control of blocks to other areas.
         /// </summary>
-        public static IExecutionBlock Try(this Action self)
+        public static ITryBlock Try(this Action self)
         {
-            return new ExecutionBlock(self);
+            return new TryBlock(self, TryBlock.Configuration.Default);
+        }
+
+        /// <summary>
+        /// Wraps proceeding Catch/Finally blocks to allow passing control of blocks to other areas.
+        /// </summary>
+        public static ITryBlock Try(this Action self, ITryConfiguration configuration)
+        {
+            return new TryBlock(self, configuration);
         }
     }
 }
