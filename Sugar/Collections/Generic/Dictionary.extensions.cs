@@ -1,8 +1,10 @@
-﻿using System.Collections.Specialized;
-using System.Linq;
-
-namespace System.Collections.Generic
+﻿namespace System.Collections.Generic
 {
+    using Specialized;
+    using Linq;
+    /// <summary>
+    /// Provides extensions allowing for simple conversion to and from the generic <see cref="IDictionary"/> type.
+    /// </summary>
     public static class DictionaryExtensions
     {
         /// <summary>
@@ -17,13 +19,31 @@ namespace System.Collections.Generic
             return self.ToDictionary(x => x.Key, x => x.Value);
         }
 
+        /// <summary>
+        /// Converts a <see cref="NameValueCollection"/> instance into an instance of a <see cref="IDictionary{string, string}"/>.
+        /// </summary>
+        /// <param name="nameValueCollection">The target collection for conversion.</param>
         public static IDictionary<string, string> ToDictionary(this NameValueCollection nameValueCollection)
         {
             return nameValueCollection.AllKeys.ToDictionary(x => x, x => nameValueCollection[x]);
         }
+
+        /// <summary>
+        /// Converts a specified string dictionary into an instance of a <see cref="NameValueCollection"/>.
+        /// </summary>
+        /// <param name="dictionary">The specified dictionary for conversion.</param>
         public static NameValueCollection ToNameValueCollection(this IDictionary<string, string> dictionary)
         {
             return new NameValueCollection().Pipe(x => dictionary.ForEach(y => x.Add(y.Key, y.Value)));
+        }
+
+        /// <summary>
+        /// Simplifies working with dictionaries when adding a type of <see cref="KeyValuePair{TKey, TValue}"/>.
+        /// </summary>
+        public static void Add<TKey, TValue>(this IDictionary<TKey, TValue> dictionary,
+            KeyValuePair<TKey, TValue> keyValuePair)
+        {
+            dictionary.Add(keyValuePair.Key, keyValuePair.Value);
         }
     }
 }
