@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Bitwise.int.cs" />
     <Compile Include="Bitwise.byte.cs" />
+    <Compile Include="Collections\Generic\Array.extensions.cs" />
     <Compile Include="Collections\Enumerable.extensions.cs" />
     <Compile Include="Collections\Generic\Dictionary.extensions.cs" />
     <Compile Include="Collections\Generic\Enumerable.extensions.cs" />
