@@ -7,47 +7,97 @@
     /// </summary>
     public static class Comparable
     {
+        /// <summary>
+        /// Compares two <see cref="T"/> values by sort order.  
+        /// </summary>
+        /// <returns>Returns true if <paramref name="self"/> is less than or equal to <paramref name="other"/>.</returns>
         public static bool IsAtMost<T>(this T self, T other)
         {
             return IsAtMost(self, other, null);
         }
+
+        /// <summary>
+        /// Compares two <see cref="T"/> values by sort order.  
+        /// </summary>
+        /// <returns>Returns true if <paramref name="self"/> is less than or equal to <paramref name="other"/>.</returns>
         public static bool IsAtMost<T>(this T self, T other, IComparer<T> comparer)
         {
             comparer = comparer ?? Comparer<T>.Default;
             return comparer.Compare(self, other) <= 0;
         }
+
+        /// <summary>
+        /// Compares two <see cref="T"/> values by sort order.  
+        /// </summary>
+        /// <returns>Returns true if <paramref name="self"/> is greater than or equal to <paramref name="other"/>.</returns>
         public static bool IsAtLeast<T>(this T self, T other)
         {
             return IsAtLeast(self, other, null);
         }
+
+        /// <summary>
+        /// Compares two <see cref="T"/> values by sort order.  
+        /// </summary>
+        /// <returns>Returns true if <paramref name="self"/> is greater than or equal to <paramref name="other"/>.</returns>
         public static bool IsAtLeast<T>(this T self, T other, IComparer<T> comparer)
         {
             comparer = comparer ?? Comparer<T>.Default;
             var result = comparer.Compare(self, other);
             return result >= 0;
         }
+
+        /// <summary>
+        /// Compares two <see cref="T"/> values by sort order.  
+        /// </summary>
+        /// <returns>Returns true if <paramref name="self"/> is greater than or equal to <paramref name="other"/>.</returns>
         public static bool IsLessThan<T>(this T self, T other)
         {
             return IsLessThan(self, other, null);
         }
+
+        /// <summary>
+        /// Compares two <see cref="T"/> values by sort order.  
+        /// </summary>
+        /// <returns>Returns true if <paramref name="self"/> is greater than or equal to <paramref name="other"/>.</returns>
         public static bool IsLessThan<T>(this T self, T other, IComparer<T> comparer)
         {
             comparer = comparer ?? Comparer<T>.Default;
             return comparer.Compare(self, other) < 0;
         }
+
+        /// <summary>
+        /// Compares two <see cref="T"/> values by sort order.  
+        /// </summary>
+        /// <returns>Returns true if <paramref name="self"/> is greater than <paramref name="other"/>.</returns>
         public static bool IsGreaterThan<T>(this T self, T other)
         {
             return IsGreaterThan(self, other, null);
         }
+
+        /// <summary>
+        /// Compares two <see cref="T"/> values by sort order.  
+        /// </summary>
+        /// <returns>Returns true if <paramref name="self"/> is greater than <paramref name="other"/>.</returns>
         public static bool IsGreaterThan<T>(this T self, T other, IComparer<T> comparer)
         {
             comparer = comparer ?? Comparer<T>.Default;
             return comparer.Compare(self, other) > 0;
         }
+
+
+        /// <summary>
+        /// Compares two <see cref="T"/> values by sort order.  
+        /// </summary>
+        /// <returns>Returns true if <paramref name="self"/> is equal to <paramref name="other"/>.</returns>
         public static bool IsSameAs<T>(this T self, T other)
         {
             return IsSameAs(self, other, null);
         }
+
+        /// <summary>
+        /// Compares two <see cref="T"/> values by sort order.  
+        /// </summary>
+        /// <returns>Returns true if <paramref name="self"/> is equal to <paramref name="other"/>.</returns>
         public static bool IsSameAs<T>(this T self, T other, IComparer<T> comparer)
         {
             comparer = comparer ?? Comparer<T>.Default;

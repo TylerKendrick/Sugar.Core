@@ -46,7 +46,7 @@
     <Compile Include="Collections\Generic\HashSetExtensions.cs" />
     <Compile Include="Collections\HashTable.extensions.cs" />
     <Compile Include="EqualityComparer.cs" />
-    <Compile Include="Extensions\Array.extensions.cs" />
+    <Compile Include="Collections\Array.extensions.cs" />
     <Compile Include="Extensions\DateTime.extensions.cs" />
     <Compile Include="Extensions\Action.extensions.cs" />
     <Compile Include="Extensions\Action.raise.extensions.cs" />

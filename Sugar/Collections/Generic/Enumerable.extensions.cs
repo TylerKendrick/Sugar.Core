@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// Provides common operations with generic Enumerables as extension methods.
+    /// </summary>
     public static class EnumerableExtensions
     {
         /// <summary>
@@ -15,49 +18,6 @@
             foreach (var item in self)
             {
                 action(item);
-            }
-        }
-
-        public static IEnumerable<T> Cycle<T>(this IEnumerable<T> self)
-        {
-            Require.That(self != null);
-            while (true)
-            {
-                foreach (var item in self)
-                {
-                    yield return item;
-                }
-            }
-        }
-
-        public static IEnumerable<T> Cycle<T>(this IEnumerable<T> self, Func<bool> predicate)
-        {
-            Require.That(self != null);
-            while (predicate())
-            {
-                foreach (var item in self)
-                {
-                    yield return item;
-                }
-            }
-        }
-
-        public static IEnumerable<T> Cycle<T>(this IEnumerable<T> self, Func<T, bool> predicate)
-        {
-            Require.That(self != null);
-            var @continue = true;
-            while (@continue)
-            {
-                foreach (var item in self)
-                {
-                    var result = predicate(item);
-                    @continue = result;
-                    if (@continue == false)
-                    {
-                        break;
-                    }
-                    yield return item;
-                }
             }
         }
     }

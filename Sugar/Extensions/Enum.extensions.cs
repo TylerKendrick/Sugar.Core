@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace System
+﻿namespace System
 {
+    using Collections;
+    using Collections.Generic;
+    using Linq;
+
     /// <summary>
     /// Provides simplified invocation for common operations with <see cref="Enum"/> objects.
     /// </summary>

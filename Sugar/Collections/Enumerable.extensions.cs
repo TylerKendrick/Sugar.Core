@@ -2,6 +2,9 @@
 {
     using Linq;
 
+    /// <summary>
+    /// Provides common operations with non-generic <see cref="IEnumerable"/> instances as extension methods.
+    /// </summary>
     public static class EnumerableExtensions
     {
         /// <summary>

@@ -24,17 +24,28 @@
             }
         }
 
+        /// <summary>
+        /// Returns a new instance of <see cref="T"/> if the current instance is null.
+        /// </summary>
         public static T Ensure<T>(this T self)
             where T : class, new()
         {
             return self ?? new T();
         }
+
+        /// <summary>
+        /// Returns a new instance of <see cref="T"/> if the current instance is null.
+        /// </summary>
         public static T Ensure<T, TFallback>(this T self)
             where T : class
             where TFallback : class, T, new()
         {
             return self ?? new TFallback();
         }
+
+        /// <summary>
+        /// Returns a new instance of <see cref="T"/> if the current instance is null.
+        /// </summary>
         public static T Ensure<T, TFallback>(this T self, TFallback fallback)
             where T : class
             where TFallback : class, T, new()
@@ -42,6 +53,9 @@
             return self ?? fallback ?? new TFallback();
         }
 
+        /// <summary>
+        /// Returns a new instance of <see cref="T"/> if the current instance is null.
+        /// </summary>
         public static T Ensure<T>(this T self, Func<T> fallbackGenerator)
             where T : class
         {

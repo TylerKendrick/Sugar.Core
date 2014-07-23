@@ -33,26 +33,41 @@
             return string.Format(self, args);
         }
 
+        /// <summary>
+        /// Wraps Convert.FromBase64String as an instance extension method.
+        /// </summary>
         public static byte[] FromBase64String(this string self)
         {
             return Convert.FromBase64String(self);
         }
 
+        /// <summary>
+        /// Returns true is the instance is not null.
+        /// </summary>
         public static bool IsNotNull(this string self)
         {
             return self != null;
         }
 
+        /// <summary>
+        /// Returns true is the instance is null.
+        /// </summary>
         public static bool IsNull(this string self)
         {
             return self == null;
         }
 
+        /// <summary>
+        /// Indicates whether the specified string is null or an <see cref="F:System.String.Empty"/> string or whitespace.
+        /// </summary>
         public static bool IsNullOrWhitespace(this string self)
         {
             return string.IsNullOrEmpty(self.Trim());
         }
 
+        /// <summary>
+        /// Indicates whether the specified string is null or an <see cref="F:System.String.Empty"/> string.
+        /// </summary>
         public static bool IsNullOrEmpty(this string self)
         {
             return string.IsNullOrEmpty(self);
