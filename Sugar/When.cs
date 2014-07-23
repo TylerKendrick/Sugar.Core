@@ -14,7 +14,7 @@
         /// <summary>
         /// Wraps an action and predicate.
         /// </summary>
-        public When(Action action, Func<bool> predicate)
+        internal When(Action action, Func<bool> predicate)
         {
             action.Require();
             predicate.Require();

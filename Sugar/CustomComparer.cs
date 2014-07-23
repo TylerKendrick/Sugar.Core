@@ -12,7 +12,6 @@
         /// </summary>
         /// <typeparam name="T">The type of object for comparison.</typeparam>
         /// <param name="comparer">The specified <see cref="Func{T, T, int}"/> to invoke for comparison.</param>
-        /// <returns></returns>
         public static IComparer<T> Create<T>(Func<T, T, int> comparer)
         {
             return new InternalCustomComparer<T>(comparer);

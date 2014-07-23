@@ -3,8 +3,15 @@
     using ComponentModel;
     using Cryptography;
 
+    /// <summary>
+    /// Provides supported operations for encryption through the .NET framework as instance extension methods.
+    /// </summary>
     public static class Encryption
     {
+        /// <summary>
+        /// Creates a new instance of a <see cref="SymmetricAlgorithm"/> 
+        /// to apply to the specified target as an extension method.
+        /// </summary>
         public static SymmetricAlgorithm Create(this SymmetricAlgorithmTypes cryptoType, byte[] key, byte[] iv)
         {
             SymmetricAlgorithm provider;
@@ -30,6 +37,10 @@
             return provider;
         }
 
+        /// <summary>
+        /// Creates a new instance of a <see cref="HashAlgorithm"/> 
+        /// to apply to the specified target as an extension method.
+        /// </summary>
         public static HashAlgorithm Create(this HashAlgorithmTypes cryptoType)
         {
             HashAlgorithm result;

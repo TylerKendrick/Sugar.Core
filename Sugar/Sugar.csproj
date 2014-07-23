@@ -82,7 +82,7 @@
     <Compile Include="Operators.Long.cs" />
     <Compile Include="Operators.String.cs" />
     <Compile Include="Operators.TimeSpan.cs" />
-    <Compile Include="InvocationResult.cs" />
+    <Compile Include="Utilities\InvocationResult.cs" />
     <Compile Include="TryBlock.Configuration.cs" />
     <Compile Include="TryBlock.cs" />
     <Compile Include="Extensions\Func.extensions.cs" />

@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace System.Security
+﻿namespace System.Security
 {
+    using Collections.Generic;
     using Cryptography;
     using Text;
-    using Linq;
 
     /// <summary>
     /// Provides simplified invocations for boilerplate construction of common crypto operations with strings.
@@ -38,6 +36,9 @@ namespace System.Security
             return Encrypt(self, crypto);
         }
 
+        /// <summary>
+        /// Simplifies application of a symmetric algorithm with a string.
+        /// </summary>
         public static string Encrypt(this string self, SymmetricAlgorithmTypes cryptoType, 
             string password, string iv, Encoding encoding = null)
         {
@@ -45,7 +46,10 @@ namespace System.Security
             var crypto = cryptoType.Create(password.GetBytes(encoding), iv.GetBytes(encoding));
             return Encrypt(self, crypto, encoding);
         }
-        
+
+        /// <summary>
+        /// Simplifies application of a symmetric algorithm with a string.
+        /// </summary>
         public static string Encrypt(this string self, SymmetricAlgorithm symmetricAlgorithm, 
             Encoding encoding = null)
         {
@@ -55,6 +59,9 @@ namespace System.Security
             return Convert.ToBase64String(output);
         }
 
+        /// <summary>
+        /// Simplifies application of a symmetric algorithm with a string.
+        /// </summary>
         public static string Decrypt(this string self, SymmetricAlgorithmTypes cryptoType,
             string password, string iv, Encoding encoding = null)
         {
@@ -62,7 +69,10 @@ namespace System.Security
             var crypto = cryptoType.Create(password.GetBytes(encoding), iv.GetBytes(encoding));
             return Decrypt(self, crypto, encoding);
         }
-        
+
+        /// <summary>
+        /// Simplifies application of a symmetric algorithm with a string.
+        /// </summary>
         public static string Decrypt(string self, SymmetricAlgorithm symmetricAlgorithm, 
             Encoding encoding = null)
         {

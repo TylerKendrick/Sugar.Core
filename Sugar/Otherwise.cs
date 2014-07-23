@@ -9,7 +9,7 @@
         private readonly Func<bool> _predicate;
         private When _when;
 
-        public Otherwise(Action action, Action other, Func<bool> predicate)
+        internal Otherwise(Action action, Action other, Func<bool> predicate)
         {
             _action = action;
             _other = other;
