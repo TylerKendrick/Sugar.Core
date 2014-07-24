@@ -13,7 +13,7 @@
         /// </summary>
         /// <typeparam name="T">The type of object for comparison.</typeparam>
         /// <param name="equalityComparer">The specified <see cref="Func{T, T, bool}"/> to invoke for comparison.</param>
-        public IEqualityComparer<T> Create<T>(Func<T, T, bool> equalityComparer)
+        public static IEqualityComparer<T> Create<T>(Func<T, T, bool> equalityComparer)
         {
             return new InternalEqualityComparer<T>(equalityComparer, x => x.GetHashCode());
         }
@@ -25,7 +25,7 @@
         /// <typeparam name="T">The type of object for comparison.</typeparam>
         /// <param name="equalityComparer">The specified <see cref="Func{T, T, bool}"/> to invoke for comparison.</param>
         /// <param name="hashGenerator">The specified <see cref="Func{T, int}"/> for generating a hash for the objects being converted.</param>
-        public IEqualityComparer<T> Create<T>(Func<T, T, bool> equalityComparer,
+        public static IEqualityComparer<T> Create<T>(Func<T, T, bool> equalityComparer,
             Func<T, int> hashGenerator)
         {
             return new InternalEqualityComparer<T>(equalityComparer, hashGenerator);

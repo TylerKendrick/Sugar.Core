@@ -7,6 +7,24 @@
     /// </summary>
     public static partial class EnumerableExtensions
     {
+        public static IEnumerable<T> Intersect<T>(this IEnumerable<T> self, IEnumerable<T> other,
+            Func<T, T, bool> equalityComparer)
+        {
+            return self.Intersect(other, EqualityComparer.Create(equalityComparer));
+        }
+
+        public static IEnumerable<T> Union<T>(this IEnumerable<T> self, IEnumerable<T> other,
+            Func<T, T, bool> equalityComparer)
+        {
+            return self.Union(other, EqualityComparer.Create(equalityComparer));
+        }
+
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> self, IEnumerable<T> other,
+            Func<T, T, bool> equalityComparer)
+        {
+            return self.Except(other, EqualityComparer.Create(equalityComparer));
+        }
+
         /// <summary>
         /// Applies a predicate selection clause to the Linq Distinct method.
         /// </summary>
@@ -18,6 +36,16 @@
         {
             return self.Where(predicate).Distinct();
         }
+
+        public static IEnumerable<T> Indistinct<T>(this IEnumerable<T> self, Func<T, bool> predicate)
+        {
+            return self.Where(predicate).Indistinct();
+        }
+
+        public static IEnumerable<T> Indistinct<T>(this IEnumerable<T> self)
+        {
+            return self.GroupBy(Lambda.Identity).SelectMany(x => x.Skip(1));
+        } 
 
         /// <summary>
         /// Provides the logical compliment of Enumerable.Any.
@@ -106,6 +134,21 @@
         public static IEnumerable<T> TakeUntil<T>(this IEnumerable<T> self, Func<T, bool> predicate)
         {
             return self.TakeWhile(x => !predicate(x));
+        }
+
+        public static IEnumerable<T> TakeUntil<T>(this IEnumerable<T> self, Func<T, int, bool> predicate)
+        {
+            return self.TakeWhile((x, i) => !predicate(x, i));
+        }
+
+        public static IEnumerable<T> SkipUntil<T>(this IEnumerable<T> self, Func<T, bool> predicate)
+        {
+            return self.SkipWhile(x => !predicate(x));
+        }
+
+        public static IEnumerable<T> SkipUntil<T>(this IEnumerable<T> self, Func<T, int, bool> predicate)
+        {
+            return self.SkipWhile((x, i) => !predicate(x, i));
         }
 
         /// <summary>

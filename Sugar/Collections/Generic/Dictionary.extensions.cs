@@ -25,7 +25,7 @@
         /// <param name="nameValueCollection">The target collection for conversion.</param>
         public static IDictionary<string, string> ToDictionary(this NameValueCollection nameValueCollection)
         {
-            return nameValueCollection.AllKeys.ToDictionary(x => x, x => nameValueCollection[x]);
+            return nameValueCollection.AllKeys.ToDictionary(Lambda.Identity, x => nameValueCollection[x]);
         }
 
         /// <summary>

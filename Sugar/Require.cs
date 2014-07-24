@@ -27,7 +27,7 @@ namespace System
         /// </summary>
         public static void That(bool condition)
         {
-            That(condition, x => x);
+            That(condition, Lambda.Identity);
         }
     }
 }

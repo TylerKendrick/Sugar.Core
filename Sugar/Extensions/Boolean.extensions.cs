@@ -13,7 +13,7 @@
         /// </summary>
         public static bool All(this IEnumerable<bool> self)
         {
-            return self.All(x => x);
+            return self.All(Lambda.Identity);
         }
 
         /// <summary>

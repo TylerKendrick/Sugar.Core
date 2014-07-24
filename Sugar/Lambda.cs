@@ -5,6 +5,10 @@
     /// </summary>
     public static class Lambda
     {
+        public static T Identity<T>(T x)
+        {
+            return x;
+        } 
 
     #region Action
 

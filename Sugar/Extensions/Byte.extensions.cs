@@ -144,8 +144,7 @@
         {
             return BitConverter.GetBytes(self);
         }
-
-
+        
         /// <summary>
         /// Returns the specified string value as an array of bytes.
         /// </summary>
@@ -154,8 +153,6 @@
             encoding = encoding ?? Encoding.Default;
             return encoding.GetBytes(self);
         }
-
-
 
         /// <summary>
         /// Returns the specified 32-bit signed integer value as an array of bytes.
