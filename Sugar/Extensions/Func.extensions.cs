@@ -67,17 +67,9 @@
         /// <summary>
         /// Caches the results of a specified <see cref="Func{TIn, TOut}"/> according to its parameters.
         /// </summary>
-        public static Func<TIn, TOut> Memoize<TIn, TOut>(this Func<TIn, TOut> self, IDictionary<TIn, TOut> results)
-        {
-            self.Require();
-            results = results.Ensure(Dictionary.Create<TIn, TOut>);
-            
-            return x => results.GetOrAdd(x, () => self(x));
-        }
-
         public static Func<TIn, TOut> Memoize<TIn, TOut>(this Func<TIn, TOut> self)
         {
-            return self.Memoize(new Dictionary<TIn, TOut>());
+            return Lambda.Memoize(self);
         }
     }
 }
