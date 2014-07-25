@@ -9,10 +9,10 @@ namespace System
     {
         public static readonly Func<Func<T1, T2, T3, T4, T5>, Func<T1, T2, T3, T4, T5>> Memoize = func =>
         {
-            var applied = new Func<T1, Func<T2, T3, T4, T5>>(func.ApplyFirst);
+            var applied = new Func<T1, Func<T2, Func<T3, Func<T4, T5>>>>(func.Curry());
             var substitution = Lambda.Memoizer(applied.Memoize());
 
-            return (a, b, c, d) => substitution(a)(b, c, d);
+            return substitution.Uncurry();
         };
 
         public static Func<T4, Func<T3, Func<T2, Func<T1, T5>>>> Reverse(Func<T1, Func<T2, Func<T3, Func<T4, T5>>>> func)
@@ -25,10 +25,10 @@ namespace System
     {
         public static readonly Func<Func<T1, T2, T3, T4>, Func<T1, T2, T3, T4>> Memoize = func =>
         {
-            var applied = new Func<T1, Func<T2, T3, T4>>(func.ApplyFirst);
+            var applied = new Func<T1, Func<T2, Func<T3, T4>>>(func.Curry());
             var substitution = Lambda.Memoizer(applied.Memoize());
 
-            return (a, b, c) => substitution(a)(b, c);
+            return substitution.Uncurry();
         };
 
         public static Func<T3, Func<T2, Func<T1, T4>>> Reverse(Func<T1, Func<T2, Func<T3, T4>>> func)
@@ -41,10 +41,9 @@ namespace System
     {
         public static readonly Func<Func<Ty, Func<Tx, Tz>>, Func<Func<Ty, Tx>, Func<Ty, Tz>>> Substitution = x => y => z => x(z)(y(z));
 
-
         public static readonly Func<Func<Tx, Ty, Tz>, Func<Tx, Ty, Tz>> Memoize = func =>
         {
-            var applied = new Func<Tx, Func<Ty, Tz>>(func.ApplyFirst);
+            var applied = new Func<Tx, Func<Ty, Tz>>(func.Curry());
             var substitution = Lambda.Memoizer(applied.Memoize());
 
             return substitution.Uncurry();
@@ -85,11 +84,12 @@ namespace System
             return Lambda<T>.Identity(x);
         }
 
-        public static Func<Ty, Tz> Substitution<Tx, Ty, Tz>(
+        public static Tz Substitution<Tx, Ty, Tz>(
             Func<Ty, Func<Tx, Tz>> first,
-            Func<Ty, Tx> second)
+            Func<Ty, Tx> second,
+            Ty arg)
         {
-            return Lambda<Tx, Ty, Tz>.Substitution(first)(second);
+            return Lambda<Tx, Ty, Tz>.Substitution(first)(second)(arg);
         }
 
         internal static Func<T1, T2> Memoizer<T1, T2>(Func<T1, T2> applicator)
@@ -97,7 +97,7 @@ namespace System
             var cache = Dictionary.Create<T1, T2>();
             var getOrAdd = new Func<T1, Func<T2>, T2>(cache.GetOrAdd);
 
-            return Substitution(getOrAdd.Curry(), applicator.Apply);
+            return x => Substitution(getOrAdd.Curry(), applicator.Apply, x);
         }
         public static Func<T1, T2> Memoize<T1, T2>(Func<T1, T2> func)
         {
