@@ -5,15 +5,36 @@ namespace System
     /// <summary>
     /// Provides functional operations for delegates as extension methods.
     /// </summary>
+    public static class Lambda<T1, T2, T3, T4, T5>
+    {
+        public static readonly Func<Func<T1, T2, T3, T4, T5>, Func<T1, T2, T3, T4, T5>> Memoize = func =>
+        {
+            var applied = new Func<T1, Func<T2, T3, T4, T5>>(func.ApplyFirst);
+            var substitution = Lambda.Memoizer(applied.Memoize());
+
+            return (a, b, c, d) => substitution(a)(b, c, d);
+        };
+
+        public static Func<T4, Func<T3, Func<T2, Func<T1, T5>>>> Reverse(Func<T1, Func<T2, Func<T3, Func<T4, T5>>>> func)
+        {
+            return d => c => b => a => func(a)(b)(c)(d);
+        }
+    }
+
     public static class Lambda<T1, T2, T3, T4>
     {
         public static readonly Func<Func<T1, T2, T3, T4>, Func<T1, T2, T3, T4>> Memoize = func =>
         {
             var applied = new Func<T1, Func<T2, T3, T4>>(func.ApplyFirst);
-            var substitution = Lambda.Memoizer(applied);
+            var substitution = Lambda.Memoizer(applied.Memoize());
 
-            return (a,b,c) => substitution(a)(b, c);
+            return (a, b, c) => substitution(a)(b, c);
         };
+
+        public static Func<T3, Func<T2, Func<T1, T4>>> Reverse(Func<T1, Func<T2, Func<T3, T4>>> func)
+        {
+            return z => y => x => func(x)(y)(z);
+        }
     }
 
     public static class Lambda<Tx, Ty, Tz>
@@ -24,10 +45,15 @@ namespace System
         public static readonly Func<Func<Tx, Ty, Tz>, Func<Tx, Ty, Tz>> Memoize = func =>
         {
             var applied = new Func<Tx, Func<Ty, Tz>>(func.ApplyFirst);
-            var substitution = Lambda.Memoizer(applied);
+            var substitution = Lambda.Memoizer(applied.Memoize());
 
             return substitution.Uncurry();
         };
+
+        public static Func<Ty, Func<Tx, Tz>> Reverse(Func<Tx, Func<Ty, Tz>> func)
+        {
+            return y => x => func(x)(y);
+        }
     }
     
     public static class Lambda<Tx, Ty>
@@ -63,7 +89,7 @@ namespace System
             Func<Ty, Func<Tx, Tz>> first,
             Func<Ty, Tx> second)
         {
-            return x => Lambda<Tx, Ty, Tz>.Substitution(first)(second)(x);
+            return Lambda<Tx, Ty, Tz>.Substitution(first)(second);
         }
 
         internal static Func<T1, T2> Memoizer<T1, T2>(Func<T1, T2> applicator)
