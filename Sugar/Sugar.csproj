@@ -66,6 +66,11 @@
     <Compile Include="IConfiguration.cs" />
     <Compile Include="IInvocationResult.cs" />
     <Compile Include="ITryConfiguration.cs" />
+    <Compile Include="Lambda.Apply.cs" />
+    <Compile Include="Lambda.Uncurry.cs" />
+    <Compile Include="Lambda.Curry.cs" />
+    <Compile Include="Lambda.Reverse.cs" />
+    <Compile Include="Lambda.Memoize.cs" />
     <Compile Include="Logical.cs" />
     <Compile Include="MonthOfYear.cs" />
     <Compile Include="Operators.cs" />
