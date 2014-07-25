@@ -10,7 +10,7 @@ namespace System
         public static readonly Func<Func<T1, T2, T3, T4>, Func<T1, T2, T3, T4>> Memoize = func =>
         {
             var applied = new Func<T1, Func<T2, T3, T4>>(func.ApplyFirst);
-            var substitution = Lambda.Memoizer(applied, x => x.Apply);
+            var substitution = Lambda.Memoizer(applied);
 
             return (a,b,c) => substitution(a)(b, c);
         };
@@ -24,7 +24,7 @@ namespace System
         public static readonly Func<Func<Tx, Ty, Tz>, Func<Tx, Ty, Tz>> Memoize = func =>
         {
             var applied = new Func<Tx, Func<Ty, Tz>>(func.ApplyFirst);
-            var substitution = Lambda.Memoizer(applied, x => x.Apply);
+            var substitution = Lambda.Memoizer(applied);
 
             return substitution.Uncurry();
         };
@@ -38,7 +38,7 @@ namespace System
         {
             var applied = new Func<Tx, Func<Ty>>(func.Apply);
 
-            return Lambda.Memoizer(applied, x => x.Apply);
+            return Lambda.Memoizer(applied);
         };
     }
 
@@ -66,13 +66,12 @@ namespace System
             return x => Lambda<Tx, Ty, Tz>.Substitution(first)(second)(x);
         }
 
-        internal static Func<T1, T2> Memoizer<T1, T2>(Func<T1, T2> applicator,
-            Func<Func<T1, T2>, Func<T1, Func<T2>>> enhansor)
+        internal static Func<T1, T2> Memoizer<T1, T2>(Func<T1, T2> applicator)
         {
             var cache = Dictionary.Create<T1, T2>();
             var getOrAdd = new Func<T1, Func<T2>, T2>(cache.GetOrAdd);
 
-            return Substitution(getOrAdd.Curry(), enhansor(applicator));
+            return Substitution(getOrAdd.Curry(), applicator.Apply);
         }
         public static Func<T1, T2> Memoize<T1, T2>(Func<T1, T2> func)
         {
