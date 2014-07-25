@@ -15,7 +15,7 @@
         public static readonly Binary<float, float, bool> GreaterThanOrEqual = (left, right) => left >= right;
         public static readonly Binary<float, float, bool> LessThan = (left, right) => left < right;
         public static readonly Binary<float, float, bool> LessThanOrEqual = (left, right) => left <= right;
-        public static readonly Binary<float, float, bool> Equal = (left, right) => left == right;
-        public static readonly Binary<float, float, bool> NotEqual = (left, right) => left != right;
+        public static readonly Binary<float, float, bool> Equality = (left, right) => left == right;
+        public static readonly Binary<float, float, bool> Inequality = (left, right) => left != right;
     }
 }

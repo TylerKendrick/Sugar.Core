@@ -83,4 +83,12 @@ public static partial class Operators
     {
         return () => typeof (T);
     }
+
+    /// <summary>
+    /// Returns an operator that returns the default value of an instance of <see cref="T"/>.
+    /// </summary>
+    public static Nullary<T> Default<T>()
+    {
+        return () => default(T);
+    }
 }

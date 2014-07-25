@@ -13,7 +13,7 @@
         public static readonly Binary<byte, byte, bool> GreaterThanOrEqual = (left, right) => left >= right;
         public static readonly Binary<byte, byte, bool> LessThan = (left, right) => left < right;
         public static readonly Binary<byte, byte, bool> LessThanOrEqual = (left, right) => left <= right;
-        public static readonly Binary<byte, byte, bool> Equal = (left, right) => left == right;
-        public static readonly Binary<byte, byte, bool> NotEqual = (left, right) => left != right;
+        public static readonly Binary<byte, byte, bool> Equality = (left, right) => left == right;
+        public static readonly Binary<byte, byte, bool> Inequality = (left, right) => left != right;
     }
 }

@@ -9,7 +9,7 @@
         public static readonly Binary<System.DateTime, System.DateTime, bool> GreaterThanOrEqual = (left, right) => left >= right;
         public static readonly Binary<System.DateTime, System.DateTime, bool> LessThan = (left, right) => left < right;
         public static readonly Binary<System.DateTime, System.DateTime, bool> LessThanOrEqual = (left, right) => left <= right;
-        public static readonly Binary<System.DateTime, System.DateTime, bool> Equal = (left, right) => left == right;
-        public static readonly Binary<System.DateTime, System.DateTime, bool> NotEqual = (left, right) => left != right;
+        public static readonly Binary<System.DateTime, System.DateTime, bool> Equality = (left, right) => left == right;
+        public static readonly Binary<System.DateTime, System.DateTime, bool> Inequality = (left, right) => left != right;
     }
 }

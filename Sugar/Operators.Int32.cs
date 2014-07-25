@@ -22,7 +22,7 @@
         public static readonly Binary<int, int, bool> GreaterThanOrEqual = (left, right) => left >= right;
         public static readonly Binary<int, int, bool> LessThan = (left, right) => left < right;
         public static readonly Binary<int, int, bool> LessThanOrEqual = (left, right) => left <= right;
-        public static readonly Binary<int, int, bool> Equal = (left, right) => left == right;
-        public static readonly Binary<int, int, bool> NotEqual = (left, right) => left != right;
+        public static readonly Binary<int, int, bool> Equality = (left, right) => left == right;
+        public static readonly Binary<int, int, bool> Inequality = (left, right) => left != right;
     }
 }

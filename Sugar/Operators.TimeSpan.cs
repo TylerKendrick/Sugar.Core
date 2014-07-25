@@ -10,7 +10,7 @@
         public static readonly Binary<System.TimeSpan, System.TimeSpan, bool> GreaterThanOrEqual = (left, right) => left >= right;
         public static readonly Binary<System.TimeSpan, System.TimeSpan, bool> LessThan = (left, right) => left < right;
         public static readonly Binary<System.TimeSpan, System.TimeSpan, bool> LessThanOrEqual = (left, right) => left <= right;
-        public static readonly Binary<System.TimeSpan, System.TimeSpan, bool> Equal = (left, right) => left == right;
-        public static readonly Binary<System.TimeSpan, System.TimeSpan, bool> NotEqual = (left, right) => left != right;
+        public static readonly Binary<System.TimeSpan, System.TimeSpan, bool> Equality = (left, right) => left == right;
+        public static readonly Binary<System.TimeSpan, System.TimeSpan, bool> Inequality = (left, right) => left != right;
     }
 }
