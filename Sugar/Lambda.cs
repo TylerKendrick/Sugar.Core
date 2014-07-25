@@ -9,13 +9,10 @@ namespace System
     {
         public static readonly Func<Func<T1, T2, T3, T4>, Func<T1, T2, T3, T4>> Memoize = func =>
         {
-            var cache = Dictionary.Create<T1, Func<T2, T3, T4>>();
-            var getOrAdd = new Func<T1, Func<Func<T2, T3, T4>>, Func<T2, T3, T4>>(cache.GetOrAdd);
             var applied = new Func<T1, Func<T2, T3, T4>>(func.ApplyFirst);
-            var memoized = new Func<T1, Func<T2, T3, T4>>(x => Lambda<T2, T3, T4>.Memoize(applied(x)));
-            var substitution = Lambda.Substitution(getOrAdd.Curry(), memoized.Apply);
-            
-            return (x, y, z) => substitution(x)(y, z);
+            var substitution = Lambda.Memoizer(applied, x => x.Apply);
+
+            return (a,b,c) => substitution(a)(b, c);
         };
     }
 
@@ -26,11 +23,10 @@ namespace System
 
         public static readonly Func<Func<Tx, Ty, Tz>, Func<Tx, Ty, Tz>> Memoize = func =>
         {
-            var cache = Dictionary.Create<Tx, Func<Ty, Tz>>();
-            var getOrAdd = new Func<Tx, Func<Func<Ty, Tz>>, Func<Ty, Tz>>(cache.GetOrAdd);
             var applied = new Func<Tx, Func<Ty, Tz>>(func.ApplyFirst);
+            var substitution = Lambda.Memoizer(applied, x => x.Apply);
 
-            return Lambda.Substitution(getOrAdd.Curry(), x => applied(x).Memoize).Uncurry();
+            return substitution.Uncurry();
         };
     }
     
@@ -38,13 +34,11 @@ namespace System
     {
         public static readonly Func<Tx, Func<Ty, Tx>> K = x => y => x;
 
-        public static readonly Func<Func<Tx, Ty>, Func<Tx, Ty>> Memoize = func =>
+        public static readonly Func<Func<Tx, Ty>, Func<Tx, Func<Ty>>> Memoize = func =>
         {
-            var cache = Dictionary.Create<Tx, Ty>();
-            var getOrAdd = new Func<Tx, Func<Ty>, Ty>(cache.GetOrAdd);
             var applied = new Func<Tx, Func<Ty>>(func.Apply);
 
-            return Lambda.Substitution(getOrAdd.ApplyFirst, applied);
+            return Lambda.Memoizer(applied, x => x.Apply);
         };
     }
 
@@ -72,9 +66,17 @@ namespace System
             return x => Lambda<Tx, Ty, Tz>.Substitution(first)(second)(x);
         }
 
+        internal static Func<T1, T2> Memoizer<T1, T2>(Func<T1, T2> applicator,
+            Func<Func<T1, T2>, Func<T1, Func<T2>>> enhansor)
+        {
+            var cache = Dictionary.Create<T1, T2>();
+            var getOrAdd = new Func<T1, Func<T2>, T2>(cache.GetOrAdd);
+
+            return Substitution(getOrAdd.Curry(), enhansor(applicator));
+        }
         public static Func<T1, T2> Memoize<T1, T2>(Func<T1, T2> func)
         {
-            return Lambda<T1, T2>.Memoize(func);
+            return x => Lambda<T1, T2>.Memoize(func)(x)();
         }
         public static Func<T1, T2, T3> Memoize<T1, T2, T3>(Func<T1, T2, T3> func)
         {
