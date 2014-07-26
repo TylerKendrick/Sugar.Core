@@ -7,110 +7,115 @@
     public static class Int32
     {
         #region Bitwise Operators
+        
         /// <summary>
         /// Exposes the left shift operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, int> ShiftLeft;
+        public static readonly Binary<int, int, int> ShiftLeft = Operations.Int32.ShiftLeftOperation;
 
         /// <summary>
         /// Exposes the right shift operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, int> ShiftRight;
+        public static readonly Binary<int, int, int> ShiftRight = Operations.Int32.ShiftRightOperation;
 
         /// <summary>
         /// Exposes the bitwise AND operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, int> And;
+        public static readonly Binary<int, int, int> And = Operations.Int32.AndOperation;
 
         /// <summary>
         /// Exposes the bitwise Inclusive-OR operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, int> Or;
+        public static readonly Binary<int, int, int> Or = Operations.Int32.OrOperation;
 
         /// <summary>
         /// Exposes the bitwise Exclusive-Or operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, int> XOr;
+        public static readonly Binary<int, int, int> XOr = Operations.Int32.XOrOperation;
 
         /// <summary>
         /// Exposes the bitwise NOT operator of Int32 as a delegate
         /// </summary>
-        public static readonly Unary<int, int> Not;
+        public static readonly Unary<int, int> Not = Operations.Int32.NotOperation;
+
         #endregion Bitwise Operators
 
         #region Numeric Operators
+
         /// <summary>
         /// Exposes the numeric Add operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, int> Add = (left, right) => left + right;
+        public static readonly Binary<int, int, int> Add = Operations.Int32.AddOperation;
+
         /// <summary>
         /// Exposes the numeric Subtract operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, int> Subtract = (left, right) => left - right;
+        public static readonly Binary<int, int, int> Subtract = Operations.Int32.SubtractOperation;
+
         /// <summary>
         /// Exposes the numeric Multiply operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, int> Multiply = (left, right) => left * right;
+        public static readonly Binary<int, int, int> Multiply = Operations.Int32.MultiplyOperation;
+        
         /// <summary>
         /// Exposes the numeric Divide operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, int> Divide = (left, right) => left / right;
+        public static readonly Binary<int, int, int> Divide = Operations.Int32.DivideOperation;
+        
         /// <summary>
         /// Exposes the numeric Modulo operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, int> Modulo = (left, right) => left % right;
+        public static readonly Binary<int, int, int> Modulo = Operations.Int32.ModuloOperation;
+
         /// <summary>
         /// Exposes the numeric Negatation operator of Int32 as a delegate
         /// </summary>
-        public static readonly Unary<int, int> Negate = target => -target;
+        public static readonly Unary<int, int> Negate = Operations.Int32.NegateOperation;
+
         /// <summary>
         /// Exposes the numeric Increment operator of Int32 as a delegate
         /// </summary>
-        public static readonly Unary<int, int> Increment = target => target + 1;
+        public static readonly Unary<int, int> Increment = Operations.Int32.IncrementOperation;
+        
         /// <summary>
         /// Exposes the numeric Decrement operator of Int32 as a delegate
         /// </summary>
-        public static readonly Unary<int, int> Decrement = target => target - 1;
-
+        public static readonly Unary<int, int> Decrement = Operations.Int32.DecrementOperation;
+        
         #endregion Numeric Operators
 
         #region Comparison Operators
+
         /// <summary>
         /// Exposes the Comparison Greater-Than operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, bool> GreaterThan = (left, right) => left > right;
+        public static readonly Binary<int, int, bool> GreaterThan = Operations.Int32.GreaterThanOperation;
+
         /// <summary>
         /// Exposes the Comparison Greater-Than-Or-Equal operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, bool> GreaterThanOrEqual = (left, right) => left >= right;
+        public static readonly Binary<int, int, bool> GreaterThanOrEqual = Operations.Int32.GreaterThanOrEqualOperation;
+
         /// <summary>
         /// Exposes the Comparison Less-Than operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, bool> LessThan = (left, right) => left < right;
+        public static readonly Binary<int, int, bool> LessThan = Operations.Int32.LessThanOperation;
+
         /// <summary>
         /// Exposes the Comparison Less-Than-Or-Equal operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, bool> LessThanOrEqual = (left, right) => left <= right;
-
+        public static readonly Binary<int, int, bool> LessThanOrEqual = Operations.Int32.LessThanOrEqualToOperation;
+        
         /// <summary>
         /// Exposes the Equality operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, bool> Equality = (left, right) => left == right;
+        public static readonly Binary<int, int, bool> Equality = Operations.Int32.EqualityOperation;
+        
         /// <summary>
         /// Exposes the Inequality operator of Int32 as a delegate
         /// </summary>
-        public static readonly Binary<int, int, bool> Inequality = (left, right) => left != right;
+        public static readonly Binary<int, int, bool> Inequality = Operations.Int32.InequalityOperation;
 
-        #endregion Comparison Operators
-
-        static Int32()
-        {
-            ShiftLeft = (left, right) => left << right;
-            ShiftRight = (left, right) => left >> right;
-            And = (left, right) => left & right;
-            Or = (left, right) => left | right;
-            XOr = (left, right) => left ^ right;
-            Not = target => ~target;
-        }
+        #endregion Comparison Operators        
     }
 }

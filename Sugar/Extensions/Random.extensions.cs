@@ -130,43 +130,89 @@
 
             randomGenerator = randomGenerator ?? self;
             
-            yearRange = yearRange ?? Range.From(min.Year, max.Year);
-            yearRange.Start.Require(x => x.IsAtLeast(min.Year));
-            var years = yearRange.Random(randomGenerator);
+            return GetRandomDateTime(yearRange, monthRange, dayRange, 
+                hourRange, minuteRange, secondRange, millisecondRange, 
+                calendar, kind, randomGenerator, min, max);
+        }
 
-            monthRange = monthRange ?? Range.From(1, 12);
-            monthRange.Start.Require(x => x.IsGreaterThan(0));
-            monthRange.Start.Require(x => x.IsLessThan(13));
-            var months = monthRange.Random(randomGenerator);
-
+        private static DateTime GetRandomDateTime(IRange<int> yearRange, IRange<int> monthRange, IRange<int> dayRange, IRange<int> hourRange,
+            IRange<int> minuteRange, IRange<int> secondRange, IRange<int> millisecondRange, Calendar calendar, DateTimeKind kind,
+            Random randomGenerator, DateTime min, DateTime max)
+        {
+            var years = GetRandomYears(yearRange, randomGenerator, min, max);
+            var months = GetRandomMonths(monthRange, randomGenerator);
             var daysInMonth = DateTime.DaysInMonth(years, months);
-            dayRange = dayRange ?? Range.From(1, daysInMonth);
-            dayRange.Start.Require(x => x.IsGreaterThan(0));
-            dayRange.Start.Require(x => x.IsLessThan(daysInMonth));
-            var days = dayRange.Random(randomGenerator);
+            var days = GetRandomDays(dayRange, randomGenerator, daysInMonth);
 
-            hourRange = hourRange ?? Range.From(1, 24);
-            hourRange.Start.Require(x => x.IsGreaterThan(0));
-            hourRange.Start.Require(x => x.IsLessThan(24));
-            var hours = hourRange.Random(randomGenerator);
+            var hours = GetRandomHours(hourRange, randomGenerator);
+            var minutes = GetRandomMinutes(minuteRange, randomGenerator);
+            var seconds = GetRandomSeconds(secondRange, randomGenerator);
+            var milliseconds = GetRandomMilliseconds(millisecondRange, randomGenerator);
 
-            minuteRange = minuteRange ?? Range.From(0, 60);
-            minuteRange.Start.Require(x => x.IsGreaterThan(-1));
-            minuteRange.Start.Require(x => x.IsLessThan(60));
-            var minutes = minuteRange.Random(randomGenerator);
+            return new DateTime(years, months, days, hours,
+                minutes, seconds, milliseconds, calendar, kind);
+        }
 
-            secondRange = secondRange ?? Range.From(0, 60);
-            secondRange.Start.Require(x => x.IsGreaterThan(-1));
-            secondRange.Start.Require(x => x.IsLessThan(60));
-            var seconds = secondRange.Random(randomGenerator);
-
+        private static int GetRandomMilliseconds(IRange<int> millisecondRange, Random randomGenerator)
+        {
             millisecondRange = millisecondRange ?? Range.From(0, 1000);
             millisecondRange.Start.Require(x => x.IsGreaterThan(-1));
             millisecondRange.Start.Require(x => x.IsLessThan(1000));
             var milliseconds = millisecondRange.Random(randomGenerator);
+            return milliseconds;
+        }
 
-            return new DateTime(years, months, days, hours, 
-                minutes, seconds, milliseconds, calendar, kind);
+        private static int GetRandomSeconds(IRange<int> secondRange, Random randomGenerator)
+        {
+            secondRange = secondRange ?? Range.From(0, 60);
+            secondRange.Start.Require(x => x.IsGreaterThan(-1));
+            secondRange.Start.Require(x => x.IsLessThan(60));
+            var seconds = secondRange.Random(randomGenerator);
+            return seconds;
+        }
+
+        private static int GetRandomMinutes(IRange<int> minuteRange, Random randomGenerator)
+        {
+            minuteRange = minuteRange ?? Range.From(0, 60);
+            minuteRange.Start.Require(x => x.IsGreaterThan(-1));
+            minuteRange.Start.Require(x => x.IsLessThan(60));
+            var minutes = minuteRange.Random(randomGenerator);
+            return minutes;
+        }
+
+        private static int GetRandomHours(IRange<int> hourRange, Random randomGenerator)
+        {
+            hourRange = hourRange ?? Range.From(1, 24);
+            hourRange.Start.Require(x => x.IsGreaterThan(0));
+            hourRange.Start.Require(x => x.IsLessThan(24));
+            var hours = hourRange.Random(randomGenerator);
+            return hours;
+        }
+
+        private static int GetRandomDays(IRange<int> dayRange, Random randomGenerator, int daysInMonth)
+        {
+            dayRange = dayRange ?? Range.From(1, daysInMonth);
+            dayRange.Start.Require(x => x.IsGreaterThan(0));
+            dayRange.Start.Require(x => x.IsLessThan(daysInMonth));
+            var days = dayRange.Random(randomGenerator);
+            return days;
+        }
+
+        private static int GetRandomMonths(IRange<int> monthRange, Random randomGenerator)
+        {
+            monthRange = monthRange ?? Range.From(1, 12);
+            monthRange.Start.Require(x => x.IsGreaterThan(0));
+            monthRange.Start.Require(x => x.IsLessThan(13));
+            var months = monthRange.Random(randomGenerator);
+            return months;
+        }
+
+        private static int GetRandomYears(IRange<int> yearRange, Random randomGenerator, DateTime min, DateTime max)
+        {
+            yearRange = yearRange ?? Range.From(min.Year, max.Year);
+            yearRange.Start.Require(x => x.IsAtLeast(min.Year));
+            var years = yearRange.Random(randomGenerator);
+            return years;
         }
     }
 }
