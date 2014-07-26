@@ -1,5 +1,9 @@
 ﻿public static partial class Operators
 {
+    /// <summary>
+    /// Provides the operators implemented by System.Core on the <see cref="EventHandler"/> 
+    /// datatype as delegates for use as first-class objects.
+    /// </summary>
     public static class EventHandler
     {
         public static readonly Binary<System.EventHandler, System.EventHandler, System.EventHandler> Combine =

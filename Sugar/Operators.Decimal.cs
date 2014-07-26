@@ -1,5 +1,9 @@
 ﻿public static partial class Operators
 {
+    /// <summary>
+    /// Provides the operators implemented by System.Core on the <see cref="Decimal"/> 
+    /// datatype as delegates for use as first-class objects.
+    /// </summary>
     public static class Decimal
     {
         public static readonly Binary<decimal, decimal, decimal> Add = (left, right) => left + right;

@@ -1,7 +1,8 @@
 ﻿public static partial class Operators
 {
     /// <summary>
-    /// Provides the operators implemented by System.Core on the <see cref="Int32"/> datatype.
+    /// Provides the operators implemented by System.Core on the <see cref="Int32"/> 
+    /// datatype as delegates for use as first-class objects.
     /// </summary>
     public static class Int32
     {

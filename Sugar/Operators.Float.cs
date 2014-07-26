@@ -1,5 +1,9 @@
 ﻿public static partial class Operators
 {
+    /// <summary>
+    /// Provides the operators implemented by System.Core on the <see cref="Float"/> 
+    /// datatype as delegates for use as first-class objects.
+    /// </summary>
     public static class Float
     {
         public static readonly Binary<float, float, float> Add = (left, right) => left + right;

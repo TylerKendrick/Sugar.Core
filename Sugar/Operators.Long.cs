@@ -1,5 +1,9 @@
 ﻿public static partial class Operators
 {
+    /// <summary>
+    /// Provides the operators implemented by System.Core on the <see cref="Long"/> 
+    /// datatype as delegates for use as first-class objects.
+    /// </summary>
     public static class Long
     {
         public static readonly Binary<long, int, long> ShiftLeft = (left, right) => left << right;
