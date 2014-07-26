@@ -6,20 +6,82 @@
     /// </summary>
     public static class Float
     {
-        public static readonly Binary<float, float, float> Add = (left, right) => left + right;
-        public static readonly Binary<float, float, float> Subtract = (left, right) => left - right;
-        public static readonly Binary<float, float, float> Multiply = (left, right) => left * right;
-        public static readonly Binary<float, float, float> Divide = (left, right) => left / right;
-        public static readonly Binary<float, float, float> Modulo = (left, right) => left % right;
-        public static readonly Unary<float, float> Negate = target => -target;
-        public static readonly Unary<float, float> Increment = target => target + 1;
-        public static readonly Unary<float, float> Decrement = target => target - 1;
+        #region Numeric Operators
 
-        public static readonly Binary<float, float, bool> GreaterThan = (left, right) => left > right;
-        public static readonly Binary<float, float, bool> GreaterThanOrEqual = (left, right) => left >= right;
-        public static readonly Binary<float, float, bool> LessThan = (left, right) => left < right;
-        public static readonly Binary<float, float, bool> LessThanOrEqual = (left, right) => left <= right;
-        public static readonly Binary<float, float, bool> Equality = (left, right) => left == right;
-        public static readonly Binary<float, float, bool> Inequality = (left, right) => left != right;
+        /// <summary>
+        /// Exposes the numeric Add operator of Float as a delegate
+        /// </summary>
+        public static readonly Binary<float, float, float> Add = Operations.Float.OnAdd;
+
+        /// <summary>
+        /// Exposes the numeric Subtract operator of Float as a delegate
+        /// </summary>
+        public static readonly Binary<float, float, float> Subtract = Operations.Float.OnSubtract;
+
+        /// <summary>
+        /// Exposes the numeric Multiply operator of Float as a delegate
+        /// </summary>
+        public static readonly Binary<float, float, float> Multiply = Operations.Float.OnMultiply;
+
+        /// <summary>
+        /// Exposes the numeric Divide operator of Float as a delegate
+        /// </summary>
+        public static readonly Binary<float, float, float> Divide = Operations.Float.OnDivide;
+
+        /// <summary>
+        /// Exposes the numeric Modulo operator of Float as a delegate
+        /// </summary>
+        public static readonly Binary<float, float, float> Modulo = Operations.Float.OnModulo;
+
+        /// <summary>
+        /// Exposes the numeric Negate operator of Float as a delegate
+        /// </summary>
+        public static readonly Unary<float, float> Negate = Operations.Float.OnNegate;
+
+        /// <summary>
+        /// Exposes the numeric Increment operator of Float as a delegate
+        /// </summary>
+        public static readonly Unary<float, float> Increment = Operations.Float.OnIncrement;
+
+        /// <summary>
+        /// Exposes the numeric Decrement operator of Float as a delegate
+        /// </summary>
+        public static readonly Unary<float, float> Decrement = Operations.Float.OnDecrement;
+        
+        #endregion Numeric Operators
+
+        #region Comparison Operators
+
+        /// <summary>
+        /// Exposes the Comparison Greater-Than operator of Float as a delegate
+        /// </summary>
+        public static readonly Binary<float, float, bool> GreaterThan = Operations.Float.OnGreaterThan;
+
+        /// <summary>
+        /// Exposes the Comparison Greater-Than-Or-Equal operator of Float as a delegate
+        /// </summary>
+        public static readonly Binary<float, float, bool> GreaterThanOrEqual = Operations.Float.OnGreaterThanOrEqual;
+
+        /// <summary>
+        /// Exposes the Comparison Less-Than operator of Float as a delegate
+        /// </summary>
+        public static readonly Binary<float, float, bool> LessThan = Operations.Float.OnLessThan;
+
+        /// <summary>
+        /// Exposes the Comparison Less-Than-Or-Equal operator of Float as a delegate
+        /// </summary>
+        public static readonly Binary<float, float, bool> LessThanOrEqual = Operations.Float.OnLessThanOrEqual;
+
+        /// <summary>
+        /// Exposes the Comparison Equality operator of Float as a delegate
+        /// </summary>
+        public static readonly Binary<float, float, bool> Equality = Operations.Float.OnEquality;
+
+        /// <summary>
+        /// Exposes the Comparison Inequality operator of Float as a delegate
+        /// </summary>
+        public static readonly Binary<float, float, bool> Inequality = Operations.Float.OnInequality;
+
+        #endregion Comparison Operators
     }
 }
