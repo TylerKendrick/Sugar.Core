@@ -158,22 +158,65 @@
         /// <typeparam name="TValue">The selected return value.</typeparam>
         /// <param name="items">The target collection.</param>
         /// <param name="selector">Applies a selection to aggregated items.</param>
-        /// <param name="comparer">An optional custom comparer.</param>
         /// <returns>The greatest value in the filtered selection.</returns>
-        public static TItem Max<TItem, TValue>(this IEnumerable<TItem> items, 
-            Func<TItem, TValue> selector, IComparer<TValue> comparer = null)
+        public static TItem Max<TItem, TValue>(this IEnumerable<TItem> items,
+            Func<TItem, TValue> selector)
             where TItem : class
             where TValue : IComparable
         {
-            comparer = comparer ?? Comparer<TValue>.Default;
+            return Max(items, selector, Comparer<TValue>.Default);
+        }
 
-            return items.Maybe().Aggregate((x, y) =>
-            {
-                var xValue = selector(x);
-                var yValue = selector(y);
+        /// <summary>
+        /// Provides the greatest value in a collection using a comparer.
+        /// </summary>
+        /// <typeparam name="TItem">The type of item in the collection.</typeparam>
+        /// <typeparam name="TValue">The selected return value.</typeparam>
+        /// <param name="items">The target collection.</param>
+        /// <param name="selector">Applies a selection to aggregated items.</param>
+        /// <param name="comparer">An optional custom comparer.</param>
+        /// <returns>The greatest value in the filtered selection.</returns>
+        public static TItem Max<TItem, TValue>(this IEnumerable<TItem> items,
+            Func<TItem, TValue> selector, IComparer<TValue> comparer)
+            where TItem : class
+            where TValue : IComparable
+        {
+            return items.Maybe().Aggregate(AggregateMax(selector, comparer));
+        }
 
-                return yValue.IsGreaterThan(xValue, comparer) ? y : x;
-            });
+        private static Func<TItem, TItem, TItem> AggregateMax<TItem, TValue>(
+            Func<TItem, TValue> selector, 
+            IComparer<TValue> comparer) 
+            where TItem : class where TValue : IComparable
+        {
+            return (x, y) => FindMaxItem(selector, comparer, x, y);
+        }
+
+        private static TItem FindMaxItem<TItem, TValue>(Func<TItem, TValue> selector, 
+            IComparer<TValue> comparer, TItem x, TItem y) 
+            where TItem : class
+            where TValue : IComparable
+        {
+            var xValue = selector(x);
+            var yValue = selector(y);
+
+            return yValue.IsGreaterThan(xValue, comparer) ? y : x;
+        }
+
+        /// <summary>
+        /// Provides the smalles value in a collection using a comparer.
+        /// </summary>
+        /// <typeparam name="TItem">The type of item in the collection.</typeparam>
+        /// <typeparam name="TValue">The selected return value.</typeparam>
+        /// <param name="items">The target collection.</param>
+        /// <param name="selector">Applies a selection to aggregated items.</param>
+        /// <returns>The smallest value in the filtered selection.</returns>
+        public static TItem Min<TItem, TValue>(this IEnumerable<TItem> items,
+            Func<TItem, TValue> selector)
+            where TItem : class
+            where TValue : IComparable
+        {
+            return Min(items, selector, Comparer<TValue>.Default);
         }
 
         /// <summary>
@@ -185,18 +228,28 @@
         /// <param name="selector">Applies a selection to aggregated items.</param>
         /// <param name="comparer">An optional custom comparer.</param>
         /// <returns>The smallest value in the filtered selection.</returns>
-        public static TItem Min<TItem, TValue>(this IEnumerable<TItem> items, 
-            Func<TItem, TValue> selector, IComparer<TValue> comparer = null)
+        public static TItem Min<TItem, TValue>(this IEnumerable<TItem> items,
+            Func<TItem, TValue> selector, IComparer<TValue> comparer)
             where TItem : class
             where TValue : IComparable
         {
-            return items.Maybe().Aggregate((x, y) =>
-            {
-                var xValue = selector(x);
-                var yValue = selector(y);
+            return items.Maybe().Aggregate(AggregateMin(selector));
+        }
 
-                return yValue.IsLessThan(xValue) ? y : x;
-            });
+        private static Func<TItem, TItem, TItem> AggregateMin<TItem, TValue>(Func<TItem, TValue> selector) 
+            where TItem : class where TValue : IComparable
+        {
+            return (x, y) => FindMinItem(selector, x, y);
+        }
+
+        private static TItem FindMinItem<TItem, TValue>(Func<TItem, TValue> selector, TItem x, TItem y) 
+            where TItem : class
+            where TValue : IComparable
+        {
+            var xValue = selector(x);
+            var yValue = selector(y);
+
+            return yValue.IsLessThan(xValue) ? y : x;
         }
 
         /// <summary>
