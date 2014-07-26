@@ -74,6 +74,7 @@
     <Compile Include="Lambda.Memoize.cs" />
     <Compile Include="Logical.cs" />
     <Compile Include="MonthOfYear.cs" />
+    <Compile Include="Operations.Decimal.cs" />
     <Compile Include="Operations.Double.cs" />
     <Compile Include="Operations.Float.cs" />
     <Compile Include="Operations.Long.cs" />
