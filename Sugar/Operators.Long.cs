@@ -6,27 +6,116 @@
     /// </summary>
     public static class Long
     {
-        public static readonly Binary<long, int, long> ShiftLeft = (left, right) => left << right;
-        public static readonly Binary<long, int, long> ShiftRight = (left, right) => left >> right;
-        public static readonly Binary<long, long, long> And = (left, right) => left & right;
-        public static readonly Binary<long, long, long> Or = (left, right) => left | right;
-        public static readonly Binary<long, long, long> XOr = (left, right) => left ^ right;
-        public static readonly Unary<long, long> Not = target => ~target;
+        #region Bitwise Operators
 
-        public static readonly Binary<long, long, long> Add = (left, right) => left + right;
-        public static readonly Binary<long, long, long> Subtract = (left, right) => left - right;
-        public static readonly Binary<long, long, long> Multiply = (left, right) => left * right;
-        public static readonly Binary<long, long, long> Divide = (left, right) => left / right;
-        public static readonly Binary<long, long, long> Modulo = (left, right) => left % right;
-        public static readonly Unary<long, long> Negate = target => -target;
-        public static readonly Unary<long, long> Increment = target => target + 1;
-        public static readonly Unary<long, long> Decrement = target => target - 1;
+        /// <summary>
+        /// Exposes the left shift operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, int, long> ShiftRight = Operations.Long.OnShiftRight;
 
-        public static readonly Binary<long, long, bool> GreaterThan = (left, right) => left > right;
-        public static readonly Binary<long, long, bool> GreaterThanOrEqual = (left, right) => left >= right;
-        public static readonly Binary<long, long, bool> LessThan = (left, right) => left < right;
-        public static readonly Binary<long, long, bool> LessThanOrEqual = (left, right) => left <= right;
-        public static readonly Binary<long, long, bool> Equality = (left, right) => left == right;
-        public static readonly Binary<long, long, bool> Inequality = (left, right) => left != right;
+        /// <summary>
+        /// Exposes the right shift operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, int, long> ShiftLeft = Operations.Long.ShiftLeftOperation;
+
+        /// <summary>
+        /// Exposes the bitwise And operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, long> And = Operations.Long.OnAnd;
+
+        /// <summary>
+        /// Exposes the bitwise Or operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, long> Or = Operations.Long.OnOr;
+
+        /// <summary>
+        /// Exposes the bitwise XOr operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, long> XOr = Operations.Long.OnXOr;
+
+        /// <summary>
+        /// Exposes the bitwise Not operator of Long as a delegate
+        /// </summary>
+        public static readonly Unary<long, long> Not = Operations.Long.OnNot;
+
+        #endregion Bitwise Operators
+
+        #region Numeric Operators
+
+        /// <summary>
+        /// Exposes the numeric Add operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, long> Add = Operations.Long.OnAdd;
+
+        /// <summary>
+        /// Exposes the numeric Subtract operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, long> Subtract = Operations.Long.OnSubtract;
+
+        /// <summary>
+        /// Exposes the numeric Multiply operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, long> Multiply = Operations.Long.OnMultiply;
+
+        /// <summary>
+        /// Exposes the numeric Divide operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, long> Divide = Operations.Long.OnDivide;
+
+        /// <summary>
+        /// Exposes the numeric Modulo operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, long> Modulo = Operations.Long.OnModulo;
+
+        /// <summary>
+        /// Exposes the numeric Negate operator of Long as a delegate
+        /// </summary>
+        public static readonly Unary<long, long> Negate = Operations.Long.OnNegate;
+
+        /// <summary>
+        /// Exposes the numeric Increment operator of Long as a delegate
+        /// </summary>
+        public static readonly Unary<long, long> Increment = Operations.Long.OnIncrement;
+
+        /// <summary>
+        /// Exposes the numeric Decrement operator of Long as a delegate
+        /// </summary>
+        public static readonly Unary<long, long> Decrement = Operations.Long.OnDecrement;
+
+        #endregion Numeric Operators
+
+        #region Comparison Operators
+
+        /// <summary>
+        /// Exposes the Comparison Greater-Than operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, bool> GreaterThan = Operations.Long.OnGreaterThan;
+
+        /// <summary>
+        /// Exposes the Comparison Greater-Than-Or-Equal operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, bool> GreaterThanOrEqual = Operations.Long.OnGreaterThanOrEqual;
+
+        /// <summary>
+        /// Exposes the Comparison Less-Than operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, bool> LessThan = Operations.Long.OnLessThan;
+
+        /// <summary>
+        /// Exposes the Comparison Less-Than-Or-Equal operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, bool> LessThanOrEqual = Operations.Long.OnLessThanOrEqual;
+
+        /// <summary>
+        /// Exposes the Comparison Equality operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, bool> Equality = Operations.Long.OnEquality;
+
+        /// <summary>
+        /// Exposes the Comparison Inequality operator of Long as a delegate
+        /// </summary>
+        public static readonly Binary<long, long, bool> Inequality = Operations.Long.OnInequality;
+
+        #endregion Comparison Operators
     }
 }
