@@ -1,4 +1,4 @@
-﻿namespace System.Tests
+﻿namespace Sugar.Tests
 {
     public interface IFakeConcern
     {

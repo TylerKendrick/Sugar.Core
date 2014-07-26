@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Tests;
 using Moq;
 using NUnit.Framework;
 

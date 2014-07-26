@@ -2,7 +2,7 @@
 using System.Linq;
 using Moq;
 
-namespace System.Core.Tests
+namespace Sugar.Tests
 {
     public abstract class UnitTestOf<T>
     {

@@ -2,10 +2,10 @@
 using System.Linq;
 using NUnit.Framework;
 
-namespace System.Tests
+namespace Sugar.Tests
 {
     [TestFixture]
-    public partial class YieldTests
+    public class YieldTests
     {
         [Test]
         public void TimesMethodThrowsArgumentExceptionWhenHasInvalidGeneratorMethod()

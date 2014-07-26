@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Utilities;
 using NUnit.Framework;
 
-namespace System.Core.Tests
+namespace Sugar.Tests
 {
     [TestFixture]
     public class RandomTests
@@ -18,7 +17,7 @@ namespace System.Core.Tests
             {
                 var result = random.From(collection);
 
-                Assert.That(result, NUnit.Framework.Is.InRange(1, 10));
+                Assert.That(result, Is.InRange(1, 10));
                 CollectionAssert.Contains(collection, result);
             };
 
@@ -34,7 +33,7 @@ namespace System.Core.Tests
             {
                 var result = collection.Random();
 
-                Assert.That(result, NUnit.Framework.Is.InRange(1, 10));
+                Assert.That(result, Is.InRange(1, 10));
                 CollectionAssert.Contains(collection, result);
             };
 
@@ -48,7 +47,7 @@ namespace System.Core.Tests
             Action logic = () =>
             {
                 var result = range.Random();
-                Assert.That(result, NUnit.Framework.Is.InRange(1, 10));
+                Assert.That(result, Is.InRange(1, 10));
             };
 
             logic.Loop().Times(1000);
@@ -62,7 +61,7 @@ namespace System.Core.Tests
             Action logic = () =>
             {
                 var result = range.Random(x => x + "1");
-                Assert.That(result, NUnit.Framework.Is.InRange("1", "11111"));
+                Assert.That(result, Is.InRange("1", "11111"));
             };
 
             logic.Loop().Times(1000);
@@ -75,7 +74,7 @@ namespace System.Core.Tests
             Action logic = () =>
             {
                 var result = random.Random(hourRange: Range.From(1, 24));
-                Assert.That(result, NUnit.Framework.Is.InRange(DateTime.MinValue, DateTime.MaxValue));
+                Assert.That(result, Is.InRange(DateTime.MinValue, DateTime.MaxValue));
             };
 
             logic.Loop().Times(1000);
