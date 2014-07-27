@@ -6,82 +6,86 @@
     /// </summary>
     public static class Double
     {
-        #region Numeric Operators
+        #region Arithmatic Operators
 
         /// <summary>
         /// Exposes the numeric Add operator of Double as a delegate
         /// </summary>
-        public static readonly Binary<double, double, double> Add = Operations.Double.OnAdd;
+        public static readonly Binary<double, double, double> Add = (left, right) => left + right;
 
         /// <summary>
         /// Exposes the numeric Subtract operator of Double as a delegate
         /// </summary>
-        public static readonly Binary<double, double, double> Subtract = Operations.Double.OnSubtract;
+        public static readonly Binary<double, double, double> Subtract = (left, right) => left - right;
 
         /// <summary>
         /// Exposes the numeric Multiply operator of Double as a delegate
         /// </summary>
-        public static readonly Binary<double, double, double> Multiply = Operations.Double.OnMultiply;
+        public static readonly Binary<double, double, double> Multiply = (left, right) => left * right;
 
         /// <summary>
         /// Exposes the numeric Divide operator of Double as a delegate
         /// </summary>
-        public static readonly Binary<double, double, double> Divide = Operations.Double.OnDivide;
+        public static readonly Binary<double, double, double> Divide = (left, right) => left / right;
 
         /// <summary>
         /// Exposes the numeric Modulo operator of Double as a delegate
         /// </summary>
-        public static readonly Binary<double, double, double> Modulo = Operations.Double.OnModulo;
+        public static readonly Binary<double, double, double> Modulo = (left, right) => left % right;
 
         /// <summary>
         /// Exposes the numeric Negate operator of Double as a delegate
         /// </summary>
-        public static readonly Unary<double, double> Negate = Operations.Double.OnNegate;
+        public static readonly Unary<double, double> Negate = target => -target;
 
         /// <summary>
         /// Exposes the numeric Increment operator of Double as a delegate
         /// </summary>
-        public static readonly Unary<double, double> Increment = Operations.Double.OnIncrement;
+        public static readonly Unary<double, double> Increment = target => target + 1;
 
         /// <summary>
         /// Exposes the numeric Decrement operator of Double as a delegate
         /// </summary>
-        public static readonly Unary<double, double> Decrement = Operations.Double.OnDecrement;
+        public static readonly Unary<double, double> Decrement = target => target - 1;
 
-        #endregion Numeric Operators
-        
+        #endregion Arithmatic Operators
+
         #region Comparison Operators
 
         /// <summary>
         /// Exposes the Comparison Greater-Than operator of Double as a delegate
         /// </summary>
-        public static readonly Binary<double, double, bool> GreaterThan = Operations.Double.OnGreaterThan;
+        public static readonly Binary<double, double, bool> GreaterThan = (left, right) => left > right;
 
         /// <summary>
         /// Exposes the Comparison Greater-Than-Or-Equal operator of Double as a delegate
         /// </summary>
-        public static readonly Binary<double, double, bool> GreaterThanOrEqual = Operations.Double.OnGreaterThanOrEqual;
+        public static readonly Binary<double, double, bool> GreaterThanOrEqual = (left, right) => left >= right;
 
         /// <summary>
         /// Exposes the Comparison Less-Than operator of Double as a delegate
         /// </summary>
-        public static readonly Binary<double, double, bool> LessThan = Operations.Double.OnLessThan;
+        public static readonly Binary<double, double, bool> LessThan = (left, right) => left < right;
 
         /// <summary>
         /// Exposes the Comparison Less-Than-Or-Equal operator of Double as a delegate
         /// </summary>
-        public static readonly Binary<double, double, bool> LessThanOrEqual = Operations.Double.OnLessThanOrEqual;
+        public static readonly Binary<double, double, bool> LessThanOrEqual = (left, right) => left <= right;
+
+        #endregion
+
+        #region Equality Operators
 
         /// <summary>
         /// Exposes the Comparison Equality operator of Double as a delegate
         /// </summary>
-        public static readonly Binary<double, double, bool> Equality = Operations.Double.OnEquality;
+        public static readonly Binary<double, double, bool> Equality = (left, right) => System.Math.Abs(left - right) < double.Epsilon;
 
         /// <summary>
         /// Exposes the Comparison Inequality operator of Double as a delegate
         /// </summary>
-        public static readonly Binary<double, double, bool> Inequality = Operations.Double.OnInequality;
+        public static readonly Binary<double, double, bool> Inequality = (left, right) => System.Math.Abs(left - right) > double.Epsilon;
         
-        #endregion
+        #endregion Equality Operators
     }
 }
