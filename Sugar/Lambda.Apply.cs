@@ -267,7 +267,7 @@
         /// <summary>
         /// Returns a <see cref="Func{TResult}"/> that applies all arguments to an <see cref="Action{T1}"/> instance.
         /// </summary>
-        public static Func<TResult> Apply<T1, TResult>(
+        public static Func<TResult> ApplyFirst<T1, TResult>(
             this Func<T1, TResult> func, T1 t1)
         {
             return () => func(t1);

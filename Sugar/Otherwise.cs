@@ -28,9 +28,10 @@
             if (_when == null)
             {
                 var success = _predicate();
+                result = Result.Create(success);
+
                 if (success) _action();
                 else _other();
-                result = new Result(success);
             }
             else
             {
@@ -40,9 +41,14 @@
             return result;
         }
 
+        public Action ToAction()
+        {
+            return () => Raise();
+        }
+
         public static implicit operator Action(Otherwise operand)
         {
-            return () => operand.Raise();
+            return operand.ToAction();
         }
     }
 }

@@ -64,6 +64,7 @@
     <Compile Include="Extensions\Enum.extensions.cs" />
     <Compile Include="Extensions\EventHandler.extensions.cs" />
     <Compile Include="Extensions\Float.extensions.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="IConfiguration.cs" />
     <Compile Include="IInvocationResult.cs" />
     <Compile Include="ITryConfiguration.cs" />

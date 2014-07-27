@@ -42,7 +42,7 @@ namespace System
     {
         public static readonly Func<Func<Tx, Ty>, Func<Tx, Ty>> Memoize = func =>
         {
-            var applied = new Func<Tx, Func<Ty>>(func.Apply);
+            var applied = new Func<Tx, Func<Ty>>(func.ApplyFirst);
 
             return x => Lambda.Memoizer(applied)(x)();
         };
@@ -53,7 +53,7 @@ namespace System
         public static readonly Func<Func<T, T>, Func<T, T>> Memoize = func =>
         {
             var cache = Dictionary.Create<T, T>();
-            return x => cache.GetOrAdd(x, func.Apply(x));
+            return x => cache.GetOrAdd(x, func.ApplyFirst(x));
         };
     }
 
@@ -64,25 +64,25 @@ namespace System
             var cache = Dictionary.Create<T1, T2>();
             var getOrAdd = new Func<T1, Func<T2>, T2>(cache.GetOrAdd);
 
-            return x => Substitution(getOrAdd.Curry(), applicator.Apply, x);
+            return x => Substitution(getOrAdd.Curry(), applicator.ApplyFirst, x);
         }
 
-        public static Func<T1, T2> Memoize<T1, T2>(Func<T1, T2> func)
+        public static Func<T1, T2> Memoize<T1, T2>(this Func<T1, T2> func)
         {
             return Lambda<T1, T2>.Memoize(func);
         }
-        
-        public static Func<T1, T2, T3> Memoize<T1, T2, T3>(Func<T1, T2, T3> func)
+
+        public static Func<T1, T2, T3> Memoize<T1, T2, T3>(this Func<T1, T2, T3> func)
         {
             return Lambda<T1, T2, T3>.Memoize(func);
         }
-        
-        public static Func<T1, T2, T3, T4> Memoize<T1, T2, T3, T4>(Func<T1, T2, T3, T4> func)
+
+        public static Func<T1, T2, T3, T4> Memoize<T1, T2, T3, T4>(this Func<T1, T2, T3, T4> func)
         {
             return Lambda<T1, T2, T3, T4>.Memoize(func);
         }
 
-        public static Func<T1, T2, T3, T4, T5> Memoize<T1, T2, T3, T4, T5>(Func<T1, T2, T3, T4, T5> func)
+        public static Func<T1, T2, T3, T4, T5> Memoize<T1, T2, T3, T4, T5>(this Func<T1, T2, T3, T4, T5> func)
         {
             return Lambda<T1, T2, T3, T4, T5>.Memoize(func);
         }

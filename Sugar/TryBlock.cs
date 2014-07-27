@@ -10,11 +10,14 @@
         private readonly IDictionary<Type, Action<Exception>> _errors = new Dictionary<Type, Action<Exception>>();
         private readonly IList<Action> _responses = new List<Action>();
 
-        internal TryBlock(Action tryAction, ITryConfiguration configuration)
+        private TryBlock(Action tryAction, ITryConfiguration configuration)
         {
             _tryAction = tryAction;
             _configuration = configuration;
         }
+
+        public static readonly Func<Action, ITryConfiguration, ITryBlock> Create =
+            (action, configuration) => new TryBlock(action, configuration);
 
         /// <summary>
         /// Invokes the try block with the specified configurations.
@@ -23,7 +26,7 @@
         {
             bool shouldRetry;
             var success = true;
-            InvocationResult result;
+            IInvocationResult result;
 
             do
             {
@@ -35,22 +38,32 @@
                 }
                 catch (Exception e)
                 {
-                    success = false;
-                    var key = e.GetType();
-                    if (_errors.ContainsKey(key))
-                    {
-                        _errors[key].Raise(e);
-                    }
                     exception = e;
+                    success = false;
+                    HandleCatchBlock(e);
                 }
                 finally
                 {
-                    _responses.ForEach(x => x.Raise());
-                    result = new InvocationResult(success, exception);
+                    result = HandleFinallyBlock(success, exception);
                     shouldRetry = _configuration.ShouldRetry(result);
                 }
             } while (shouldRetry && success == false);
             return result;
+        }
+
+        private IInvocationResult HandleFinallyBlock(bool success, Exception exception)
+        {
+            _responses.ForEach(x => x.Raise());
+            return InvocationResult.Create(success, exception);
+        }
+
+        private void HandleCatchBlock(Exception e)
+        {
+            var key = e.GetType();
+            if (_errors.ContainsKey(key))
+            {
+                _errors[key].Raise(e);
+            }
         }
 
         /// <summary>

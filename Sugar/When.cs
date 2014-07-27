@@ -46,12 +46,16 @@
                 _otherwise.Raise();
             }
 
-            return new Result(success);
+            return Result.Create(success);
         }
 
+        public Action ToAction()
+        {
+            return () => Raise();
+        }
         public static implicit operator Action(When operand)
         {
-            return () => operand.Raise();
+            return operand.ToAction();
         }
     }
 }

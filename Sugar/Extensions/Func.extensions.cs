@@ -1,6 +1,5 @@
 ﻿namespace System
 {
-    using Collections.Generic;
     using Linq.Expressions;
 
     /// <summary>
@@ -62,14 +61,6 @@
         public static Expression<Func<T1, T2, T3, T4, TOut>> ToExpression<T1, T2, T3, T4, TOut>(this Func<T1, T2, T3, T4, TOut> self)
         {
             return (t1, t2, t3, t4) => self(t1, t2, t3, t4);
-        }
-        
-        /// <summary>
-        /// Caches the results of a specified <see cref="Func{TIn, TOut}"/> according to its parameters.
-        /// </summary>
-        public static Func<TIn, TOut> Memoize<TIn, TOut>(this Func<TIn, TOut> self)
-        {
-            return Lambda.Memoize(self);
         }
     }
 }

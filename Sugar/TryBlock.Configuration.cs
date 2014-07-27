@@ -1,7 +1,6 @@
 ﻿namespace System
 {
     using Utilities;
-
     /// <summary>
     /// Provides a fluent wrapper to invert control over try/catch/finally blocks.
     /// </summary>
@@ -15,43 +14,45 @@
             /// <summary>
             /// Configures the execution block to never attempt a retry.
             /// </summary>
-            public static readonly ITryConfiguration Default = new TryConfiguration(x => false, (x, e) => new Result(x));
+            public static readonly Func<Action, ITryConfiguration> Default = TryConfiguration.Create
+                .ApplySecond(x => false)
+                .ApplySecond(K(Result.Create));
 
             /// <summary>
             /// Configures the execution block to attempt a retry a sepcified number of times.
             /// </summary>
-            /// <param name="count">The specified number of time to attempt invocation.</param>
-            public static ITryConfiguration RetryTimes(int count)
+            public static readonly Func<Action, int, ITryConfiguration> RetryTimes = (action, count) =>
             {
                 Require.That(count.IsAtLeast(1));
                 var i = 0;
-                return new TryConfiguration(
-                    x => i++ < count, 
-                    (x, e) => new InvocationResult(x, e));
-            }
+                Func<IInvocationResult, bool> predicate = x => i++ < count;
+
+                return TryConfiguration.Create(action,
+                    predicate, (o, e) => InvocationResult.Create(o, e));
+            };
 
             /// <summary>
             /// Configures the execution block to attempt a retry whenever a specified predicate resolves as true.
             /// </summary>
-            /// <param name="predicate">The specified predicate to determine whether an attempt to retry should be made or not.</param>
-            public static ITryConfiguration RetryWhen(Func<bool> predicate)
-            {
-                return new TryConfiguration(x => predicate(), (b, exception) => new Result(b));
-            }
+            public static readonly Func<Action, Func<IInvocationResult, bool>, ITryConfiguration> RetryWhen = TryConfiguration.Create
+                    .ApplyThird(K(Result.Create));
 
             /// <summary>
             /// Configures the execution block to attempt a retry whenever a specified predicate resolves as false.
             /// </summary>
-            /// <param name="predicate">The specified predicate to determine whether an attempt to retry should be made or not.</param>
-            public static ITryConfiguration RetryUnless(Func<bool> predicate)
-            {
-                return new TryConfiguration(x => predicate() == false, (b, exception) => new Result(b));
-            }
+            public static readonly Func<Action, Func<IInvocationResult, bool>, ITryConfiguration> RetryUnless =
+                (action, predicate) => TryConfiguration.Create(action, x => !predicate(x), K(Result.Create));
 
             /// <summary>
             /// Confiugures the execution block to always attempt to retry invocation if a failure occurred.
             /// </summary>
-            public static readonly ITryConfiguration RetryAlways = new TryConfiguration(x => true, (x, e) => new Result(x));
+            public static readonly Func<Action, ITryConfiguration> RetryAlways = action => 
+                TryConfiguration.Create(action, x => true, K(Result.Create));
+
+            private static Func<bool, Exception, IResult> K(Func<bool, IResult> func)
+            {
+                return (b, e) => func(b);
+            }
         }
     }
 }

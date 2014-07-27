@@ -26,7 +26,7 @@
         /// </summary>
         public static ITryBlock Try(this Action self)
         {
-            return new TryBlock(self, TryBlock.Configuration.Default);
+            return TryBlock.Configuration.Default(self).Configure();
         }
 
         /// <summary>
@@ -34,7 +34,7 @@
         /// </summary>
         public static ITryBlock Try(this Action self, ITryConfiguration configuration)
         {
-            return new TryBlock(self, configuration);
+            return TryBlock.Create(self, configuration);
         }
     }
 }

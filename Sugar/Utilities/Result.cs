@@ -4,7 +4,9 @@
     {
         public bool Success { get; private set; }
 
-        public Result(bool success)
+        public static readonly Func<bool, IResult> Create = success => new Result(success);
+
+        private Result(bool success)
         {
             Success = success;
         }
