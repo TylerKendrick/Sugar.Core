@@ -2,10 +2,13 @@
 
 namespace System
 {
+    /// <summary>
+    /// Provides extension methods for boolean operations.
+    /// </summary>
     public static class Logical
     {
         /// <summary>
-        /// Equivalent to <paramref name="self"/> && <paramref name="other"/>
+        /// Equivalent to <paramref name="self"/> AND <paramref name="other"/>
         /// </summary>
         public static bool And(this bool self, bool other)
         {

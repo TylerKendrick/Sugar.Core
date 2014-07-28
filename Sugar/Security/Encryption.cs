@@ -17,7 +17,7 @@
             SymmetricAlgorithm provider;
             switch (cryptoType)
             {
-                case SymmetricAlgorithmTypes.Aes:
+                case SymmetricAlgorithmTypes.AES:
                     provider = new AesCryptoServiceProvider();
                     break;
                 case SymmetricAlgorithmTypes.DES:

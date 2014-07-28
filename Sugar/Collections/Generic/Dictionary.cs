@@ -18,7 +18,7 @@
         /// </summary>
         /// <param name="collection">The target dictionary.</param>
         /// <param name="key">The key to check against the dictionary KeyCollection.</param>
-        /// <param name="generator">The factory method for creating the specified <see cref="TValue"/>.</param>
+        /// <param name="generator">The factory method for creating the specified TValue.</param>
         /// <returns>Returns the result of <paramref name="generator"/>.</returns>
         public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> collection, TKey key, Func<TValue> generator)
         {

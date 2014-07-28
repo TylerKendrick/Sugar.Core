@@ -85,7 +85,7 @@ public static partial class Operators
     }
 
     /// <summary>
-    /// Returns an operator that returns the default value of an instance of <see cref="T"/>.
+    /// Returns an operator that returns the default value of an instance of <typeparamref name="T"/>.
     /// </summary>
     public static Nullary<T> Default<T>()
     {

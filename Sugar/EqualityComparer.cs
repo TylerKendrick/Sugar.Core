@@ -3,16 +3,16 @@
     using Collections.Generic;
 
     /// <summary>
-    /// Provides custom implementations of <see cref="IEqualityComparer{T}"/> through <see cref="Func{T, T, bool}"/> instances.
+    /// Provides custom implementations of <see cref="IEqualityComparer{T}"/> through <see cref="Func{T, T, TOut}"/> instances.
     /// </summary>
     public class EqualityComparer
     {
         /// <summary>
         /// Provides a new instance of an <see cref="IEqualityComparer{T}"/> 
-        /// that invokes the specified <see cref="Func{T, T, bool}"/> <paramref name="equalityComparer"/>.
+        /// that invokes the specified <see cref="Func{T, T, TOut}"/> <paramref name="equalityComparer"/>.
         /// </summary>
         /// <typeparam name="T">The type of object for comparison.</typeparam>
-        /// <param name="equalityComparer">The specified <see cref="Func{T, T, bool}"/> to invoke for comparison.</param>
+        /// <param name="equalityComparer">The specified <see cref="Func{T, T, TOut}"/> to invoke for comparison.</param>
         public static IEqualityComparer<T> Create<T>(Func<T, T, bool> equalityComparer)
         {
             return new InternalEqualityComparer<T>(equalityComparer, x => x.GetHashCode());
@@ -20,11 +20,11 @@
 
         /// <summary>
         /// Provides a new instance of an <see cref="IEqualityComparer{T}"/> 
-        /// that invokes the specified <see cref="Func{T, T, bool}"/> <paramref name="equalityComparer"/>.
+        /// that invokes the specified <see cref="Func{T, T, TOut}"/> <paramref name="equalityComparer"/>.
         /// </summary>
         /// <typeparam name="T">The type of object for comparison.</typeparam>
-        /// <param name="equalityComparer">The specified <see cref="Func{T, T, bool}"/> to invoke for comparison.</param>
-        /// <param name="hashGenerator">The specified <see cref="Func{T, int}"/> for generating a hash for the objects being converted.</param>
+        /// <param name="equalityComparer">The specified <see cref="Func{T, T, TOut}"/> to invoke for comparison.</param>
+        /// <param name="hashGenerator">The specified <see cref="Func{T, TOut}"/> for generating a hash for the objects being converted.</param>
         public static IEqualityComparer<T> Create<T>(Func<T, T, bool> equalityComparer,
             Func<T, int> hashGenerator)
         {

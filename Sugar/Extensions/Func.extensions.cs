@@ -3,12 +3,12 @@
     using Linq.Expressions;
 
     /// <summary>
-    /// Provides common operations with a <see cref="Func"/> instance as extension methods.
+    /// Provides common operations with a <see cref="Func{TIn, TOut}"/> instance as extension methods.
     /// </summary>
     public static class FuncExtensions
     {
         /// <summary>
-        /// Converts an instance of <see cref="Func{T, bool}"/> to an instance of <see cref="Predicate{T}"/>.
+        /// Converts an instance of <see cref="Func{TIn, TOut}"/> to an instance of <see cref="Predicate{T}"/>.
         /// </summary>
         public static Predicate<T> ToPredicate<T>(this Func<T, bool> self)
         {
@@ -16,7 +16,7 @@
         }
 
         /// <summary>
-        /// Converts an instance of <see cref="Predicate{T}"/> to an instance of <see cref="Func{T, bool}"/>.
+        /// Converts an instance of <see cref="Predicate{T}"/> to an instance of <see cref="Func{TIn, TOut}"/>.
         /// </summary>
         public static Func<T, bool> ToFunc<T>(this Predicate<T> self)
         {
@@ -24,7 +24,7 @@
         }
 
         /// <summary>
-        /// Converts an instance of <see cref="Func{TOut}"/> to an instance of <see cref="Expression{Func{TOut}}"/>.
+        /// Converts an instance of <see cref="Func{TOut}"/> to an instance of <see cref="Expression{TFunc}"/>.
         /// </summary>
         public static Expression<Func<TOut>> ToExpression<TOut>(this Func<TOut> self)
         {
@@ -32,7 +32,7 @@
         }
 
         /// <summary>
-        /// Converts an instance of <see cref="Expression{Func{TIn, TOut}}"/> to an instance of <see cref="Func{TIn, TOut}"/>.
+        /// Converts an instance of <see cref="Expression{TFunc}"/> to an instance of <see cref="Func{TIn, TOut}"/>.
         /// </summary>
         public static Expression<Func<TIn, TOut>> ToExpression<TIn, TOut>(this Func<TIn, TOut> self)
         {
@@ -40,7 +40,7 @@
         }
 
         /// <summary>
-        /// Converts an instance of <see cref="Expression{Func{T1, T2, TOut}}"/> to an instance of <see cref="Func{T1, T2, TOut}"/>.
+        /// Converts an instance of <see cref="Expression{TFunc}"/> to an instance of <see cref="Func{T1, T2, TOut}"/>.
         /// </summary>
         public static Expression<Func<T1, T2, TOut>> ToExpression<T1, T2, TOut>(this Func<T1, T2, TOut> self)
         {
@@ -48,7 +48,7 @@
         }
 
         /// <summary>
-        /// Converts an instance of <see cref="Expression{Func{T1, T2, T3, TOut}}"/> to an instance of <see cref="Func{T1, T2, T3, TOut}"/>.
+        /// Converts an instance of <see cref="Expression{TFunc}"/> to an instance of <see cref="Func{T1, T2, T3, TOut}"/>.
         /// </summary>
         public static Expression<Func<T1, T2, T3, TOut>> ToExpression<T1, T2, T3, TOut>(this Func<T1, T2, T3, TOut> self)
         {
@@ -56,7 +56,7 @@
         }
 
         /// <summary>
-        /// Converts an instance of <see cref="Expression{Func{T1, T2, T3, T4, TOut}}"/> to an instance of <see cref="Func{T1, T2, T3, T4, TOut}"/>.
+        /// Converts an instance of <see cref="Expression{TFunc}"/> to an instance of <see cref="Func{T1, T2, T3, T4, TOut}"/>.
         /// </summary>
         public static Expression<Func<T1, T2, T3, T4, TOut>> ToExpression<T1, T2, T3, T4, TOut>(this Func<T1, T2, T3, T4, TOut> self)
         {

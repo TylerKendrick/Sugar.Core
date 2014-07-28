@@ -8,7 +8,7 @@
     public static class Comparable
     {
         /// <summary>
-        /// Compares two <see cref="T"/> values by sort order.  
+        /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is less than or equal to <paramref name="other"/>.</returns>
         public static bool IsAtMost<T>(this T self, T other)
@@ -17,7 +17,7 @@
         }
 
         /// <summary>
-        /// Compares two <see cref="T"/> values by sort order.  
+        /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is less than or equal to <paramref name="other"/>.</returns>
         public static bool IsAtMost<T>(this T self, T other, IComparer<T> comparer)
@@ -27,7 +27,7 @@
         }
 
         /// <summary>
-        /// Compares two <see cref="T"/> values by sort order.  
+        /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is greater than or equal to <paramref name="other"/>.</returns>
         public static bool IsAtLeast<T>(this T self, T other)
@@ -36,7 +36,7 @@
         }
 
         /// <summary>
-        /// Compares two <see cref="T"/> values by sort order.  
+        /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is greater than or equal to <paramref name="other"/>.</returns>
         public static bool IsAtLeast<T>(this T self, T other, IComparer<T> comparer)
@@ -47,7 +47,7 @@
         }
 
         /// <summary>
-        /// Compares two <see cref="T"/> values by sort order.  
+        /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is greater than or equal to <paramref name="other"/>.</returns>
         public static bool IsLessThan<T>(this T self, T other)
@@ -56,7 +56,7 @@
         }
 
         /// <summary>
-        /// Compares two <see cref="T"/> values by sort order.  
+        /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is greater than or equal to <paramref name="other"/>.</returns>
         public static bool IsLessThan<T>(this T self, T other, IComparer<T> comparer)
@@ -66,7 +66,7 @@
         }
 
         /// <summary>
-        /// Compares two <see cref="T"/> values by sort order.  
+        /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is greater than <paramref name="other"/>.</returns>
         public static bool IsGreaterThan<T>(this T self, T other)
@@ -75,7 +75,7 @@
         }
 
         /// <summary>
-        /// Compares two <see cref="T"/> values by sort order.  
+        /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is greater than <paramref name="other"/>.</returns>
         public static bool IsGreaterThan<T>(this T self, T other, IComparer<T> comparer)
@@ -86,7 +86,7 @@
 
 
         /// <summary>
-        /// Compares two <see cref="T"/> values by sort order.  
+        /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is equal to <paramref name="other"/>.</returns>
         public static bool IsSameAs<T>(this T self, T other)
@@ -95,9 +95,10 @@
         }
 
         /// <summary>
-        /// Compares two <see cref="T"/> values by sort order.  
+        /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
-        /// <returns>Returns true if <paramref name="self"/> is equal to <paramref name="other"/>.</returns>
+        /// <returns>Returns true if <paramref name="self"/> 
+        /// is equal to <paramref name="other"/>.</returns>
         public static bool IsSameAs<T>(this T self, T other, IComparer<T> comparer)
         {
             comparer = comparer ?? Comparer<T>.Default;
@@ -110,7 +111,8 @@
         /// <param name="value">The value being compared.</param>
         /// <param name="max">The maximum value for comparison.</param>
         /// <param name="comparer">Optional comparer.</param>
-        /// <returns>Returns the current value unless the maximum value is exceeded; Otherwise, it returns the maximum value.</returns>
+        /// <returns>Returns the current value unless the maximum value is exceeded; 
+        /// Otherwise, it returns the maximum value.</returns>
         public static T Limit<T>(this T value, T max, IComparer<T> comparer = null)
         {
             comparer = comparer ?? Comparer<T>.Default;
@@ -124,7 +126,8 @@
         /// <param name="min">The minimum value for comparison.</param>
         /// <param name="max">The maximum value for comparison.</param>
         /// <param name="comparer">Optional comparer. Uses Comparer.Default if no value is provided.</param>
-        /// <returns>Returns the current value unless the maximum value is exceeded; Otherwise, it returns the maximum value.</returns>
+        /// <returns>Returns the current value unless the maximum value is exceeded; 
+        /// Otherwise, it returns the maximum value.</returns>
         public static T Limit<T>(this T value, T min, T max, IComparer<T> comparer = null)
         {
             comparer = comparer ?? Comparer<T>.Default;
@@ -145,7 +148,8 @@
         /// <param name="value">The value being compared.</param>
         /// <param name="range">The minimum and maximum values for comparison.</param>
         /// <param name="comparer">Optional comparer. Uses Comparer.Default if no value is provided.</param>
-        /// <returns>Returns the current value unless the maximum value is exceeded; Otherwise, it returns the maximum value.</returns>
+        /// <returns>Returns the current value unless the maximum value is exceeded; 
+        /// Otherwise, it returns the maximum value.</returns>
         public static T Limit<T>(this T value, IRange<T> range, IComparer<T> comparer = null) 
             where T : IComparable<T>
         {

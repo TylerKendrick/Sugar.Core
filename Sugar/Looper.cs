@@ -5,7 +5,7 @@
     /// </summary>
     public class Looper
     {
-        protected readonly Action Action;
+        private readonly Action _action;
 
         /// <summary>
         /// Wraps an action in a looper object.
@@ -14,7 +14,7 @@
         internal Looper(Action action)
         {
             action.Require();
-            Action = action;
+            _action = action;
         }
 
         /// <summary>
@@ -22,7 +22,7 @@
         /// </summary>
         public void Raise()
         {
-            Action();
+            _action();
         }
 
         /// <summary>
@@ -33,7 +33,7 @@
         {
             while (predicate())
             {
-                Action();
+                _action();
             }
         }
 
@@ -45,7 +45,7 @@
         {
             while (!predicate())
             {
-                Action();
+                _action();
             }
         }
 
@@ -58,7 +58,7 @@
             Require.That(count.IsGreaterThan(0));
             for (var i = 0; i < count; i++)
             {
-                Action();
+                _action();
             }
         }
     }

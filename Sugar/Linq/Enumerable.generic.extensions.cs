@@ -7,18 +7,27 @@
     /// </summary>
     public static partial class EnumerableExtensions
     {
+        /// <summary>
+        /// Uses a <see cref="Func{TIn, TOut}"/> as a predicate for Enumerable.Intersect operations.
+        /// </summary>
         public static IEnumerable<T> Intersect<T>(this IEnumerable<T> self, IEnumerable<T> other,
             Func<T, T, bool> equalityComparer)
         {
             return self.Intersect(other, EqualityComparer.Create(equalityComparer));
         }
 
+        /// <summary>
+        /// Uses a <see cref="Func{TIn, TOut}"/> as a predicate for Enumerable.Union operations.
+        /// </summary>
         public static IEnumerable<T> Union<T>(this IEnumerable<T> self, IEnumerable<T> other,
             Func<T, T, bool> equalityComparer)
         {
             return self.Union(other, EqualityComparer.Create(equalityComparer));
         }
 
+        /// <summary>
+        /// Uses a <see cref="Func{TIn, TOut}"/> as a predicate for Enumerable.Except operations.
+        /// </summary>
         public static IEnumerable<T> Except<T>(this IEnumerable<T> self, IEnumerable<T> other,
             Func<T, T, bool> equalityComparer)
         {
@@ -26,7 +35,7 @@
         }
 
         /// <summary>
-        /// Applies a predicate selection clause to the Linq Distinct method.
+        /// Applies a predicate selection clause to the Enumerable.Distinct method.
         /// </summary>
         /// <typeparam name="T">The type of an item in the target collection.</typeparam>
         /// <param name="self">The target collection being filtered.</param>
@@ -37,11 +46,26 @@
             return self.Where(predicate).Distinct();
         }
 
+        /// <summary>
+        /// Returns all non-distinct elements from a sequence 
+        /// by using <paramref name="predicate"/> to compare values.
+        /// </summary>
+        /// <typeparam name="T">The type of an item in the target collection.</typeparam>
+        /// <param name="self">The target collection being filtered.</param>
+        /// <param name="predicate">The predicate filter being applied before distinct is called.</param>
+        /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> Indistinct<T>(this IEnumerable<T> self, Func<T, bool> predicate)
         {
             return self.Where(predicate).Indistinct();
         }
 
+        /// <summary>
+        /// Returns all non-distinct elements from a sequence 
+        /// by using the default comparer to compare values.
+        /// </summary>
+        /// <typeparam name="T">The type of an item in the target collection.</typeparam>
+        /// <param name="self">The target collection being filtered.</param>
+        /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> Indistinct<T>(this IEnumerable<T> self)
         {
             return self.GroupBy(Lambda.Identity).SelectMany(x => x.Skip(1));
@@ -125,7 +149,8 @@
         }
 
         /// <summary>
-        /// Provides the inverse of TakeWhile with a predicate.  Filters while the predicate evaluates as false.
+        /// Provides the inverse of TakeWhile with a predicate.  
+        /// Filters while the predicate evaluates as false.
         /// </summary>
         /// <typeparam name="T">The type of item in the collection.</typeparam>
         /// <param name="self">The collection being filtered.</param>
@@ -136,16 +161,41 @@
             return self.TakeWhile(x => !predicate(x));
         }
 
+        /// <summary>
+        /// Provides the inverse of TakeWhile with a predicate.  
+        /// Filters while the predicate evaluates as false.
+        /// </summary>
+        /// <typeparam name="T">The type of item in the collection.</typeparam>
+        /// <param name="self">The collection being filtered.</param>
+        /// <param name="predicate">The predicate to filter against.</param>
+        /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> TakeUntil<T>(this IEnumerable<T> self, Func<T, int, bool> predicate)
         {
             return self.TakeWhile((x, i) => !predicate(x, i));
         }
 
+
+        /// <summary>
+        /// Provides the inverse of SkipWhile with a predicate.  
+        /// Filters while the predicate evaluates as false.
+        /// </summary>
+        /// <typeparam name="T">The type of item in the collection.</typeparam>
+        /// <param name="self">The collection being filtered.</param>
+        /// <param name="predicate">The predicate to filter against.</param>
+        /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> SkipUntil<T>(this IEnumerable<T> self, Func<T, bool> predicate)
         {
             return self.SkipWhile(x => !predicate(x));
         }
 
+        /// <summary>
+        /// Provides the inverse of SkipWhile with a predicate.  
+        /// Filters while the predicate evaluates as false.
+        /// </summary>
+        /// <typeparam name="T">The type of item in the collection.</typeparam>
+        /// <param name="self">The collection being filtered.</param>
+        /// <param name="predicate">The predicate to filter against.</param>
+        /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> SkipUntil<T>(this IEnumerable<T> self, Func<T, int, bool> predicate)
         {
             return self.SkipWhile((x, i) => !predicate(x, i));

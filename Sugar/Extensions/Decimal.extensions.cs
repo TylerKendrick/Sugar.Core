@@ -6,7 +6,7 @@
 	public static class DecimalExtensions
 	{
 		/// <summary>
-		/// Checks to see if the value of <paramref name="@decimal"/> is greater than or equal to zero.
+		/// Checks to see if the value of <paramref name="decimal"/> is greater than or equal to zero.
 		/// </summary>
 		public static bool IsPositive(this decimal @decimal)
 		{
@@ -14,7 +14,7 @@
 		}
 
 		/// <summary>
-		/// Checks to see if the value of <paramref name="@decimal"/> is less than zero.
+		/// Checks to see if the value of <paramref name="decimal"/> is less than zero.
 		/// </summary>
 		public static bool IsNegative(this decimal @decimal)
 		{

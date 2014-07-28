@@ -3,43 +3,77 @@
     /// <summary>
     /// Provides functional operations for delegates as extension methods.
     /// </summary>
-    public static partial class Lambda<T1, T2, T3>
+    public static partial class Lambda<T1, T2, TResult>
     {
-        public static readonly Func<Func<T2, Func<T1, T3>>, Func<Func<T2, T1>, Func<T2, T3>>> Substitution = x => y => z => x(z)(y(z));
+        /// <summary>
+        /// Provides the S Combinator as a delegate.
+        /// A function of the form: x => y => z => x(z)(y(z))
+        /// </summary>
+        public static readonly Func<Func<T2, Func<T1, TResult>>, Func<Func<T2, T1>, Func<T2, TResult>>> Substitution = 
+            x => y => z => x(z)(y(z));
     }
 
-    public static partial class Lambda<Tx, Ty>
+    /// <summary>
+    /// Provides functional operations for delegates as extension methods.
+    /// </summary>
+    public static partial class Lambda<T1, TResult>
     {
-        public static readonly Func<Tx, Func<Ty, Tx>> Constant = x => y => x;
+        /// <summary>
+        /// Provides the K Combinator as a delegate.
+        /// A function of the form: x => y => x
+        /// </summary>
+        public static readonly Func<T1, Func<TResult, T1>> Constant = x => y => x;
     }
 
+    /// <summary>
+    /// Provides functional operations for delegates as extension methods.
+    /// </summary>
     public static partial class Lambda<T>
     {
+        /// <summary>
+        /// Provides the I Combinator as a delegate.
+        /// A function of the form: x => x
+        /// </summary>
         public static readonly Func<T, T> Identity = x => x;
     }
 
     public static partial class Lambda
     {
+        /// <summary>
+        /// Provides the I Combinator as a delegate.
+        /// A function of the form: x => x
+        /// </summary>
         public static T Identity<T>(T x)
         {
             return Lambda<T>.Identity(x);
         }
 
-        public static Tx Constant<Tx, Ty>(Tx x, Ty y)
+        /// <summary>
+        /// Provides the K Combinator as a delegate.
+        /// A function of the form: x => y => x
+        /// </summary>
+        public static T1 Constant<T1, T2>(T1 x, T2 y)
         {
-            return Lambda<Tx, Ty>.Constant(x)(y);
+            return Lambda<T1, T2>.Constant(x)(y);
         }
 
-        public static Tz Substitution<Tx, Ty, Tz>(
-            Func<Ty, Func<Tx, Tz>> first,
-            Func<Ty, Tx> second,
-            Ty arg)
+        /// <summary>
+        /// Provides the S Combinator as a delegate.
+        /// A function of the form: x => y => z => x(z)(y(z))
+        /// </summary>
+        public static TResult Substitution<T1, T2, TResult>(
+            Func<T2, Func<T1, TResult>> first,
+            Func<T2, T1> second,
+            T2 arg)
         {
-            return Lambda<Tx, Ty, Tz>.Substitution(first)(second)(arg);
+            return Lambda<T1, T2, TResult>.Substitution(first)(second)(arg);
         }
 
-        public static Func<TOther, TResult> Compose<TIn, TOther, TResult>(this Func<TIn, TResult> func,
-            Func<TOther, TIn> other)
+        /// <summary>
+        /// A function of the form: x => y => z => x(y(z))
+        /// </summary>
+        public static Func<T2, TResult> Compose<T1, T2, TResult>(this Func<T1, TResult> func,
+            Func<T2, T1> other)
         {
             return x => func(other(x));
         }

@@ -6,7 +6,7 @@
     public interface ITryBlock : IBlock
     {
         /// <summary>
-        /// Configures the execution block to handle execution failure when an exception of type <see cref="TException"/> is thrown.
+        /// Configures the execution block to handle execution failure when an exception of type <typeparamref name="TException"/> is thrown.
         /// </summary>
         /// <typeparam name="TException">The kind of exception to handle.</typeparam>
         ITryBlock Catch<TException>(Action<TException> onException)

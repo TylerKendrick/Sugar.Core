@@ -8,7 +8,7 @@ namespace System
     public static class Require
     {
         /// <summary>
-        /// Provides an explicit fluent assertion against a specified <see cref="T"/>.
+        /// Provides an explicit fluent assertion against a specified <typeparamref name="T"/>.
         /// </summary>
         public static void That<T>(T instance, Func<T, bool> predicate)
         {

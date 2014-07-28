@@ -2,6 +2,9 @@
 {
     using Utilities;
 
+    /// <summary>
+    /// Exposes the precedding logic of a when clause.
+    /// </summary>
     public class Otherwise : IBlock
     {
         private readonly Action _action;
@@ -16,11 +19,17 @@
             _predicate = predicate;
         }
 
+        /// <summary>
+        /// Esposes additional when clauses.
+        /// </summary>
         public When When(Func<bool> predicate)
         {
             return _when = new When(this, predicate);
         }
 
+        /// <summary>
+        /// Invokes the chain of predicates built the the when/otherwise chain.
+        /// </summary>
         public IResult Raise()
         {
             IResult result;
@@ -41,11 +50,17 @@
             return result;
         }
 
+        /// <summary>
+        /// Exposes the Raise method as an action.
+        /// </summary>
         public Action ToAction()
         {
             return () => Raise();
         }
 
+        /// <summary>
+        /// Invokes ToAction
+        /// </summary>
         public static implicit operator Action(Otherwise operand)
         {
             return operand.ToAction();

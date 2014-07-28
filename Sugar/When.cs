@@ -33,6 +33,9 @@
             return _otherwise = new Otherwise(_action, other, () => !_predicate());
         }
 
+        /// <summary>
+        /// Invokes the chain of predicates built the the when/otherwise chain.
+        /// </summary>
         public IResult Raise()
         {
             var success = _predicate();
@@ -49,10 +52,17 @@
             return Result.Create(success);
         }
 
+        /// <summary>
+        /// Exposes the Raise method as an action.
+        /// </summary>
         public Action ToAction()
         {
             return () => Raise();
         }
+
+        /// <summary>
+        /// Invokes ToAction
+        /// </summary>
         public static implicit operator Action(When operand)
         {
             return operand.ToAction();

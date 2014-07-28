@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Returns a new instance of <see cref="T"/> if the current instance is null.
+        /// Returns a new instance of <typeparamref name="T"/> if the current instance is null.
         /// </summary>
         public static T Ensure<T>(this T self)
             where T : class, new()
@@ -34,7 +34,7 @@
         }
 
         /// <summary>
-        /// Returns a new instance of <see cref="T"/> if the current instance is null.
+        /// Returns a new instance of <typeparamref name="T"/> if the current instance is null.
         /// </summary>
         public static T Ensure<T, TFallback>(this T self)
             where T : class
@@ -44,7 +44,7 @@
         }
 
         /// <summary>
-        /// Returns a new instance of <see cref="T"/> if the current instance is null.
+        /// Returns a new instance of <typeparamref name="T"/> if the current instance is null.
         /// </summary>
         public static T Ensure<T, TFallback>(this T self, TFallback fallback)
             where T : class
@@ -54,7 +54,7 @@
         }
 
         /// <summary>
-        /// Returns a new instance of <see cref="T"/> if the current instance is null.
+        /// Returns a new instance of <typeparamref name="T"/> if the current instance is null.
         /// </summary>
         public static T Ensure<T>(this T self, Func<T> fallbackGenerator)
             where T : class

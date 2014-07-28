@@ -5,6 +5,9 @@
     /// </summary>
     public static partial class Lambda<T1, T2, T3, T4, T5>
     {
+        /// <summary>
+        /// Reverses the parameter invocation on a curried function.
+        /// </summary>
         public static Func<T4, Func<T3, Func<T2, Func<T1, T5>>>> Reverse(
             Func<T1, Func<T2, Func<T3, Func<T4, T5>>>> func)
         {
@@ -14,6 +17,9 @@
 
     public static partial class Lambda<T1, T2, T3, T4>
     {
+        /// <summary>
+        /// Reverses the parameter invocation on a curried function.
+        /// </summary>
         public static Func<T3, Func<T2, Func<T1, T4>>> Reverse(
             Func<T1, Func<T2, Func<T3, T4>>> func)
         {
@@ -21,10 +27,13 @@
         }
     }
 
-    public static partial class Lambda<T1, T2, T3>
+    public static partial class Lambda<T1, T2, TResult>
     {
-        public static Func<T2, Func<T1, T3>> Reverse(
-            Func<T1, Func<T2, T3>> func)
+        /// <summary>
+        /// Reverses the parameter invocation on a curried function.
+        /// </summary>
+        public static Func<T2, Func<T1, TResult>> Reverse(
+            Func<T1, Func<T2, TResult>> func)
         {
             return y => x => func(x)(y);
         }
@@ -32,22 +41,32 @@
 
     public static partial class Lambda
     {
-        public static Func<T4, Func<T3, Func<T2, Func<T1, T5>>>> Reverse<T4, T3, T2, T1, T5>(
+        /// <summary>
+        /// Reverses the parameter invocation on a curried function.
+        /// </summary>
+        public static Func<T4, Func<T3, Func<T2, Func<T1, T5>>>> Reverse<T1, T2, T3, T4, T5>(
             this Func<T1, Func<T2, Func<T3, Func<T4, T5>>>> func)
         {
             return Lambda<T1, T2, T3, T4, T5>.Reverse(func);
         }
 
-        public static Func<T3, Func<T2, Func<T1, T4>>> Reverse<T3, T2, T1, T4>(
-            this Func<T1, Func<T2, Func<T3, T4>>> func)
+        /// <summary>
+        /// Reverses the parameter invocation on a curried function.
+        /// </summary>
+        public static Func<T3, Func<T2, Func<T1, TResult>>> Reverse<T1, T2, T3, TResult>(
+            this Func<T1, Func<T2, Func<T3, TResult>>> func)
         {
-            return Lambda<T1, T2, T3, T4>.Reverse(func);
+            return Lambda<T1, T2, T3, TResult>.Reverse(func);
         }
 
-        public static Func<Ty, Func<Tx, Tz>> Reverse<Tx, Ty, Tz>(
-            this Func<Tx, Func<Ty, Tz>> func)
+
+        /// <summary>
+        /// Reverses the parameter invocation on a curried function.
+        /// </summary>
+        public static Func<T2, Func<T1, TResult>> Reverse<T1, T2, TResult>(
+            this Func<T1, Func<T2, TResult>> func)
         {
-            return Lambda<Tx, Ty, Tz>.Reverse(func);
+            return Lambda<T1, T2, TResult>.Reverse(func);
         }
     }
 }

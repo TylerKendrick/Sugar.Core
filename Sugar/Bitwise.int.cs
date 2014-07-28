@@ -15,7 +15,7 @@ namespace System
         /// <summary>
         /// Applies an aggregator function to the results of <paramref name="self"/> 
         /// applied against each item in <paramref name="others"/>
-        /// with the bitwise & operator.
+        /// with the bitwise AND operator.
         /// </summary>
         /// <param name="self">The target int operand.</param>
         /// <param name="aggregator">The aggregation applied to each result.</param>

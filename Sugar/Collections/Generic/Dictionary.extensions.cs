@@ -20,7 +20,7 @@
         }
 
         /// <summary>
-        /// Converts a <see cref="NameValueCollection"/> instance into an instance of a <see cref="IDictionary{string, string}"/>.
+        /// Converts a <see cref="NameValueCollection"/> instance into an instance of a <see cref="IDictionary{TKey,TValue}"/>.
         /// </summary>
         /// <param name="nameValueCollection">The target collection for conversion.</param>
         public static IDictionary<string, string> ToDictionary(this NameValueCollection nameValueCollection)
