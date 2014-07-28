@@ -45,7 +45,7 @@
     <Compile Include="Collections\Enumerable.extensions.cs" />
     <Compile Include="Collections\Generic\Dictionary.extensions.cs" />
     <Compile Include="Collections\Generic\Enumerable.extensions.cs" />
-    <Compile Include="Collections\Generic\HashSetExtensions.cs" />
+    <Compile Include="Collections\Generic\HashSet.extensions.cs" />
     <Compile Include="Collections\HashTable.extensions.cs" />
     <Compile Include="EqualityComparer.cs" />
     <Compile Include="Collections\Array.extensions.cs" />

@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace System
+﻿namespace System
 {
     /// <summary>
     /// Provides conversion operations on the specified operator types.
