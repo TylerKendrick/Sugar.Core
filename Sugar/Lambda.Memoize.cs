@@ -72,8 +72,9 @@ namespace System
         {
             var cache = Dictionary.Create<T1, T2>();
             var getOrAdd = new Func<T1, Func<T2>, T2>(cache.GetOrAdd);
+            var curried = getOrAdd.Curry();
 
-            return x => Substitution(getOrAdd.Curry(), applicator.ApplyFirst, x);
+            return x => Substitution(curried, applicator.ApplyFirst, x);
         }
 
         /// <summary>
