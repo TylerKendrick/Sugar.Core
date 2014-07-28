@@ -63,8 +63,7 @@ namespace System
         /// <summary>
         /// Provides the memoize monad as a delegate.
         /// </summary>
-        public static readonly Func<Func<T, T>, Func<T, T>> Memoize = func => 
-            Lambda<T, T>.Memoize(func);
+        public static readonly Func<Func<T, T>, Func<T, T>> Memoize = Lambda<T, T>.Memoize;
     }
 
     public static partial class Lambda
