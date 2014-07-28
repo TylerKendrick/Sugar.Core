@@ -12,8 +12,8 @@ namespace System
         /// </summary>
         public static readonly Func<Func<T1, T2, T3, T4, T5>, Func<T1, T2, T3, T4, T5>> Memoize = func =>
         {
-            var applied = new Func<T1, Func<T2, Func<T3, Func<T4, T5>>>>(func.Curry());
-            var substitution = Lambda.Memoizer(applied.Memoize());
+            var curried = func.Curry();
+            var substitution = Lambda.Memoizer(curried.Memoize());
 
             return substitution.Uncurry();
         };
@@ -29,8 +29,8 @@ namespace System
         /// </summary>
         public static readonly Func<Func<T1, T2, T3, T4>, Func<T1, T2, T3, T4>> Memoize = func =>
         {
-            var applied = new Func<T1, Func<T2, Func<T3, T4>>>(func.Curry());
-            var substitution = Lambda.Memoizer(applied.Memoize());
+            var curried = func.Curry();
+            var substitution = Lambda.Memoizer(curried.Memoize());
 
             return substitution.Uncurry();
         };
@@ -43,8 +43,8 @@ namespace System
         /// </summary>
         public static readonly Func<Func<T1, T2, TResult>, Func<T1, T2, TResult>> Memoize = func =>
         {
-            var applied = new Func<T1, Func<T2, TResult>>(func.Curry());
-            var substitution = Lambda.Memoizer(applied.Memoize());
+            var curried = func.Curry();
+            var substitution = Lambda.Memoizer(curried.Memoize());
 
             return substitution.Uncurry();
         };
@@ -55,12 +55,7 @@ namespace System
         /// <summary>
         /// Provides the memoize monad as a delegate.
         /// </summary>
-        public static readonly Func<Func<T1, TResult>, Func<T1, TResult>> Memoize = func =>
-        {
-            var applied = new Func<T1, Func<TResult>>(func.ApplyFirst);
-
-            return x => Lambda.Memoizer(applied)(x)();
-        };
+        public static readonly Func<Func<T1, TResult>, Func<T1, TResult>> Memoize = Lambda.Memoizer;
     }
 
     public static partial class Lambda<T>
@@ -68,11 +63,8 @@ namespace System
         /// <summary>
         /// Provides the memoize monad as a delegate.
         /// </summary>
-        public static readonly Func<Func<T, T>, Func<T, T>> Memoize = func =>
-        {
-            var cache = Dictionary.Create<T, T>();
-            return x => cache.GetOrAdd(x, func.ApplyFirst(x));
-        };
+        public static readonly Func<Func<T, T>, Func<T, T>> Memoize = func => 
+            Lambda<T, T>.Memoize(func);
     }
 
     public static partial class Lambda
