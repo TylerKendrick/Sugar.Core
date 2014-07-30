@@ -1,4 +1,6 @@
-﻿namespace System
+﻿using System.Linq.Expressions;
+
+namespace System
 {
     /// <summary>
     /// Provides common operations with base <see cref="Object"/> instances as extension methods.
@@ -37,6 +39,15 @@
             System.Require.That(action != null);
             action(self);
             return self;
+        }
+
+        /// <summary>
+        /// Exposes the maybe monad as an extension method.
+        /// Allows for cascading member expressions to return a potentially null value.
+        /// </summary>
+        public static IOption<TOut> Maybe<TIn, TOut>(this TIn self, Expression<Func<TIn, TOut>> selector)
+        {
+            return Option<TIn>.Maybe(self, selector);
         }
     }
 }

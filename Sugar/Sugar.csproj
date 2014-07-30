@@ -67,6 +67,7 @@
     <Compile Include="Factory.cs" />
     <Compile Include="IConfiguration.cs" />
     <Compile Include="IInvocationResult.cs" />
+    <Compile Include="IOption.cs" />
     <Compile Include="ITryConfiguration.cs" />
     <Compile Include="Lambda.Apply.cs" />
     <Compile Include="Lambda.Uncurry.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Lambda.Memoize.cs" />
     <Compile Include="Logical.cs" />
     <Compile Include="MonthOfYear.cs" />
+    <Compile Include="Nothing.cs" />
     <Compile Include="Operators.Delegate.cs" />
     <Compile Include="Operators.cs" />
     <Compile Include="Operators.Boolean.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Operators.String.cs" />
     <Compile Include="Operators.TimeSpan.cs" />
     <Compile Include="Option.cs" />
+    <Compile Include="Something.cs" />
     <Compile Include="Utilities\InvocationResult.cs" />
     <Compile Include="TryBlock.Configuration.cs" />
     <Compile Include="TryBlock.cs" />
