@@ -49,5 +49,22 @@ namespace System
         {
             return Option<TIn>.Maybe(self, selector);
         }
+
+        /// <summary>
+        /// Exposes the maybe monad as an extension method.
+        /// Allows for cascading member expressions to return a potentially null value.
+        /// When the value is comparable to nothing, returns the specified <paramref name="fallback"/> value.
+        /// </summary>
+        public static TOut MaybeOrFallback<TIn, TOut>(this TIn self, Expression<Func<TIn, TOut>>  selector, TOut fallback)
+        {
+            var maybe = self.Maybe(selector);
+            if (!maybe.HasValue)
+            {
+                return fallback;
+            }
+
+            TOut result;
+            return maybe.TryGetValue(out result) ? result : fallback;
+        }
     }
 }
