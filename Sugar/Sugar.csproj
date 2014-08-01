@@ -139,6 +139,7 @@
     <Compile Include="Otherwise.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="Utilities\Result.cs" />
+    <Compile Include="WeakReference.cs" />
     <Compile Include="When.cs" />
     <Compile Include="Yield.cs" />
   </ItemGroup>
