@@ -8,6 +8,14 @@ namespace System
     public static class ObjectExtensions
     {
         /// <summary>
+        /// Returns the current instance as a weak reference.
+        /// </summary>
+        public static WeakReference<T> ToWeak<T>(this T self)
+        {
+            return new WeakReference<T>(self);
+        }
+
+        /// <summary>
         /// Attempts to cast a value to a specified type with an optional fallback value.
         /// </summary>
         public static T Cast<T>(this object self, T fallbackValue = default(T))
