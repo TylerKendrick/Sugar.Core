@@ -7,6 +7,28 @@
     /// </summary>
     public static partial class EnumerableExtensions
     {
+        public static IEnumerable<TResult> Zip<TFirst, TSecond, TResult>(this IEnumerable<TFirst> self,
+            IEnumerable<TSecond> other, Func<TFirst, TSecond, TResult> selector)
+        {
+            return self
+                .Select((x, i) => new { i, data = x })
+                .Join(other.Select((y, i) => new { i, data = y }), 
+                    x => x.i, y => y.i, 
+                    (x, y) => selector(x.data, y.data));
+        }
+        public static IEnumerable<IEnumerable<T>> Split<T, TKey>(this IEnumerable<T> self, Func<T, int, TKey> keySelector)
+        {
+            return self
+                .Select((x, i) => new {i, data = x})
+                .GroupBy(x => keySelector(x.data, x.i))
+                .Select(x => x.Select(y => y.data));
+        }
+
+        public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> self, int count)
+        {
+            return self.Split((x, i) => i/count);
+        }
+
         /// <summary>
         /// Uses a <see cref="Func{TIn, TOut}"/> as a predicate for Enumerable.Intersect operations.
         /// </summary>
