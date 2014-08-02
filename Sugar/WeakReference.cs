@@ -4,7 +4,7 @@
     /// Represents a weak reference, which references an object 
     /// while still allowing that object to be reclaimed by garbage collection.
     /// </summary>
-    public class WeakReference<T> : WeakReference
+    public class WeakReference<T> : WeakReference, IEquatable<T>
     {
         private new T Target
         {
@@ -58,6 +58,11 @@
         public void SetTarget(T value)
         {
             Target = value;
+        }
+
+        public bool Equals(T other)
+        {
+            return IsAlive && Target.Equals(other);
         }
     }
 }

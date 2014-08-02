@@ -139,6 +139,7 @@
     <Compile Include="Otherwise.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="Utilities\Result.cs" />
+    <Compile Include="WeakDictionary.cs" />
     <Compile Include="WeakList.cs" />
     <Compile Include="WeakReference.cs" />
     <Compile Include="When.cs" />
