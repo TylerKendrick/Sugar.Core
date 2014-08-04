@@ -5,8 +5,28 @@ namespace System
     /// <summary>
     /// Provides extension methods for boolean operations.
     /// </summary>
-    public static class Logical
+    public static partial class Logical
     {
+        /// <summary>
+        /// Returns a <see cref="Func{TIn, TOut}"/> that computes 
+        /// the logical AND operation of <paramref name="self"/> 
+        /// and <paramref name="predicate"/>.
+        /// </summary>
+        public static Func<T, bool> And<T>(this bool self, Func<T, bool> predicate)
+        {
+            return predicate.And(self);
+        }
+
+        /// <summary>
+        /// Returns a <see cref="Func{TIn, TOut}"/> that computes 
+        /// the logical AND operation of <paramref name="self"/> 
+        /// and <paramref name="predicate"/>.
+        /// </summary>
+        public static Func<T, bool> And<T>(this bool self, Predicate<T> predicate)
+        {
+            return predicate.And(self);
+        }
+
         /// <summary>
         /// Equivalent to <paramref name="self"/> AND <paramref name="other"/>
         /// </summary>
@@ -29,6 +49,26 @@ namespace System
         public static bool And(this bool self, Func<bool, bool, bool> aggregator, params bool[] others)
         {
             return others.All(x => aggregator(self, x));
+        }
+
+        /// <summary>
+        /// Returns a <see cref="Func{TIn, TOut}"/> that computes 
+        /// the logical OR operation of <paramref name="self"/> 
+        /// and <paramref name="predicate"/>.
+        /// </summary>
+        public static Func<T, bool> Or<T>(this bool self, Func<T, bool> predicate)
+        {
+            return predicate.Or(self);
+        }
+
+        /// <summary>
+        /// Returns a <see cref="Func{TIn, TOut}"/> that computes 
+        /// the logical OR operation of <paramref name="self"/> 
+        /// and <paramref name="predicate"/>.
+        /// </summary>
+        public static Func<T, bool> Or<T>(this bool self, Predicate<T> predicate)
+        {
+            return predicate.Or(self);
         }
 
         /// <summary>
