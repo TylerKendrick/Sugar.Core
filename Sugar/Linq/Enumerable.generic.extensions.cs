@@ -7,6 +7,17 @@
     /// </summary>
     public static partial class EnumerableExtensions
     {
+        /// <summary>
+        /// Join two collections by a specified selector per matching index.
+        /// </summary>
+        /// <typeparam name="TFirst">The type of item in the original collection.</typeparam>
+        /// <typeparam name="TSecond">The type of item in the target collection.</typeparam>
+        /// <typeparam name="TResult">The type of item in the returned collection.</typeparam>
+        /// <param name="self">The original collection.</param>
+        /// <param name="other">The target collection</param>
+        /// <param name="selector">The selector used against matching indices.</param>
+        /// <returns>Returns an aggregated enumerable 
+        /// from the join result of the two specified collections.</returns>
         public static IEnumerable<TResult> Zip<TFirst, TSecond, TResult>(this IEnumerable<TFirst> self,
             IEnumerable<TSecond> other, Func<TFirst, TSecond, TResult> selector)
         {
@@ -16,6 +27,11 @@
                     x => x.i, y => y.i, 
                     (x, y) => selector(x.data, y.data));
         }
+
+        /// <summary>
+        /// Splits the target collection into multiple enumerables based
+        /// on a specified selector.
+        /// </summary>
         public static IEnumerable<IEnumerable<T>> Split<T, TKey>(this IEnumerable<T> self, Func<T, int, TKey> keySelector)
         {
             return self
@@ -24,6 +40,10 @@
                 .Select(x => x.Select(y => y.data));
         }
 
+        /// <summary>
+        /// Splits the target collection into multiple enumerables based
+        /// on a specified selector.
+        /// </summary>
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> self, int count)
         {
             return self.Split((x, i) => i/count);
