@@ -64,6 +64,7 @@
     <Compile Include="RandomTests.cs" />
     <Compile Include="Operators.ToFunc.Test.cs" />
     <Compile Include="GenericDictionaryStaticExtensionMethods.cs" />
+    <Compile Include="StaticRequireTests.cs" />
     <Compile Include="UnitTestOfEventArgs.cs" />
     <Compile Include="UnitTestOfOption.cs" />
     <Compile Include="WhenTests.cs" />
