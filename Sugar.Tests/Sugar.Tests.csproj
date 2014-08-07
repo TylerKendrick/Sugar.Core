@@ -57,6 +57,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CustomComparerTests.cs" />
     <Compile Include="IFakeConcern.cs" />
     <Compile Include="LooperTests.cs" />
     <Compile Include="Operators.ToExpression.Test.cs" />
