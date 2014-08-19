@@ -1,10 +1,9 @@
-Sugar .NET
+Sugar .NET 
 ==========
-
 Adds sweet, simple, syntactic sugar to the .NET framework.  Reduces boilerplate code, improves readability, and increases developer productivity.
 
 ==========
-
+## Version 1.0.0 ##
 ## Key Features: ##
 
 - LINQ extensions
