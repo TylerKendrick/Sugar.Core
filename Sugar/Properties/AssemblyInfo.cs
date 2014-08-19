@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Sugar")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Simple Syntactic Sugar for the .NET framework")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Tyler Kendrick dba Kendrick Corp.")]
 [assembly: AssemblyProduct("Sugar")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
