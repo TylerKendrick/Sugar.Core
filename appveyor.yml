@@ -1,3 +1,7 @@
 version: 1.0.{build}
+nuget:
+  project_feed: true
+  disable_publish_on_pr: true
 build:
+  project: Sugar.Core.sln
   verbosity: minimal
