@@ -14,7 +14,7 @@ namespace Sugar.Tests
     [TestFixture]
     public class UnitTestOfOption : UnitTestOf<INode>
     {
-        private Mock<INode> mockContext;
+        private Mock<INode> _mockContext;
 
         [SetUp]
         public override void SetUp()
@@ -22,21 +22,21 @@ namespace Sugar.Tests
             base.SetUp();
         }
 
-        protected override void SetUpMocks()
+        protected override void SetUpDependencies()
         {
-            mockContext = Register<INode>();
+            _mockContext = Register<INode>();
         }
 
         protected override INode SetUpConcern()
         {
-            return mockContext.Object;
+            return _mockContext.Object;
         }
 
         [Test]
         public void MaybeClassAccessesNext()
         {
             var mockNext = Register<INode>();
-            mockContext.Setup(x => x.Next)
+            _mockContext.Setup(x => x.Next)
                 .Returns(mockNext.Object);
 
             var result = Concern.Maybe(x => x.Next);
@@ -52,10 +52,10 @@ namespace Sugar.Tests
         public void MaybeClassAccessesNextThenPreviousReturnsNext()
         {
             var mockNext = Register<INode>();
-            mockContext.Setup(x => x.Next)
+            _mockContext.Setup(x => x.Next)
                 .Returns(mockNext.Object);
             mockNext.Setup(x => x.Previous)
-                .Returns(mockContext.Object);
+                .Returns(_mockContext.Object);
 
             var result = Concern.Maybe(x => x.Next.Previous.Next);
 
@@ -70,7 +70,7 @@ namespace Sugar.Tests
         public void MaybeClassAccessesPreviousReturnsNull()
         {
             var mockNext = Register<INode>();
-            mockContext.Setup(x => x.Next)
+            _mockContext.Setup(x => x.Next)
                 .Returns(mockNext.Object);
 
             var result = Concern.Maybe(x => x.Next.Previous.Next);
@@ -84,7 +84,7 @@ namespace Sugar.Tests
         {
             const int expectation = 3;
             var mockNext = Register<INode>();
-            mockContext.Setup(x => x.Next)
+            _mockContext.Setup(x => x.Next)
                 .Returns(mockNext.Object);
             mockNext.Setup(x => x.Value)
                 .Returns(expectation);
@@ -103,10 +103,10 @@ namespace Sugar.Tests
         {
             const int expectation = 5;
             var mockNext = Register<INode>();
-            mockContext.Setup(x => x.Next)
+            _mockContext.Setup(x => x.Next)
                 .Returns(mockNext.Object);
             mockNext.Setup(x => x.Previous)
-                .Returns(mockContext.Object);
+                .Returns(_mockContext.Object);
             mockNext.Setup(x => x.Value)
                 .Returns(expectation);
 
@@ -123,7 +123,7 @@ namespace Sugar.Tests
         public void MaybeStructAccessesPreviousReturnsNull()
         {
             var mockNext = Register<INode>();
-            mockContext.Setup(x => x.Next)
+            _mockContext.Setup(x => x.Next)
                 .Returns(mockNext.Object);
 
             var result = Concern.Maybe(x => x.Next.Previous.Next.Value);
@@ -137,7 +137,7 @@ namespace Sugar.Tests
         {
             const int expectation = 3;
             var mockNext = Register<INode>();
-            mockContext.Setup(x => x.Next)
+            _mockContext.Setup(x => x.Next)
                 .Returns(mockNext.Object);
             mockNext.Setup(x => x.Nullable)
                 .Returns(expectation);
@@ -156,10 +156,10 @@ namespace Sugar.Tests
         {
             const int expectation = 5;
             var mockNext = Register<INode>();
-            mockContext.Setup(x => x.Next)
+            _mockContext.Setup(x => x.Next)
                 .Returns(mockNext.Object);
             mockNext.Setup(x => x.Previous)
-                .Returns(mockContext.Object);
+                .Returns(_mockContext.Object);
             mockNext.Setup(x => x.Nullable)
                 .Returns(expectation);
 
@@ -176,7 +176,7 @@ namespace Sugar.Tests
         public void MaybeNullableStructAccessesPreviousReturnsNullWhenNotNull()
         {
             var mockNext = Register<INode>();
-            mockContext.Setup(x => x.Next)
+            _mockContext.Setup(x => x.Next)
                 .Returns(mockNext.Object);
 
             var result = Concern.Maybe(x => x.Next.Previous.Next.Nullable);
@@ -184,6 +184,5 @@ namespace Sugar.Tests
             Assert.That(result.HasValue, Is.False);
             Assert.That(result, Is.InstanceOf<Nothing>());
         }
-
     }
 }

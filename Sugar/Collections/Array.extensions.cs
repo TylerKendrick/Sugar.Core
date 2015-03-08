@@ -27,7 +27,7 @@
         public static void CopyIndex(this Array self, int from, params int[] to)
         {
             Action<int> partial = x => CopyIndex(self, from, x);
-            to.ForEach(partial);
+            to.EachOf(partial);
         }
 
         /// <summary>

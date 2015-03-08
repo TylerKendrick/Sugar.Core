@@ -68,6 +68,7 @@
     <Compile Include="StaticRequireTests.cs" />
     <Compile Include="UnitTestOfEventArgs.cs" />
     <Compile Include="UnitTestOfOption.cs" />
+    <Compile Include="UnitTestOfRange.cs" />
     <Compile Include="WhenTests.cs" />
     <Compile Include="UnitTestOf.cs" />
     <Compile Include="Yield.Times.Tests.cs" />

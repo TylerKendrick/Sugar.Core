@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Moq;
+using NUnit.Framework;
 
 namespace Sugar.Tests
 {
@@ -9,10 +10,11 @@ namespace Sugar.Tests
         private MockRepository _mockRepository;
         protected T Concern;
 
+        [SetUp]
         public virtual void SetUp()
         {
             _mockRepository = new MockRepository(MockBehavior.Default);
-            SetUpMocks();
+            SetUpDependencies();
             Concern = SetUpConcern();
         }
 
@@ -21,7 +23,10 @@ namespace Sugar.Tests
             _mockRepository.VerifyAll();
         }
 
-        protected abstract void SetUpMocks();
+        protected virtual void SetUpDependencies()
+        {
+            
+        }
         protected abstract T SetUpConcern();
 
         protected Mock<TMock> Register<TMock>()
@@ -39,7 +44,5 @@ namespace Sugar.Tests
                 .Returns(results.GetEnumerator);
             return result;
         }
-
-
     }
 }

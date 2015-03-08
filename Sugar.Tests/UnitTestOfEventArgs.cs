@@ -13,7 +13,7 @@ namespace Sugar.Tests
             base.SetUp();
         }
 
-        protected override void SetUpMocks()
+        protected override void SetUpDependencies()
         {
         }
 

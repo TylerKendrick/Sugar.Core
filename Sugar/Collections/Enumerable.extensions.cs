@@ -24,7 +24,7 @@
         /// <typeparam name="T">The type of items to select as inputs to the provided action.</typeparam>
         /// <param name="self">The target collection of items.</param>
         /// <param name="action">The action to apply only to filtered items.</param>
-        public static void ForEach<T>(this IEnumerable self, Action<T> action)
+        public static void EachOf<T>(this IEnumerable self, Action<T> action)
         {
             foreach (var item in self.OfType<T>())
             {
