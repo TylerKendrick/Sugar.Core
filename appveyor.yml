@@ -2,6 +2,8 @@ version: 1.0.{build}
 nuget:
   project_feed: true
   disable_publish_on_pr: true
+before_build:
+  nuget restore Sugar.Core.sln
 build:
   project: Sugar.Core.sln
   verbosity: minimal
