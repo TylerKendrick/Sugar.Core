@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Sugar.Core</id>
+    <version>1.0.0</version>
+    <title>Sugar core library</title>
+    <authors>Tyler Kendrick</authors>
+    <owners>Tyler Kendrick</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/TylerKendrick/Sugar.Core</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Provides simple syntactic sugar for the .NET library.</description>
+    <tags>.net35 sugar sugarcore sugar-core</tags>
+    <language>en-US</language>
+  </metadata>
+</package>
