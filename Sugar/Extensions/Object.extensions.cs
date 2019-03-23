@@ -11,6 +11,7 @@ namespace System
         /// Returns the current instance as a weak reference.
         /// </summary>
         public static WeakReference<T> ToWeak<T>(this T self)
+            where T : class
         {
             return new WeakReference<T>(self);
         }

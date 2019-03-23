@@ -8,6 +8,7 @@ namespace System
     /// Provides a dictionary with weak references to the values.
     /// </summary>
     public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>
+        where TValue : class
     {
         private readonly IDictionary<TKey, WeakReference<TValue>> _weakReferences;
 
@@ -23,10 +24,9 @@ namespace System
         {
             get
             {
-                foreach (var weakReference in _weakReferences.Where(x => x.Value.IsAlive))
+                foreach (var weakReference in _weakReferences.Where(x => x.Value.IsAlive()))
                 {
-                    TValue value;
-                    if (weakReference.Value.TryGetTarget(out value))
+                    if (weakReference.Value.TryGetTarget(out TValue value))
                     {
                         yield return new KeyValuePair<TKey, TValue>(weakReference.Key, value);
                     }
@@ -36,7 +36,7 @@ namespace System
 
         private IEnumerable<KeyValuePair<TKey, WeakReference<TValue>>> DeadReferences
         {
-            get { return _weakReferences.Where(x => !x.Value.IsAlive); }
+            get { return _weakReferences.Where(x => !x.Value.IsAlive()); }
         }
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
@@ -66,8 +66,8 @@ namespace System
         /// <returns></returns>
         public bool Purge()
         {
-            return DeadReferences.Aggregate(false, 
-                (current, deadReference) => 
+            return DeadReferences.Aggregate(false,
+                (current, deadReference) =>
                     current || _weakReferences.Remove(deadReference));
         }
 
@@ -93,7 +93,8 @@ namespace System
         }
 
         public int Count { get { return References.Count(); } }
-        public bool IsReadOnly { get { return false; }}
+        public bool IsReadOnly { get { return false; } }
+
         public bool ContainsKey(TKey key)
         {
             return _weakReferences.ContainsKey(key);
@@ -111,15 +112,11 @@ namespace System
 
         public bool TryGetValue(TKey key, out TValue value)
         {
-            WeakReference<TValue> weakReference;
-            if (_weakReferences.TryGetValue(key, out weakReference))
+            if (_weakReferences.TryGetValue(key, out WeakReference<TValue> weakReference) && weakReference.TryGetTarget(out value))
             {
-                if (weakReference.TryGetTarget(out value))
-                {
-                    return true;
-                }
+                return true;
             }
-            value = default(TValue);
+            value = default;
             return false;
         }
 

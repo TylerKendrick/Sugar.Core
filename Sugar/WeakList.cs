@@ -8,6 +8,7 @@ namespace System
     /// Provides a list of items that remove themselves from the collection once disposed.
     /// </summary>
     public class WeakList<T> : IList<T>
+        where T : class
     {
         private readonly IList<WeakReference<T>> _weakReferences;
 
@@ -15,10 +16,9 @@ namespace System
         {
             get
             {
-                foreach (var weakReference in _weakReferences.Where(x => x.IsAlive))
+                foreach (var weakReference in _weakReferences.Where(x => x.IsAlive()))
                 {
-                    T reference;
-                    if (weakReference.TryGetTarget(out reference))
+                    if (weakReference.TryGetTarget(out T reference))
                     {
                         yield return reference;
                     }
@@ -30,7 +30,7 @@ namespace System
         {
             get
             {
-                return _weakReferences.Where(x => !x.IsAlive);
+                return _weakReferences.Where(x => !x.IsAlive());
             }
         }
 
@@ -117,15 +117,15 @@ namespace System
             {
                 RemoveAt(index);
             }
-            
+
             return result;
         }
-        
+
         /// <summary>
         /// Returns the count of all references that are alive.
         /// </summary>
         public int Count { get { return References.Count(); } }
-        
+
         /// <summary>
         /// Returns false for lists.
         /// </summary>

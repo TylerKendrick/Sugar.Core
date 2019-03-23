@@ -17,6 +17,7 @@ namespace Sugar.Tests
             _action = () => _count++;
             _looper = _action.Loop();
         }
+
         [Test]
         public void LoopExtensionMethodReturnsNewInstanceOfLooper()
         {
@@ -43,6 +44,7 @@ namespace Sugar.Tests
             _action = null;
             Assert.That(() => _action.Loop(), Throws.InstanceOf<ArgumentNullException>());
         }
+
         [Test]
         public void TimesWithValidIncrementalAction()
         {
@@ -71,6 +73,5 @@ namespace Sugar.Tests
 
             Assert.That(_count, Is.EqualTo(5));
         }
-
     }
 }
