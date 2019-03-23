@@ -9,6 +9,13 @@
     <PackageReference Include="NUnit" Version="3.11.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sugar.Collections.Generic\Sugar.Collections.Generic.csproj" />
+    <ProjectReference Include="..\Sugar.Collections\Sugar.Collections.csproj" />
+    <ProjectReference Include="..\Sugar.Globalization\Sugar.Globalization.csproj" />
+    <ProjectReference Include="..\Sugar.IO\Sugar.IO.csproj" />
+    <ProjectReference Include="..\Sugar.Linq\Sugar.Linq.csproj" />
+    <ProjectReference Include="..\Sugar.Reflection\Sugar.Reflection.csproj" />
+    <ProjectReference Include="..\Sugar.Security\Sugar.Security.csproj" />
     <ProjectReference Include="..\Sugar\Sugar.csproj" />
   </ItemGroup>
 </Project>

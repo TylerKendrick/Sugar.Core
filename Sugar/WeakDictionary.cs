@@ -88,14 +88,17 @@ namespace System
             return false;
         }
 
+        private IDictionary<TKey, TValue> Dictionary
+            => References.ToDictionary(x => x.Key, x => x.Value);
+
         public TValue this[TKey key]
         {
-            get => References.ToDictionary()[key];
+            get => Dictionary[key];
             set => _weakReferences[key] = value.ToWeak();
         }
 
-        public ICollection<TKey> Keys => References.ToDictionary().Keys;
+        public ICollection<TKey> Keys => Dictionary.Keys;
 
-        public ICollection<TValue> Values => References.ToDictionary().Values;
+        public ICollection<TValue> Values => Dictionary.Values;
     }
 }

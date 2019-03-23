@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>System</RootNamespace>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sugar.Guard\Sugar.Guard.csproj" />
+    <ProjectReference Include="..\Sugar.Lambda\Sugar.Lambda.csproj" />
+  </ItemGroup>
+
+</Project>
