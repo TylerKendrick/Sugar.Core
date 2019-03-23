@@ -9,9 +9,6 @@
         /// Converts a provided struct instance to <see cref="System.Nullable{T}"/>.
         /// </summary>
         public static T? AsNullable<T>(this T self)
-            where T : struct
-        {
-            return self;
-        }
+            where T : struct => self;
     }
 }

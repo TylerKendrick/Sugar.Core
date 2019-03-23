@@ -9,15 +9,16 @@ namespace System
         where T : IComparable<T>
     {
         private readonly IComparer<T> _comparer = Comparer<T>.Default;
+
         /// <summary>
         /// The start index.
         /// </summary>
-        public T Start { get; private set; }
+        public T Start { get; }
 
         /// <summary>
         /// The end index.
         /// </summary>
-        public T End { get; private set; }
+        public T End { get; }
 
         /// <summary>
         /// Assumes a default value for the start age.
@@ -25,7 +26,7 @@ namespace System
         /// <param name="end">A specified value required to be greater than the start.</param>
         /// <param name="comparer">Uses <see cref="Comparer{T}"/>.Default if left null.</param>
         protected internal Range(T end, IComparer<T> comparer = null)
-            : this(default(T), end, comparer) { }
+            : this(default, end, comparer) { }
 
         /// <summary>
         /// Assumes a default value for the start age.
@@ -37,7 +38,7 @@ namespace System
         {
             Require.That(start.IsLessThan(end));
             _comparer = comparer ?? Comparer<T>.Default;
-            Start = start; 
+            Start = start;
             End = end;
         }
 
@@ -78,10 +79,7 @@ namespace System
         /// <param name="end">The length of the range.</param>
         /// <param name="comparer">Defaults to <see cref="Comparer{T}"/>.Default if null.</param>
         public static IRange<T> From<T>(T start, T end, IComparer<T> comparer = null)
-            where T : IComparable<T>
-        {
-            return new Range<T>(start, end, comparer);
-        }
+            where T : IComparable<T> => new Range<T>(start, end, comparer);
 
         /// <summary>
         /// Creates a new instance of a <see cref="Range{T}"/>
@@ -89,9 +87,6 @@ namespace System
         /// <param name="end">The length of the range.</param>
         /// <param name="comparer">Defaults to <see cref="Comparer{T}"/>.Default if null.</param>
         public static IRange<T> From<T>(T end, IComparer<T> comparer = null)
-            where T : IComparable<T>
-        {
-            return new Range<T>(end, comparer);
-        }
+            where T : IComparable<T> => new Range<T>(end, comparer);
     }
 }

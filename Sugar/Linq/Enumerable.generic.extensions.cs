@@ -19,62 +19,48 @@
         /// <returns>Returns an aggregated enumerable 
         /// from the join result of the two specified collections.</returns>
         public static IEnumerable<TResult> Zip<TFirst, TSecond, TResult>(this IEnumerable<TFirst> self,
-            IEnumerable<TSecond> other, Func<TFirst, TSecond, TResult> selector)
-        {
-            return self
+            IEnumerable<TSecond> other, Func<TFirst, TSecond, TResult> selector) => self
                 .Select((x, i) => new { i, data = x })
-                .Join(other.Select((y, i) => new { i, data = y }), 
-                    x => x.i, y => y.i, 
+                .Join(other.Select((y, i) => new { i, data = y }),
+                    x => x.i, y => y.i,
                     (x, y) => selector(x.data, y.data));
-        }
 
         /// <summary>
         /// Splits the target collection into multiple enumerables based
         /// on a specified selector.
         /// </summary>
-        public static IEnumerable<IEnumerable<T>> Split<T, TKey>(this IEnumerable<T> self, Func<T, int, TKey> keySelector)
-        {
-            return self
-                .Select((x, i) => new {i, data = x})
-                .GroupBy(x => keySelector(x.data, x.i))
-                .Select(x => x.Select(y => y.data));
-        }
+        public static IEnumerable<IEnumerable<T>> Split<T, TKey>(this IEnumerable<T> self, Func<T, int, TKey> keySelector) => self
+            .Select((x, i) => new { i, data = x })
+            .GroupBy(x => keySelector(x.data, x.i))
+            .Select(x => x.Select(y => y.data));
 
         /// <summary>
         /// Splits the target collection into multiple enumerables based
         /// on a specified selector.
         /// </summary>
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> self, int count)
-        {
-            return self.Split((x, i) => i/count);
-        }
+            => self.Split((_, i) => i / count);
 
         /// <summary>
         /// Uses a <see cref="Func{TIn, TOut}"/> as a predicate for Enumerable.Intersect operations.
         /// </summary>
         public static IEnumerable<T> Intersect<T>(this IEnumerable<T> self, IEnumerable<T> other,
             Func<T, T, bool> equalityComparer)
-        {
-            return self.Intersect(other, EqualityComparer.Create(equalityComparer));
-        }
+            => self.Intersect(other, EqualityComparer.Create(equalityComparer));
 
         /// <summary>
         /// Uses a <see cref="Func{TIn, TOut}"/> as a predicate for Enumerable.Union operations.
         /// </summary>
         public static IEnumerable<T> Union<T>(this IEnumerable<T> self, IEnumerable<T> other,
             Func<T, T, bool> equalityComparer)
-        {
-            return self.Union(other, EqualityComparer.Create(equalityComparer));
-        }
+            => self.Union(other, EqualityComparer.Create(equalityComparer));
 
         /// <summary>
         /// Uses a <see cref="Func{TIn, TOut}"/> as a predicate for Enumerable.Except operations.
         /// </summary>
         public static IEnumerable<T> Except<T>(this IEnumerable<T> self, IEnumerable<T> other,
             Func<T, T, bool> equalityComparer)
-        {
-            return self.Except(other, EqualityComparer.Create(equalityComparer));
-        }
+            => self.Except(other, EqualityComparer.Create(equalityComparer));
 
         /// <summary>
         /// Applies a predicate selection clause to the Enumerable.Distinct method.
@@ -84,9 +70,7 @@
         /// <param name="predicate">The predicate filter being applied before distinct is called.</param>
         /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> Distinct<T>(this IEnumerable<T> self, Func<T, bool> predicate)
-        {
-            return self.Where(predicate).Distinct();
-        }
+            => self.Where(predicate).Distinct();
 
         /// <summary>
         /// Returns all non-distinct elements from a sequence 
@@ -97,9 +81,7 @@
         /// <param name="predicate">The predicate filter being applied before distinct is called.</param>
         /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> Indistinct<T>(this IEnumerable<T> self, Func<T, bool> predicate)
-        {
-            return self.Where(predicate).Indistinct();
-        }
+            => self.Where(predicate).Indistinct();
 
         /// <summary>
         /// Returns all non-distinct elements from a sequence 
@@ -109,9 +91,7 @@
         /// <param name="self">The target collection being filtered.</param>
         /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> Indistinct<T>(this IEnumerable<T> self)
-        {
-            return self.GroupBy(Lambda.Identity).SelectMany(x => x.Skip(1));
-        } 
+            => self.GroupBy(Lambda.Identity).SelectMany(x => x.Skip(1));
 
         /// <summary>
         /// Provides the logical compliment of Enumerable.Any.
@@ -121,9 +101,7 @@
         /// <param name="predicate">The filter condition.</param>
         /// <returns>Returns true if all items return false against the predicate.</returns>
         public static bool None<T>(this IEnumerable<T> self, Func<T, bool> predicate)
-        {
-            return self.All(x => !predicate(x));
-        }
+            => self.All(x => !predicate(x));
 
         /// <summary>
         /// Provides the logical compliment of Enumerable.Any.
@@ -131,10 +109,7 @@
         /// <typeparam name="T">The type of items in the collection.</typeparam>
         /// <param name="self">The target collection.</param>
         /// <returns>Returns true if all items return false against the predicate.</returns>
-        public static bool None<T>(this IEnumerable<T> self)
-        {
-            return !self.Any();
-        }
+        public static bool None<T>(this IEnumerable<T> self) => !self.Any();
 
         /// <summary>
         /// Determines if any item from one collection are comparable to any items within another.
@@ -145,11 +120,9 @@
         /// <param name="target">The comparable collection.</param>
         /// <param name="predicate">The method for comparison.</param>
         /// <returns>Returns false if the predicate returns false against all matches.</returns>
-        public static bool MatchAny<TIn, TOut>(this IEnumerable<TIn> self, 
+        public static bool MatchAny<TIn, TOut>(this IEnumerable<TIn> self,
             IEnumerable<TIn> target, Func<TIn, TOut> predicate)
-        {
-            return self.Any(x => target.Any(y => predicate(x).Equals(predicate(y))));
-        }
+            => self.Any(x => target.Any(y => predicate(x).Equals(predicate(y))));
 
         /// <summary>
         /// Determines if any item from one collection is contained within another.
@@ -159,9 +132,7 @@
         /// <param name="items">The comparable collection.</param>
         /// <returns>Returns false if the predicate returns false against all matches.</returns>
         public static bool MatchesAny<T>(this IEnumerable<T> self, params T[] items)
-        {
-            return items.Any(self.Contains);
-        }
+            => items.Any(self.Contains);
 
         /// <summary>
         /// Determines if all items from one collection are comparable to any items within another.
@@ -172,11 +143,9 @@
         /// <param name="target">The comparable collection.</param>
         /// <param name="predicate">The method for comparison.</param>
         /// <returns>Returns false if the predicate returns false against any matches.</returns>
-        public static bool MatchAll<TIn, TOut>(this IEnumerable<TIn> self, 
+        public static bool MatchAll<TIn, TOut>(this IEnumerable<TIn> self,
             IEnumerable<TIn> target, Func<TIn, TOut> predicate)
-        {
-            return self.All(x => target.Any(y => predicate(x).Equals(predicate(y))));
-        }
+            => self.All(x => target.Any(y => predicate(x).Equals(predicate(y))));
 
         /// <summary>
         /// Determines if all items from one collection are contained within another.
@@ -186,9 +155,7 @@
         /// <param name="items">The comparable collection.</param>
         /// <returns>Returns false if the predicate returns false against any matches.</returns>
         public static bool MatchesAll<T>(this IEnumerable<T> self, params T[] items)
-        {
-            return items.All(self.Contains);
-        }
+            => items.All(self.Contains);
 
         /// <summary>
         /// Provides the inverse of TakeWhile with a predicate.  
@@ -199,9 +166,7 @@
         /// <param name="predicate">The predicate to filter against.</param>
         /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> TakeUntil<T>(this IEnumerable<T> self, Func<T, bool> predicate)
-        {
-            return self.TakeWhile(x => !predicate(x));
-        }
+            => self.TakeWhile(x => !predicate(x));
 
         /// <summary>
         /// Provides the inverse of TakeWhile with a predicate.  
@@ -212,10 +177,7 @@
         /// <param name="predicate">The predicate to filter against.</param>
         /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> TakeUntil<T>(this IEnumerable<T> self, Func<T, int, bool> predicate)
-        {
-            return self.TakeWhile((x, i) => !predicate(x, i));
-        }
-
+            => self.TakeWhile((x, i) => !predicate(x, i));
 
         /// <summary>
         /// Provides the inverse of SkipWhile with a predicate.  
@@ -226,9 +188,7 @@
         /// <param name="predicate">The predicate to filter against.</param>
         /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> SkipUntil<T>(this IEnumerable<T> self, Func<T, bool> predicate)
-        {
-            return self.SkipWhile(x => !predicate(x));
-        }
+            => self.SkipWhile(x => !predicate(x));
 
         /// <summary>
         /// Provides the inverse of SkipWhile with a predicate.  
@@ -239,9 +199,7 @@
         /// <param name="predicate">The predicate to filter against.</param>
         /// <returns>The filtered collection.</returns>
         public static IEnumerable<T> SkipUntil<T>(this IEnumerable<T> self, Func<T, int, bool> predicate)
-        {
-            return self.SkipWhile((x, i) => !predicate(x, i));
-        }
+            => self.SkipWhile((x, i) => !predicate(x, i));
 
         /// <summary>
         /// Provides the greatest value in a collection using a comparer.
@@ -255,9 +213,7 @@
             Func<TItem, TValue> selector)
             where TItem : class
             where TValue : IComparable
-        {
-            return Max(items, selector, Comparer<TValue>.Default);
-        }
+            => Max(items, selector, Comparer<TValue>.Default);
 
         /// <summary>
         /// Provides the greatest value in a collection using a comparer.
@@ -272,20 +228,16 @@
             Func<TItem, TValue> selector, IComparer<TValue> comparer)
             where TItem : class
             where TValue : IComparable
-        {
-            return items.Maybe().Aggregate(AggregateMax(selector, comparer));
-        }
+            => items.Maybe().Aggregate(AggregateMax(selector, comparer));
 
         private static Func<TItem, TItem, TItem> AggregateMax<TItem, TValue>(
-            Func<TItem, TValue> selector, 
-            IComparer<TValue> comparer) 
+            Func<TItem, TValue> selector,
+            IComparer<TValue> comparer)
             where TItem : class where TValue : IComparable
-        {
-            return (x, y) => FindMaxItem(selector, comparer, x, y);
-        }
+            => (x, y) => FindMaxItem(selector, comparer, x, y);
 
-        private static TItem FindMaxItem<TItem, TValue>(Func<TItem, TValue> selector, 
-            IComparer<TValue> comparer, TItem x, TItem y) 
+        private static TItem FindMaxItem<TItem, TValue>(Func<TItem, TValue> selector,
+            IComparer<TValue> comparer, TItem x, TItem y)
             where TItem : class
             where TValue : IComparable
         {
@@ -296,7 +248,7 @@
         }
 
         /// <summary>
-        /// Provides the smalles value in a collection using a comparer.
+        /// Provides the smallest value in a collection using a comparer.
         /// </summary>
         /// <typeparam name="TItem">The type of item in the collection.</typeparam>
         /// <typeparam name="TValue">The selected return value.</typeparam>
@@ -307,12 +259,10 @@
             Func<TItem, TValue> selector)
             where TItem : class
             where TValue : IComparable
-        {
-            return Min(items, selector, Comparer<TValue>.Default);
-        }
+            => Min(items, selector, Comparer<TValue>.Default);
 
         /// <summary>
-        /// Provides the smalles value in a collection using a comparer.
+        /// Provides the smallest value in a collection using a comparer.
         /// </summary>
         /// <typeparam name="TItem">The type of item in the collection.</typeparam>
         /// <typeparam name="TValue">The selected return value.</typeparam>
@@ -325,23 +275,25 @@
             where TItem : class
             where TValue : IComparable
         {
-            return items.Maybe().Aggregate(AggregateMin(selector));
+            return items.Maybe().Aggregate(AggregateMin(selector, comparer));
         }
 
-        private static Func<TItem, TItem, TItem> AggregateMin<TItem, TValue>(Func<TItem, TValue> selector) 
+        private static Func<TItem, TItem, TItem> AggregateMin<TItem, TValue>(
+            Func<TItem, TValue> selector, IComparer<TValue> comparer)
             where TItem : class where TValue : IComparable
         {
-            return (x, y) => FindMinItem(selector, x, y);
+            return (x, y) => FindMinItem(selector, x, y, comparer);
         }
 
-        private static TItem FindMinItem<TItem, TValue>(Func<TItem, TValue> selector, TItem x, TItem y) 
+        private static TItem FindMinItem<TItem, TValue>(
+            Func<TItem, TValue> selector, TItem x, TItem y, IComparer<TValue> comparer)
             where TItem : class
             where TValue : IComparable
         {
             var xValue = selector(x);
             var yValue = selector(y);
 
-            return yValue.IsLessThan(xValue) ? y : x;
+            return yValue.IsLessThan(xValue, comparer) ? y : x;
         }
 
         /// <summary>
@@ -353,7 +305,7 @@
         /// <param name="selector">The selection expression.</param>
         /// <param name="comparison">A custom comparison expression.</param>
         /// <returns>The ordered collection.</returns>
-        public static IOrderedEnumerable<TIn> OrderBy<TIn, TOut>(this IEnumerable<TIn> self, 
+        public static IOrderedEnumerable<TIn> OrderBy<TIn, TOut>(this IEnumerable<TIn> self,
             Func<TIn, TOut> selector, Func<TOut, TOut, int> comparison)
         {
             var comparer = CustomComparer.Create(comparison);
@@ -369,7 +321,7 @@
         /// <param name="selector">The selection expression.</param>
         /// <param name="comparison">A custom comparison expression.</param>
         /// <returns>The ordered collection.</returns>
-        public static IOrderedEnumerable<TIn> OrderByDescending<TIn, TOut>(this IEnumerable<TIn> self, 
+        public static IOrderedEnumerable<TIn> OrderByDescending<TIn, TOut>(this IEnumerable<TIn> self,
             Func<TIn, TOut> selector, Func<TOut, TOut, int> comparison)
         {
             var comparer = CustomComparer.Create(comparison);
@@ -387,9 +339,7 @@
         public static IEnumerable<TOut> Maybe<TIn, TOut>(this IEnumerable<TIn> self, Func<TIn, TOut> selector)
             where TIn : class
             where TOut : class
-        {
-            return self.Where(x => x != null).Select(selector);
-        }
+            => self.Where(x => x != null).Select(selector);
 
         /// <summary>
         /// Applies a selector to the source collection to filter by all non-null entries.
@@ -398,10 +348,7 @@
         /// <param name="self">The source collection.</param>
         /// <returns>All selected non-null entries.</returns>
         public static IEnumerable<TIn> Maybe<TIn>(this IEnumerable<TIn> self)
-            where TIn : class
-        {
-            return self.Where(x => x != null);
-        }
+            where TIn : class => self.Where(x => x != null);
 
         /// <summary>
         /// Returns the first element of a sequence, or a fallback value if the sequence contains no elements.
@@ -465,7 +412,6 @@
             return enumerable.Any(selector) ? enumerable.Last(selector) : fallback;
         }
 
-
         /// <summary>
         /// Returns the only element of a sequence, or a fallback value if the sequence contains no elements.
         /// </summary>
@@ -480,7 +426,6 @@
             var enumerable = self as T[] ?? self.ToArray();
             return enumerable.Any() ? enumerable.Single() : fallback;
         }
-
 
         /// <summary>
         /// Returns the only element of a sequence, or a fallback value if the sequence contains no elements.

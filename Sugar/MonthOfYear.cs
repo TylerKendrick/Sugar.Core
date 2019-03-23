@@ -54,7 +54,7 @@
         August,
 
         /// <summary>
-        /// Represents the nineth month of the year.
+        /// Represents the ninth month of the year.
         /// Supplies an underlying value of 9.
         /// </summary>
         September,
@@ -72,7 +72,7 @@
         November,
 
         /// <summary>
-        /// Represents the twelveth month of the year.
+        /// Represents the twelfth month of the year.
         /// Supplies an underlying value of 12.
         /// </summary>
         December

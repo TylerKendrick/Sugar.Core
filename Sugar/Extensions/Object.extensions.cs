@@ -11,34 +11,25 @@ namespace System
         /// Returns the current instance as a weak reference.
         /// </summary>
         public static WeakReference<T> ToWeak<T>(this T self)
-            where T : class
-        {
-            return new WeakReference<T>(self);
-        }
+            where T : class => new WeakReference<T>(self);
 
         /// <summary>
         /// Attempts to cast a value to a specified type with an optional fallback value.
         /// </summary>
-        public static T Cast<T>(this object self, T fallbackValue = default(T))
-        {
-            return self is T ? (T)self : fallbackValue;
-        }
+        public static T Cast<T>(this object self, T fallbackValue = default)
+            => self is T ? (T)self : fallbackValue;
 
         /// <summary>
         /// Exposes Conver.ChangeType as an extension method with an optional fallback value.
         /// </summary>
-        public static TOut ConvertTo<TOut>(this object self, TOut fallbackValue = default(TOut))
-        {
-            return Convert.ChangeType(self, typeof (TOut)).Cast(fallbackValue);
-        }
+        public static TOut ConvertTo<TOut>(this object self, TOut fallbackValue = default)
+            => Convert.ChangeType(self, typeof(TOut)).Cast(fallbackValue);
 
         /// <summary>
-        /// Throws an expcetion of the provided predicate fails.
+        /// Throws an expectation of the provided predicate fails.
         /// </summary>
         public static void Require<T>(this T self, Func<T, bool> predicate)
-        {
-            System.Require.That(self, predicate);
-        }
+            => System.Require.That(self, predicate);
 
         /// <summary>
         /// Executes an action on the caller and returns the caller.
@@ -55,9 +46,7 @@ namespace System
         /// Allows for cascading member expressions to return a potentially null value.
         /// </summary>
         public static IOption<TOut> Maybe<TIn, TOut>(this TIn self, Expression<Func<TIn, TOut>> selector)
-        {
-            return Option<TIn>.Maybe(self, selector);
-        }
+            => Option<TIn>.Maybe(self, selector);
 
         /// <summary>
         /// Exposes the maybe monad as an extension method.
@@ -67,13 +56,7 @@ namespace System
         public static TOut MaybeOrFallback<TIn, TOut>(this TIn self, Expression<Func<TIn, TOut>>  selector, TOut fallback)
         {
             var maybe = self.Maybe(selector);
-            if (!maybe.HasValue)
-            {
-                return fallback;
-            }
-
-            TOut result;
-            return maybe.TryGetValue(out result) ? result : fallback;
+            return !maybe.HasValue ? fallback : maybe.TryGetValue(out TOut result) ? result : fallback;
         }
     }
 }

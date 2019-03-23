@@ -1,14 +1,11 @@
 ﻿namespace System.Utilities
 {
-    internal class Result : IResult
+    internal sealed class Result : IResult
     {
-        public bool Success { get; private set; }
+        public bool Success { get; }
 
         public static readonly Func<bool, IResult> Create = success => new Result(success);
 
-        private Result(bool success)
-        {
-            Success = success;
-        }
+        private Result(bool success) => Success = success;
     }
 }

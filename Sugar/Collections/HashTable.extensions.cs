@@ -10,18 +10,13 @@
         /// Converts a target dictionary into an instance of <see cref="Hashtable"/>.
         /// </summary>
         /// <param name="dictionary">The target dictionary for conversion.</param>
-        public static Hashtable ToHashTable(this IDictionary dictionary)
-        {
-            return new Hashtable(dictionary);
-        }
+        public static Hashtable ToHashTable(this IDictionary dictionary) => new Hashtable(dictionary);
 
         /// <summary>
         /// Converts a target dictionary into an instance of <see cref="Hashtable"/>.
         /// </summary>
         /// <param name="dictionary">The target dictionary for conversion.</param>
         public static Hashtable ToHashTable<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
-        {
-            return new Hashtable().Pipe(x => dictionary.ForEach(y => x.Add(y.Key, y.Value)));
-        }
+            => new Hashtable().Pipe(x => dictionary.ForEach(y => x.Add(y.Key, y.Value)));
     }
 }

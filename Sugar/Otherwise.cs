@@ -3,7 +3,7 @@
     using Utilities;
 
     /// <summary>
-    /// Exposes the precedding logic of a when clause.
+    /// Exposes the preceding logic of a when clause.
     /// </summary>
     public class Otherwise : IBlock
     {
@@ -20,15 +20,12 @@
         }
 
         /// <summary>
-        /// Esposes additional when clauses.
+        /// Exposes additional when clauses.
         /// </summary>
-        public When When(Func<bool> predicate)
-        {
-            return _when = new When(this, predicate);
-        }
+        public When When(Func<bool> predicate) => _when = new When(this, predicate);
 
         /// <summary>
-        /// Invokes the chain of predicates built the the when/otherwise chain.
+        /// Invokes the chain of predicates built the when/otherwise chain.
         /// </summary>
         public IResult Raise()
         {
@@ -53,17 +50,11 @@
         /// <summary>
         /// Exposes the Raise method as an action.
         /// </summary>
-        public Action ToAction()
-        {
-            return () => Raise();
-        }
+        public Action ToAction() => () => Raise();
 
         /// <summary>
         /// Invokes ToAction
         /// </summary>
-        public static implicit operator Action(Otherwise operand)
-        {
-            return operand.ToAction();
-        }
+        public static implicit operator Action(Otherwise operand) => operand.ToAction();
     }
 }

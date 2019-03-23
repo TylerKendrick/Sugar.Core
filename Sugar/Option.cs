@@ -11,7 +11,7 @@ namespace System
         /// <summary>
         /// Makes sure that the wrapped value is not equal to the specified value Option.Nothing
         /// </summary>
-        public virtual bool HasValue { get { return !(this is Nothing); } }
+        public virtual bool HasValue => !(this is Nothing);
 
         /// <summary>
         /// Only used by the "Nothing" comparable value.
@@ -24,17 +24,14 @@ namespace System
         /// Compares the HasValue property of an <see cref="Option"/> instance.
         /// </summary>
         /// <param name="other"></param>
-        /// <returns></returns>
-        public virtual bool Equals(Option other)
-        {
-            return HasValue == other.HasValue;
-        }
+        /// <returns>Uses reference comparison to determine if each option has a value.</returns>
+        public virtual bool Equals(Option other) => HasValue == other.HasValue;
     }
 
     /// <summary>
     /// Exposes the null object pattern for both reference and value types.
     /// </summary>
-    public partial class Option<T>
+    public sealed partial class Option<T>
     {
         /// <summary>
         /// Represents the null object.
@@ -88,7 +85,6 @@ namespace System
         private static object HandleMemberExpression<TIn>(TIn context, MemberExpression memberExpression)
         {
             var value = EvaluateBody(context, memberExpression.Expression);
-
             return value == null ? null : GetMemberValue(value, memberExpression.Member);
         }
 
@@ -112,14 +108,10 @@ namespace System
         }
 
         private static object GetFieldInfoValue(object context, MemberInfo memberInfo)
-        {
-            return ((FieldInfo)memberInfo).GetValue(context);
-        }
+            => ((FieldInfo)memberInfo).GetValue(context);
 
         private static object GetPropertyInfoValue(object context, MemberInfo memberInfo)
-        {
-            return ((PropertyInfo)memberInfo).GetValue(context, null);
-        }
+            => ((PropertyInfo)memberInfo).GetValue(context, null);
     }
 
     /// <summary>
@@ -137,21 +129,15 @@ namespace System
         /// <summary>
         /// Makes sure that the wrapped value is not equal to the specified value Option.Nothing
         /// </summary>
-        public bool HasValue { get { return _handle.HasValue; } }
+        public bool HasValue => _handle.HasValue;
 
-        private Option(IOption<T> handle)
-        {
-            _handle = handle;
-        }
+        private Option(IOption<T> handle) => _handle = handle;
 
         /// <summary>
         /// Attempts to retrieve the value of the option if it is not a null object.
         /// </summary>
         /// <param name="value">The attempted value to assign.</param>
         /// <returns>Returns true if the option is not a null object.</returns>
-        public bool TryGetValue(out T value)
-        {
-            return _handle.TryGetValue(out value);
-        }
+        public bool TryGetValue(out T value) => _handle.TryGetValue(out value);
     }
 }

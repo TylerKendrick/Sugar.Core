@@ -33,9 +33,7 @@ public static partial class Operators
     /// allowing the use of cascading ternary operations.
     /// </summary>
     public static System.Func<bool, System.Func<T>, System.Func<T>, T> Ternary<T>()
-    {
-        return (condition, left, right) => condition ? left() : right();
-    }
+        => (condition, left, right) => condition ? left() : right();
 
     /// <summary>
     /// Returns an operator that takes two nullable operators.
@@ -43,10 +41,7 @@ public static partial class Operators
     /// Resolves to the first non-null value.
     /// </summary>
     public static Binary<T, System.Func<T>, T> Coalesce<T>()
-        where T : class
-    {
-        return (left, right) => left ?? right();
-    }
+        where T : class => (left, right) => left ?? right();
 
     /// <summary>
     /// Returns an operator that takes two nullable operators.
@@ -54,41 +49,26 @@ public static partial class Operators
     /// Resolves to the first non-null value.
     /// </summary>
     public static Binary<T?, System.Func<T?>, T?> NullCoalesce<T>()
-        where T : struct
-    {
-        return (left, right) => left ?? right();
-    }
+        where T : struct => (left, right) => left ?? right();
 
     /// <summary>
     /// Returns an operator that checks to see if an instance is of the specified type.
     /// </summary>
-    public static Unary<object, bool> Is<T>()
-    {
-        return instance => instance is T;
-    }
+    public static Unary<object, bool> Is<T>() => instance => instance is T;
 
     /// <summary>
     /// Returns an operator that attempts to cast a nullable instance to a nullable type.
     /// </summary>
     public static Unary<object, T> As<T>()
-        where T : class
-    {
-        return instance => instance as T;
-    }
+        where T : class => instance => instance as T;
 
     /// <summary>
     /// Returns an operator that returns an instance of <see cref="System.Type"/> for the specified type.
     /// </summary>
-    public static Nullary<System.Type> Typeof<T>()
-    {
-        return () => typeof (T);
-    }
+    public static Nullary<System.Type> Typeof<T>() => () => typeof(T);
 
     /// <summary>
     /// Returns an operator that returns the default value of an instance of <typeparamref name="T"/>.
     /// </summary>
-    public static Nullary<T> Default<T>()
-    {
-        return () => default(T);
-    }
+    public static Nullary<T> Default<T>() => () => default;
 }

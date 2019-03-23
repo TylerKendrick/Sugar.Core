@@ -15,35 +15,26 @@
         /// <param name="self">The target collection to convert into a Dictionary.</param>
         public static IDictionary<TKey, TValue> ToDictionary<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, TValue>> self)
-        {
-            return self.ToDictionary(x => x.Key, x => x.Value);
-        }
+            => self.ToDictionary(x => x.Key, x => x.Value);
 
         /// <summary>
         /// Converts a <see cref="NameValueCollection"/> instance into an instance of a <see cref="IDictionary{TKey,TValue}"/>.
         /// </summary>
         /// <param name="nameValueCollection">The target collection for conversion.</param>
         public static IDictionary<string, string> ToDictionary(this NameValueCollection nameValueCollection)
-        {
-            return nameValueCollection.AllKeys.ToDictionary(Lambda.Identity, x => nameValueCollection[x]);
-        }
+            => nameValueCollection.AllKeys.ToDictionary(Lambda.Identity, x => nameValueCollection[x]);
 
         /// <summary>
         /// Converts a specified string dictionary into an instance of a <see cref="NameValueCollection"/>.
         /// </summary>
         /// <param name="dictionary">The specified dictionary for conversion.</param>
         public static NameValueCollection ToNameValueCollection(this IDictionary<string, string> dictionary)
-        {
-            return new NameValueCollection().Pipe(x => dictionary.ForEach(y => x.Add(y.Key, y.Value)));
-        }
+            => new NameValueCollection().Pipe(x => dictionary.ForEach(y => x.Add(y.Key, y.Value)));
 
         /// <summary>
         /// Simplifies working with dictionaries when adding a type of <see cref="KeyValuePair{TKey, TValue}"/>.
         /// </summary>
         public static void Add<TKey, TValue>(this IDictionary<TKey, TValue> dictionary,
-            KeyValuePair<TKey, TValue> keyValuePair)
-        {
-            dictionary.Add(keyValuePair.Key, keyValuePair.Value);
-        }
+            KeyValuePair<TKey, TValue> keyValuePair) => dictionary.Add(keyValuePair.Key, keyValuePair.Value);
     }
 }

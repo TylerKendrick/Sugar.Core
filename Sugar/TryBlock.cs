@@ -50,7 +50,7 @@
                     result = HandleFinallyBlock(success, exception);
                     shouldRetry = _configuration.ShouldRetry(result);
                 }
-            } while (shouldRetry && success == false);
+            } while (shouldRetry && !success);
             return result;
         }
 
@@ -74,7 +74,7 @@
         /// when an exception of type <typeparamref name="TException"/> is thrown.
         /// </summary>
         /// <typeparam name="TException">The kind of exception to handle.</typeparam>
-        public ITryBlock Catch<TException>(Action<TException> onException) 
+        public ITryBlock Catch<TException>(Action<TException> onException)
             where TException : Exception
         {
             _errors.Add(typeof(TException), e => onException(e.Cast<TException>()));

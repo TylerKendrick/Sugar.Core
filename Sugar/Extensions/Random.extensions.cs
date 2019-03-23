@@ -5,7 +5,7 @@
     using Linq;
 
     /// <summary>
-    /// Provides random values from numeric types, collections, and datetime objects.
+    /// Provides random values from numeric types, collections, and date-time objects.
     /// </summary>
     public static class RandomExtensions
     {
@@ -35,10 +35,7 @@
         /// <param name="self">The required random generator.</param>
         /// <param name="collection">The required collection.</param>
         /// <returns>The selected random item from the collection.</returns>
-        public static T From<T>(this Random self, params T[] collection)
-        {
-            return collection.Random(self);
-        }
+        public static T From<T>(this Random self, params T[] collection) => collection.Random(self);
 
         /// <summary>
         /// Returns a random item from a collection
@@ -47,12 +44,9 @@
         /// <param name="self">The target collection.</param>
         /// <param name="randomGenerator">The optional generator for random number selection.</param>
         /// <returns>The item selected from the randomly generated index.</returns>
-        public static T Random<T>(this IEnumerable<T> self, Random randomGenerator = null)
-        {
-            return randomGenerator
-                .Ensure(RandomGenerator)
-                .From(self);
-        }
+        public static T Random<T>(this IEnumerable<T> self, Random randomGenerator = null) => randomGenerator
+            .Ensure(RandomGenerator)
+            .From(self);
 
         /// <summary>
         /// Returns a random item from a range.
@@ -115,7 +109,7 @@
         /// <param name="minuteRange">A value between 1 and 60</param>
         /// <param name="secondRange">A value between 1 and 60</param>
         /// <param name="millisecondRange">A value between 1 and 1000</param>
-        /// <param name="calendar">Defaults to the gregorian calendar.</param>
+        /// <param name="calendar">Defaults to the Gregorian calendar.</param>
         /// <param name="kind">Defaults to DateTimeKind.Unspecified.</param>
         /// <param name="randomGenerator">Defaults to the caller random number generator.</param>
         /// <returns>A randomly generated DateTime.</returns>
@@ -129,9 +123,9 @@
             var min = calendar.MinSupportedDateTime;
 
             randomGenerator = randomGenerator ?? self;
-            
-            return GetRandomDateTime(yearRange, monthRange, dayRange, 
-                hourRange, minuteRange, secondRange, millisecondRange, 
+
+            return GetRandomDateTime(yearRange, monthRange, dayRange,
+                hourRange, minuteRange, secondRange, millisecondRange,
                 calendar, kind, randomGenerator, min, max);
         }
 
@@ -158,8 +152,7 @@
             millisecondRange = millisecondRange ?? Range.From(0, 1000);
             millisecondRange.Start.Require(x => x.IsGreaterThan(-1));
             millisecondRange.Start.Require(x => x.IsLessThan(1000));
-            var milliseconds = millisecondRange.Random(randomGenerator);
-            return milliseconds;
+            return millisecondRange.Random(randomGenerator);
         }
 
         private static int GetRandomSeconds(IRange<int> secondRange, Random randomGenerator)
@@ -167,8 +160,7 @@
             secondRange = secondRange ?? Range.From(0, 60);
             secondRange.Start.Require(x => x.IsGreaterThan(-1));
             secondRange.Start.Require(x => x.IsLessThan(60));
-            var seconds = secondRange.Random(randomGenerator);
-            return seconds;
+            return secondRange.Random(randomGenerator);
         }
 
         private static int GetRandomMinutes(IRange<int> minuteRange, Random randomGenerator)
@@ -176,8 +168,7 @@
             minuteRange = minuteRange ?? Range.From(0, 60);
             minuteRange.Start.Require(x => x.IsGreaterThan(-1));
             minuteRange.Start.Require(x => x.IsLessThan(60));
-            var minutes = minuteRange.Random(randomGenerator);
-            return minutes;
+            return minuteRange.Random(randomGenerator);
         }
 
         private static int GetRandomHours(IRange<int> hourRange, Random randomGenerator)
@@ -185,8 +176,7 @@
             hourRange = hourRange ?? Range.From(1, 24);
             hourRange.Start.Require(x => x.IsGreaterThan(0));
             hourRange.Start.Require(x => x.IsLessThan(24));
-            var hours = hourRange.Random(randomGenerator);
-            return hours;
+            return hourRange.Random(randomGenerator);
         }
 
         private static int GetRandomDays(IRange<int> dayRange, Random randomGenerator, int daysInMonth)
@@ -194,8 +184,7 @@
             dayRange = dayRange ?? Range.From(1, daysInMonth);
             dayRange.Start.Require(x => x.IsGreaterThan(0));
             dayRange.Start.Require(x => x.IsLessThan(daysInMonth));
-            var days = dayRange.Random(randomGenerator);
-            return days;
+            return dayRange.Random(randomGenerator);
         }
 
         private static int GetRandomMonths(IRange<int> monthRange, Random randomGenerator)
@@ -203,16 +192,14 @@
             monthRange = monthRange ?? Range.From(1, 12);
             monthRange.Start.Require(x => x.IsGreaterThan(0));
             monthRange.Start.Require(x => x.IsLessThan(13));
-            var months = monthRange.Random(randomGenerator);
-            return months;
+            return monthRange.Random(randomGenerator);
         }
 
         private static int GetRandomYears(IRange<int> yearRange, Random randomGenerator, DateTime min, DateTime max)
         {
             yearRange = yearRange ?? Range.From(min.Year, max.Year);
             yearRange.Start.Require(x => x.IsAtLeast(min.Year));
-            var years = yearRange.Random(randomGenerator);
-            return years;
+            return yearRange.Random(randomGenerator);
         }
     }
 }

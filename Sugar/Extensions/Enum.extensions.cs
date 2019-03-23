@@ -13,18 +13,13 @@
         // ReSharper disable once StaticFieldInGenericType
         private static readonly Type Type;
 
-        static Enum()
-        {
-            Type = typeof (TEnum);
-        }
+        static Enum() => Type = typeof(TEnum);
 
         /// <summary>
         /// Parses a string as a named member of the target enum.
         /// </summary>
         public static TEnum Parse(string memberName)
-        {
-            return Enum.Parse(Type, memberName).Cast<TEnum>();
-        }
+            => Enum.Parse(Type, memberName).Cast<TEnum>();
 
         /// <summary>
         /// Returns a typed collection of values from the enum.
@@ -38,33 +33,21 @@
         /// <summary>
         /// Returns an untyped collection of values from the enum.
         /// </summary>
-        public static IEnumerable GetValues()
-        {
-            return Enum.GetValues(Type);
-        }
+        public static IEnumerable GetValues() => Enum.GetValues(Type);
 
         /// <summary>
         /// Returns a collection of member names from the enum.
         /// </summary>
-        public static IEnumerable<string> GetNames()
-        {
-            return Enum.GetNames(Type);
-        }
+        public static IEnumerable<string> GetNames() => Enum.GetNames(Type);
 
         /// <summary>
-        /// Attempts to find the member name of the targetted enum by value
+        /// Attempts to find the member name of the targeted enum by value
         /// </summary>
-        public static string GetName(TEnum value)
-        {
-            return Enum.GetName(Type, value);
-        }
+        public static string GetName(TEnum value) => Enum.GetName(Type, value);
 
         /// <summary>
         /// Checks to see if the target enum contains the specified value as a named member.
         /// </summary>
-        public static bool IsDefined(object value)
-        {
-            return Enum.IsDefined(Type, value);
-        }
+        public static bool IsDefined(object value) => Enum.IsDefined(Type, value);
     }
 }

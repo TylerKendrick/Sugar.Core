@@ -2,11 +2,11 @@
 {
     /// <summary>
     /// Provides the operators implemented by System.Core on the <see cref="DateTime"/> 
-    /// datatype as delegates for use as first-class objects.
+    /// data-type as delegates for use as first-class objects.
     /// </summary>
     public static class DateTime
     {
-        #region Arithmatic Operators
+        #region Arithmetic Operators
 
         /// <summary>
         /// Exposes the numeric Add operator of DateTime as a delegate
@@ -17,9 +17,9 @@
         /// Exposes the numeric Subtract operator of DateTime as a delegate
         /// </summary>
         public static readonly Binary<System.DateTime, System.TimeSpan, System.DateTime> Subtract = (left, right) => left - right;
-        
-        #endregion Arithmatic Operators
-        
+
+        #endregion Arithmetic Operators
+
         #region Comparison Operators
 
         /// <summary>
@@ -41,9 +41,9 @@
         /// Exposes the Comparison Less-Than-Or-Equal operator of DateTime as a delegate
         /// </summary>
         public static readonly Binary<System.DateTime, System.DateTime, bool> LessThanOrEqual = (left, right) => left <= right;
-        
+
         #endregion Comparison Operators
-        
+
         #region Equality Operators
 
         /// <summary>
@@ -55,7 +55,7 @@
         /// Exposes the Comparison Inequality operator of DateTime as a delegate
         /// </summary>
         public static readonly Binary<System.DateTime, System.DateTime, bool> Inequality = (left, right) => left != right;
-        
+
         #endregion Equality Operators
     }
 }

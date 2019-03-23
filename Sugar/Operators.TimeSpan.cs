@@ -2,11 +2,11 @@
 {
     /// <summary>
     /// Provides the operators implemented by System.Core on the <see cref="TimeSpan"/> 
-    /// datatype as delegates for use as first-class objects.
+    /// data-type as delegates for use as first-class objects.
     /// </summary>
     public static class TimeSpan
     {
-        #region Arithmatic Operators
+        #region Arithmetic Operators
 
         /// <summary>
         /// Exposes the Add operator of TimeSpan as a delegate
@@ -23,7 +23,7 @@
         /// </summary>
         public static readonly Unary<System.TimeSpan, System.TimeSpan> Negate = target => -target;
 
-        #endregion Arithmatic Operators
+        #endregion Arithmetic Operators
 
         #region Comparison Operators
 

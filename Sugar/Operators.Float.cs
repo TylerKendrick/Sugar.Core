@@ -2,11 +2,11 @@
 {
     /// <summary>
     /// Provides the operators implemented by System.Core on the <see cref="Float"/> 
-    /// datatype as delegates for use as first-class objects.
+    /// data-type as delegates for use as first-class objects.
     /// </summary>
     public static class Float
     {
-        #region Arithmatic Operators
+        #region Arithmetic Operators
 
         /// <summary>
         /// Exposes the numeric Add operator of Float as a delegate
@@ -48,7 +48,7 @@
         /// </summary>
         public static readonly Unary<float, float> Decrement = target => target - 1;
 
-        #endregion Arithmatic Operators
+        #endregion Arithmetic Operators
 
         #region Comparison Operators
 

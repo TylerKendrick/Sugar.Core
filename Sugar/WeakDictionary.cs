@@ -15,10 +15,7 @@ namespace System
         /// <summary>
         /// Creates a new instances of a dictionary with weak references for values.
         /// </summary>
-        public WeakDictionary()
-        {
-            _weakReferences = new Dictionary<TKey, WeakReference<TValue>>();
-        }
+        public WeakDictionary() => _weakReferences = new Dictionary<TKey, WeakReference<TValue>>();
 
         private IEnumerable<KeyValuePair<TKey, TValue>> References
         {
@@ -35,9 +32,7 @@ namespace System
         }
 
         private IEnumerable<KeyValuePair<TKey, WeakReference<TValue>>> DeadReferences
-        {
-            get { return _weakReferences.Where(x => !x.Value.IsAlive()); }
-        }
+            => _weakReferences.Where(x => !x.Value.IsAlive());
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
@@ -45,36 +40,22 @@ namespace System
             return References.GetEnumerator();
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public void Add(KeyValuePair<TKey, TValue> item)
-        {
-            _weakReferences.Add(item.Key, item.Value.ToWeak());
-        }
+        public void Add(KeyValuePair<TKey, TValue> item) => _weakReferences.Add(item.Key, item.Value.ToWeak());
 
-        public void Clear()
-        {
-            _weakReferences.Clear();
-        }
+        public void Clear() => _weakReferences.Clear();
 
         /// <summary>
         /// Removes all entries where a value had a dead weak reference.
         /// </summary>
-        /// <returns></returns>
-        public bool Purge()
-        {
-            return DeadReferences.Aggregate(false,
-                (current, deadReference) =>
-                    current || _weakReferences.Remove(deadReference));
-        }
+        /// <returns>Returns true if all members of the collection could successfully be removed.</returns>
+        public bool Purge() => DeadReferences.Aggregate(true,
+            (current, deadReference) =>
+                current && _weakReferences.Remove(deadReference));
 
         public bool Contains(KeyValuePair<TKey, TValue> item)
-        {
-            return References.Any(x => x.Key.Equals(item.Key) && x.Value.Equals(item.Value));
-        }
+            => References.Any(x => x.Key.Equals(item.Key) && x.Value.Equals(item.Value));
 
         public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
@@ -85,30 +66,17 @@ namespace System
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
             var result = _weakReferences.Any(x => x.Key.Equals(item.Key) && x.Value.Equals(item.Value));
-            if (result)
-            {
-                result = _weakReferences.Remove(item.Key);
-            }
-            return result;
+            return result ? _weakReferences.Remove(item.Key) : result;
         }
 
-        public int Count { get { return References.Count(); } }
-        public bool IsReadOnly { get { return false; } }
+        public int Count => References.Count();
+        public bool IsReadOnly => false;
 
-        public bool ContainsKey(TKey key)
-        {
-            return _weakReferences.ContainsKey(key);
-        }
+        public bool ContainsKey(TKey key) => _weakReferences.ContainsKey(key);
 
-        public void Add(TKey key, TValue value)
-        {
-            _weakReferences.Add(key, value.ToWeak());
-        }
+        public void Add(TKey key, TValue value) => _weakReferences.Add(key, value.ToWeak());
 
-        public bool Remove(TKey key)
-        {
-            return _weakReferences.Remove(key);
-        }
+        public bool Remove(TKey key) => _weakReferences.Remove(key);
 
         public bool TryGetValue(TKey key, out TValue value)
         {
@@ -122,24 +90,12 @@ namespace System
 
         public TValue this[TKey key]
         {
-            get { return References.ToDictionary()[key]; }
-            set { _weakReferences[key] = value.ToWeak(); }
+            get => References.ToDictionary()[key];
+            set => _weakReferences[key] = value.ToWeak();
         }
 
-        public ICollection<TKey> Keys
-        {
-            get
-            {
-                return References.ToDictionary().Keys;
-            }
-        }
+        public ICollection<TKey> Keys => References.ToDictionary().Keys;
 
-        public ICollection<TValue> Values
-        {
-            get
-            {
-                return References.ToDictionary().Values;
-            }
-        }
+        public ICollection<TValue> Values => References.ToDictionary().Values;
     }
 }

@@ -2,18 +2,18 @@
 {
     /// <summary>
     /// Provides the operators implemented by System.Core on the <see cref="String"/> 
-    /// datatype as delegates for use as first-class objects.
+    /// data-type as delegates for use as first-class objects.
     /// </summary>
     public static class String
     {
-        #region Arithmatic Operators
+        #region Arithmetic Operators
 
         /// <summary>
         /// Exposes the Concatenation operator for <see cref="String"/> instances as a delegate.
         /// </summary>
         public static readonly Binary<string, string, string> Add = (left, right) => left + right;
 
-        #endregion Arithmatic Operators
+        #endregion Arithmetic Operators
 
         #region Equality Operators
 

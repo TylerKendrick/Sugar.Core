@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Provides the operators implemented by System.Core on the <see cref="Long"/> 
-    /// datatype as delegates for use as first-class objects.
+    /// data-type as delegates for use as first-class objects.
     /// </summary>
     public static class Long
     {
@@ -40,7 +40,7 @@
 
         #endregion Bitwise Operators
 
-        #region Arithmatic Operators
+        #region Arithmetic Operators
 
         /// <summary>
         /// Exposes the numeric Add operator of Long as a delegate
@@ -82,7 +82,7 @@
         /// </summary>
         public static readonly Unary<long, long> Decrement = target => target - 1;
 
-        #endregion Arithmatic Operators
+        #endregion Arithmetic Operators
 
         #region Comparison Operators
 

@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Provides the operators implemented by System.Core on the <see cref="Delegate"/> 
-    /// datatype as delegates for use as first-class objects.
+    /// data-type as delegates for use as first-class objects.
     /// </summary>
     public static class Delegate
     {
@@ -17,11 +17,11 @@
         /// Exposes the Comparison Inequality operator of Delegate as a delegate
         /// </summary>
         public static readonly Binary<System.Delegate, System.Delegate, bool> Inequality = (left, right) => left != right;
-        
+
         #endregion Equality Operators
 
         #region Functional Operators
-        
+
         /// <summary>
         /// Exposes the Functional Combine operator of Delegate as a delegate
         /// </summary>

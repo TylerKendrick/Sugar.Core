@@ -11,10 +11,7 @@
         /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is less than or equal to <paramref name="other"/>.</returns>
-        public static bool IsAtMost<T>(this T self, T other)
-        {
-            return IsAtMost(self, other, null);
-        }
+        public static bool IsAtMost<T>(this T self, T other) => IsAtMost(self, other, null);
 
         /// <summary>
         /// Compares two <typeparamref name="T"/> values by sort order.  
@@ -30,10 +27,7 @@
         /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is greater than or equal to <paramref name="other"/>.</returns>
-        public static bool IsAtLeast<T>(this T self, T other)
-        {
-            return IsAtLeast(self, other, null);
-        }
+        public static bool IsAtLeast<T>(this T self, T other) => IsAtLeast(self, other, null);
 
         /// <summary>
         /// Compares two <typeparamref name="T"/> values by sort order.  
@@ -50,10 +44,7 @@
         /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is greater than or equal to <paramref name="other"/>.</returns>
-        public static bool IsLessThan<T>(this T self, T other)
-        {
-            return IsLessThan(self, other, null);
-        }
+        public static bool IsLessThan<T>(this T self, T other) => IsLessThan(self, other, null);
 
         /// <summary>
         /// Compares two <typeparamref name="T"/> values by sort order.  
@@ -69,10 +60,7 @@
         /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is greater than <paramref name="other"/>.</returns>
-        public static bool IsGreaterThan<T>(this T self, T other)
-        {
-            return IsGreaterThan(self, other, null);
-        }
+        public static bool IsGreaterThan<T>(this T self, T other) => IsGreaterThan(self, other, null);
 
         /// <summary>
         /// Compares two <typeparamref name="T"/> values by sort order.  
@@ -89,10 +77,7 @@
         /// Compares two <typeparamref name="T"/> values by sort order.  
         /// </summary>
         /// <returns>Returns true if <paramref name="self"/> is equal to <paramref name="other"/>.</returns>
-        public static bool IsSameAs<T>(this T self, T other)
-        {
-            return IsSameAs(self, other, null);
-        }
+        public static bool IsSameAs<T>(this T self, T other) => IsSameAs(self, other, null);
 
         /// <summary>
         /// Compares two <typeparamref name="T"/> values by sort order.  

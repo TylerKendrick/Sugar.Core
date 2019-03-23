@@ -8,9 +8,7 @@
         /// and <paramref name="other"/>.
         /// </summary>
         public static Func<T, bool> And<T>(this Func<T, bool> self, Func<T, bool> other)
-        {
-            return x => self(x) && other(x);
-        }
+            => x => self(x) && other(x);
 
         /// <summary>
         /// Returns a <see cref="Func{TIn, TOut}"/> that computes 
@@ -18,18 +16,14 @@
         /// and <paramref name="other"/>.
         /// </summary>
         public static Func<T, bool> Or<T>(this Func<T, bool> self, Func<T, bool> other)
-        {
-            return x => self(x) || other(x);
-        }
+            => x => self(x) || other(x);
 
         /// <summary>
         /// Returns a <see cref="Func{TIn, TOut}"/> that computes 
         /// the logical Not operation on <paramref name="self"/>.
         /// </summary>
         public static Func<T, bool> Not<T>(this Func<T, bool> self)
-        {
-            return x => !self(x);
-        }
+            => x => !self(x);
 
         /// <summary>
         /// Returns a <see cref="Func{TIn, TOut}"/> that computes 
@@ -37,9 +31,7 @@
         /// and <paramref name="other"/>.
         /// </summary>
         public static Func<T, bool> And<T>(this Func<T, bool> self, Predicate<T> other)
-        {
-            return x => self(x) && other(x);
-        }
+            => x => self(x) && other(x);
 
         /// <summary>
         /// Returns a <see cref="Func{TIn, TOut}"/> that computes 
@@ -47,9 +39,7 @@
         /// and <paramref name="other"/>.
         /// </summary>
         public static Func<T, bool> Or<T>(this Func<T, bool> self, Predicate<T> other)
-        {
-            return x => self(x) || other(x);
-        }
+            => x => self(x) || other(x);
 
 
         /// <summary>
@@ -58,9 +48,7 @@
         /// and <paramref name="other"/>.
         /// </summary>
         public static Func<T, bool> And<T>(this Func<T, bool> self, bool other)
-        {
-            return x => self(x) && other;
-        }
+            => x => self(x) && other;
 
         /// <summary>
         /// Returns a <see cref="Func{TIn, TOut}"/> that computes 
@@ -68,8 +56,6 @@
         /// and <paramref name="other"/>.
         /// </summary>
         public static Func<T, bool> Or<T>(this Func<T, bool> self, bool other)
-        {
-            return x => self(x) || other;
-        }
+            => x => self(x) || other;
     }
 }

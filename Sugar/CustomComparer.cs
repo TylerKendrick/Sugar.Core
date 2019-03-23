@@ -14,9 +14,7 @@
         /// <typeparam name="T">The type of object for comparison.</typeparam>
         /// <param name="comparer">The specified <see cref="Func{T, T, TOut}"/> to invoke for comparison.</param>
         public static IComparer<T> Create<T>(Func<T, T, int> comparer)
-        {
-            return new InternalCustomComparer<T>(comparer);
-        }
+            => new InternalCustomComparer<T>(comparer);
 
         /// <summary>
         /// Converts a comparison delegate to a <see cref="Func{T, T, TOut}"/> signature
@@ -25,9 +23,7 @@
         /// <param name="comparison">The comparison function.</param>
         /// <returns>Returns the delegate as a <see cref="Func{T, T, TOut}"/>.</returns>
         public static Func<T, T, int> ToFunc<T>(this Comparison<T> comparison)
-        {
-            return (x, y) => comparison(x, y);
-        }
+            => (x, y) => comparison(x, y);
 
         /// <summary>
         /// Converts a comparison delegate to a <see cref="Comparison{T}"/> signature
@@ -36,23 +32,16 @@
         /// <param name="func">The comparison function.</param>
         /// <returns>Returns the delegate as a <see cref="Comparison{T}"/>.</returns>
         public static Comparison<T> ToComparison<T>(this Func<T, T, int> func)
-        {
-            return (x, y) => func(x, y);
-        }
+            => (x, y) => func(x, y);
 
         private class InternalCustomComparer<T> : IComparer<T>
         {
             private readonly Func<T, T, int> _comparer;
 
             public InternalCustomComparer(Func<T, T, int> comparer)
-            {
-                _comparer = comparer;
-            }
+                => _comparer = comparer;
 
-            public int Compare(T x, T y)
-            {
-                return _comparer(x, y);
-            }
+            public int Compare(T x, T y) => _comparer(x, y);
         }
     }
 }

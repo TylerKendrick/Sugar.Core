@@ -8,33 +8,21 @@
         /// <summary>
         /// Wraps the static method GC.GetGeneration as an extension method.
         /// </summary>
-        public static int GetGeneration(this WeakReference self)
-        {
-            return GC.GetGeneration(self);
-        }
+        public static int GetGeneration(this WeakReference self) => GC.GetGeneration(self);
 
         /// <summary>
         /// Wraps the static method GC.KeepAlive as an extension method.
         /// </summary>
-        public static void KeepAlive(this object self)
-        {
-            GC.KeepAlive(self);
-        }
+        public static void KeepAlive(this object self) => GC.KeepAlive(self);
 
         /// <summary>
         /// Wraps the static method GC.ReRegisterForFinalize as an extension method.
         /// </summary>
-        public static void ReRegisterForFinalize(this object self)
-        {
-            GC.ReRegisterForFinalize(self);
-        }
+        public static void ReRegisterForFinalize(this object self) => GC.ReRegisterForFinalize(self);
 
         /// <summary>
         /// Wraps the static method GC.SuppressFinalize as an extension method.
         /// </summary>
-        public static void SuppressFinalize(this object self)
-        {
-            GC.SuppressFinalize(self);
-        }
+        public static void SuppressFinalize(this object self) => GC.SuppressFinalize(self);
     }
 }

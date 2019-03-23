@@ -8,18 +8,12 @@
 		/// <summary>
 		/// Checks to see if the value of <paramref name="decimal"/> is greater than or equal to zero.
 		/// </summary>
-		public static bool IsPositive(this decimal @decimal)
-		{
-			return @decimal >= 0;
-		}
+		public static bool IsPositive(this decimal @decimal) => @decimal >= 0;
 
 		/// <summary>
 		/// Checks to see if the value of <paramref name="decimal"/> is less than zero.
 		/// </summary>
-		public static bool IsNegative(this decimal @decimal)
-		{
-			return @decimal < 0;
-		}
+		public static bool IsNegative(this decimal @decimal) => @decimal < 0;
 
 		/// <summary>
 		/// Returns <paramref name="position"/> as a percentage of <paramref name="total"/>.

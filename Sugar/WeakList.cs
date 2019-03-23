@@ -27,20 +27,12 @@ namespace System
         }
 
         private IEnumerable<WeakReference<T>> DeadReferences
-        {
-            get
-            {
-                return _weakReferences.Where(x => !x.IsAlive());
-            }
-        }
+            => _weakReferences.Where(x => !x.IsAlive());
 
         /// <summary>
         /// Initializes an empty collection of weak references.
         /// </summary>
-        public WeakList()
-        {
-            _weakReferences = new List<WeakReference<T>>();
-        }
+        public WeakList() => _weakReferences = new List<WeakReference<T>>();
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -48,26 +40,17 @@ namespace System
             return References.GetEnumerator();
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         /// <summary>
         /// Adds a specified item to the collection as a weak reference.
         /// </summary>
-        public void Add(T item)
-        {
-            _weakReferences.Add(item.ToWeak());
-        }
+        public void Add(T item) => _weakReferences.Add(item.ToWeak());
 
         /// <summary>
         /// Removes all items from the collection.
         /// </summary>
-        public void Clear()
-        {
-            _weakReferences.Clear();
-        }
+        public void Clear() => _weakReferences.Clear();
 
         /// <summary>
         /// Removes all dead references from the collection.
@@ -85,10 +68,7 @@ namespace System
         /// Determines whether a sequence contains a specified element 
         /// by using the default equality comparer.
         /// </summary>
-        public bool Contains(T item)
-        {
-            return References.Contains(item);
-        }
+        public bool Contains(T item) => References.Contains(item);
 
         /// <summary>
         /// Copies all the elements of the current 
@@ -97,10 +77,7 @@ namespace System
         /// destination <see cref="Array"/> index. 
         /// The index is specified as a 32-bit integer.
         /// </summary>
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            References.ToArray().CopyTo(array, arrayIndex);
-        }
+        public void CopyTo(T[] array, int arrayIndex) => References.ToArray().CopyTo(array, arrayIndex);
 
         /// <summary>
         /// Removes a specified item from the collection
@@ -124,7 +101,7 @@ namespace System
         /// <summary>
         /// Returns the count of all references that are alive.
         /// </summary>
-        public int Count { get { return References.Count(); } }
+        public int Count => References.Count();
 
         /// <summary>
         /// Returns false for lists.
@@ -136,37 +113,28 @@ namespace System
         /// </summary>
         /// <param name="item">The specified item to find in the collection.</param>
         /// <returns>Returns -1 if no match is found, otherwise, finds the index of the specified item.</returns>
-        public int IndexOf(T item)
-        {
-            return References.ToList().IndexOf(item);
-        }
+        public int IndexOf(T item) => References.ToList().IndexOf(item);
 
         /// <summary>
         /// Inserts a specified item into the specified index as a weak reference.
         /// </summary>
         /// <param name="index">The specified index.</param>
         /// <param name="item">The specified item.</param>
-        public void Insert(int index, T item)
-        {
-            _weakReferences.Insert(index, item.ToWeak());
-        }
+        public void Insert(int index, T item) => _weakReferences.Insert(index, item.ToWeak());
 
         /// <summary>
         /// Removes the item at the specified index.
         /// </summary>
         /// <param name="index">The specified index.</param>
-        public void RemoveAt(int index)
-        {
-            _weakReferences.RemoveAt(index);
-        }
+        public void RemoveAt(int index) => _weakReferences.RemoveAt(index);
 
         /// <summary>
         /// Provides accessibility to instance members of the collection.
         /// </summary>
         public T this[int index]
         {
-            get { return References.ToArray().ElementAt(index); }
-            set { _weakReferences[index] = value.ToWeak(); }
+            get => References.ToArray().ElementAt(index);
+            set => _weakReferences[index] = value.ToWeak();
         }
     }
 }

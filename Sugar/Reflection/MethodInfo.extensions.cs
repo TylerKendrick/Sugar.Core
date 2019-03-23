@@ -1,5 +1,5 @@
 ﻿namespace System.Reflection
-{    
+{
     /// <summary>
     /// Simplifies accessing methods of a type.
     /// </summary>
@@ -9,10 +9,7 @@
         // ReSharper disable once StaticFieldInGenericType
         private static readonly Type Type;
 
-        static MethodInfo()
-        {
-            Type = typeof(T);
-        }
+        static MethodInfo() => Type = typeof(T);
 
         /// <summary>
         /// Simplifies inspection of methods for types.
@@ -20,17 +17,13 @@
         /// <param name="name">The method for inspection.</param>
         /// <param name="bindingFlags">Uses BindingFlags.Default if null.</param>
         public static MethodInfo Parse(string name, BindingFlags bindingFlags = BindingFlags.Default)
-        {
-            return Type.GetMethod(name, bindingFlags);
-        }
+            => Type.GetMethod(name, bindingFlags);
 
         /// <summary>
         /// Simplifies inspection of fields for types.
         /// </summary>
-        public static MethodInfo Parse(string name, BindingFlags bindingFlags, 
+        public static MethodInfo Parse(string name, BindingFlags bindingFlags,
             Binder binder, Type[] types, params ParameterModifier[] modifiers)
-        {
-            return Type.GetMethod(name, bindingFlags, binder, types, modifiers);
-        }
+            => Type.GetMethod(name, bindingFlags, binder, types, modifiers);
     }
 }

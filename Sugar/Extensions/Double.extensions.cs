@@ -8,50 +8,36 @@
         /// <summary>
         /// Checks to see if the value <paramref name="self"/> is greater than or equal to zero.
         /// </summary>
-        public static bool IsPositive(this double self)
-        {
-            return self >= 0;
-        }
+        public static bool IsPositive(this double self) => self >= 0;
 
         /// <summary>
         /// Checks to see if the value <paramref name="self"/> is less than zero.
         /// </summary>
-        public static bool IsNegative(this double self)
-        {
-            return self < 0;
-        }
+        public static bool IsNegative(this double self) => self < 0;
 
         /// <summary>
         /// Exposes double.IsPositiveInfinity as an extension to <see cref="Double"/> instances.
         /// </summary>
         public static bool IsPositiveInfinity(this double self)
-        {
-            return double.IsPositiveInfinity(self);
-        }
+            => double.IsPositiveInfinity(self);
 
         /// <summary>
         /// Exposes double.IsNegativeInfinity as an extension to <see cref="Double"/> instances.
         /// </summary>
         public static bool IsNegativeInfinity(this double self)
-        {
-            return double.IsNegativeInfinity(self);
-        }
+            => double.IsNegativeInfinity(self);
 
         /// <summary>
         /// Exposes double.IsInfinity as an extension to <see cref="Double"/> instances.
         /// </summary>
         public static bool IsInfinity(this double self)
-        {
-            return double.IsInfinity(self);
-        }
+            => double.IsInfinity(self);
 
         /// <summary>
         /// Exposes double.IsInfinity as an extension to <see cref="Double"/> instances.
         /// </summary>
         public static bool IsNaN(this double self)
-        {
-            return double.IsNaN(self);
-        }
+            => double.IsNaN(self);
 
         /// <summary>
         /// Returns <paramref name="position"/> as a percentage of <paramref name="total"/>.

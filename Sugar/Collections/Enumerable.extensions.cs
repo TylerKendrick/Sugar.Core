@@ -14,9 +14,7 @@
         /// <param name="index">The index to check.</param>
         /// <returns>Returns true if the value is between 0..Count()</returns>
         public static bool HasIndex(this IEnumerable self, int index)
-        {
-            return index > 0 && index < self.AsEnumerable().Count();
-        }
+            => index > 0 && index < self.AsEnumerable().Count();
 
         /// <summary>
         /// Applies actions to filtered items in a collection.

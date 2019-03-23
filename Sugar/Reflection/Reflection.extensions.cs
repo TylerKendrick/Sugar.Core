@@ -7,6 +7,7 @@
     /// </summary>
     public static class ReflectionExtensions
     {
+#pragma warning disable RCS1175 // Unused this parameter.
         /// <summary>
         /// Returns the string literal name of a member in a <see cref="MemberExpression"/>.
         /// </summary>
@@ -22,7 +23,7 @@
                 .Cast<MemberExpression>()
                 .Member.Name;
         }
-        
+
         /// <summary>
         /// Simplifies the Type.IsSubclassOf invocation.
         /// </summary>
@@ -52,5 +53,6 @@
             var targetType = typeof(TOut);
             return callerType.IsInstanceOfType(targetType);
         }
+#pragma warning restore RCS1175 // Unused this parameter.
     }
 }

@@ -55,17 +55,12 @@
         /// <summary>
         /// Exposes the Raise method as an action.
         /// </summary>
-        public Action ToAction()
-        {
-            return () => Raise();
-        }
+        public Action ToAction() => () => Raise();
 
         /// <summary>
         /// Invokes ToAction
         /// </summary>
         public static implicit operator Action(When operand)
-        {
-            return operand.ToAction();
-        }
+            => operand.ToAction();
     }
 }

@@ -2,11 +2,11 @@
 {
     /// <summary>
     /// Provides the operators implemented by System.Core on the <see cref="Double"/> 
-    /// datatype as delegates for use as first-class objects.
+    /// data-type as delegates for use as first-class objects.
     /// </summary>
     public static class Double
     {
-        #region Arithmatic Operators
+        #region Arithmetic Operators
 
         /// <summary>
         /// Exposes the numeric Add operator of Double as a delegate
@@ -48,7 +48,7 @@
         /// </summary>
         public static readonly Unary<double, double> Decrement = target => target - 1;
 
-        #endregion Arithmatic Operators
+        #endregion Arithmetic Operators
 
         #region Comparison Operators
 
@@ -85,7 +85,7 @@
         /// Exposes the Comparison Inequality operator of Double as a delegate
         /// </summary>
         public static readonly Binary<double, double, bool> Inequality = (left, right) => System.Math.Abs(left - right) > double.Epsilon;
-        
+
         #endregion Equality Operators
     }
 }

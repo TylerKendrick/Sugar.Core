@@ -9,15 +9,12 @@
         /// Exposes the constructor as a delegate.
         /// </summary>
         public static readonly Func<T, EventArgs<T>> Create = value => new EventArgs<T>(value);
-        
+
         /// <summary>
         /// Exposes the wrapped value for the specified event data type.
         /// </summary>
-        public T Value { get; private set; }
+        public T Value { get; }
 
-        private EventArgs(T value)
-        {
-            Value = value;
-        }
+        private EventArgs(T value) => Value = value;
     }
 }

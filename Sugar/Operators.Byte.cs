@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Provides the operators implemented by System.Core on the <see cref="Byte"/> 
-    /// datatype as delegates for use as first-class objects.
+    /// data-type as delegates for use as first-class objects.
     /// </summary>
     public static class Byte
     {
@@ -65,7 +65,7 @@
         #endregion Comparison Operators
 
         #region Equality Operators
-        
+
         /// <summary>
         /// Exposes the Comparison Equality operator of Byte as a delegate
         /// </summary>

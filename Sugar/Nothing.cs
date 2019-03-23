@@ -22,7 +22,7 @@
         /// <returns>Returns true if the option is not a null object.</returns>
         public bool TryGetValue(out T value)
         {
-            value = default(T);
+            value = default;
             return false;
         }
     }
@@ -41,10 +41,7 @@
         /// <summary>
         /// Indicates whether or not the variable is a null object.
         /// </summary>
-        public override bool HasValue
-        {
-            get { return false; }
-        }
+        public override bool HasValue => false;
 
         /// <summary>
         /// Exposes the constructor for extension by derived classes.

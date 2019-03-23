@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Provides the operators implemented by System.Core on the <see cref="Boolean"/> 
-    /// datatype as delegates for use as first-class objects.
+    /// data-type as delegates for use as first-class objects.
     /// </summary>
     public static class Boolean
     {
@@ -22,9 +22,9 @@
         /// Exposes the Logical Negation operator of Boolean as a delegate
         /// </summary>
         public static readonly Unary<bool, bool> Not = target => !target;
-        
+
         #endregion Logical Operators
-        
+
         #region Equality Operators
 
         /// <summary>
@@ -36,7 +36,7 @@
         /// Exposes the Comparison Inequality operator of Boolean as a delegate
         /// </summary>
         public static readonly Binary<bool, bool, bool> Inequality = (left, right) => left != right;
-        
+
         #endregion Equality Operators
     }
 }

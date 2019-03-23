@@ -21,7 +21,7 @@
 
         /// <summary>
         /// Initialize a new instance of the <see cref="StreamReader"/> class 
-        /// and invokes the specified Func within a disposable block.
+        /// and invokes the specified <see cref="Func{T, TResult}"/> within a disposable block.
         /// </summary>
         /// <param name="self">The target stream to read.</param>
         /// <param name="action">The action to execute on the reader.</param>
@@ -49,7 +49,7 @@
 
         /// <summary>
         /// Initialize a new instance of the <see cref="StreamWriter"/> class 
-        /// and invokes the specified Func within a disposable block.
+        /// and invokes the specified <see cref="Func{T, TResult}"/> within a disposable block.
         /// </summary>
         /// <param name="self">The target stream to read.</param>
         /// <param name="action">The action to execute on the reader.</param>
@@ -60,15 +60,11 @@
                 return action(reader);
             }
         }
-        
+
         /// <summary>
         /// Reads a stream until the end, and returns the results as a string.
         /// </summary>
-        /// <param name="self"></param>
-        /// <returns></returns>
-        public static string AsString(this Stream self)
-        {
-            return self.Read(x => x.ReadToEnd());
-        }
+        /// <param name="self">The target stream to read.</param>
+        public static string AsString(this Stream self) => self.Read(x => x.ReadToEnd());
     }
 }

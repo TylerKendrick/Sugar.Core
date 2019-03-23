@@ -13,9 +13,6 @@
         /// </summary>
         /// <param name="self">The target for casting.</param>
         /// <returns>The target collection as an IEnumerable{object}</returns>
-        public static IEnumerable<object> AsEnumerable(this IEnumerable self)
-        {
-            return self.Cast<object>();
-        }
+        public static IEnumerable<object> AsEnumerable(this IEnumerable self) => self.Cast<object>();
     }
 }

@@ -20,10 +20,7 @@
         /// <summary>
         /// Invokes the action once.
         /// </summary>
-        public void Raise()
-        {
-            _action();
-        }
+        public void Raise() => _action();
 
         /// <summary>
         /// Executes the action while the predicate is true.

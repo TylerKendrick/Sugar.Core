@@ -8,10 +8,7 @@
         /// <summary>
         /// Provides a simple method for wrapping construction of a <see cref="Dictionary{TKey, TValue}"/>.
         /// </summary>
-        public static IDictionary<TKey, TValue> Create<TKey, TValue>()
-        {
-            return new Dictionary<TKey, TValue>();
-        }
+        public static IDictionary<TKey, TValue> Create<TKey, TValue>() => new Dictionary<TKey, TValue>();
 
         /// <summary>
         /// Adds a specified key if it is not found in current instance.

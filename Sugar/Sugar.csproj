@@ -4,8 +4,6 @@
     <AssemblyName>Sugar</AssemblyName>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
+    <Version>2.0.0</Version>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
 </Project>

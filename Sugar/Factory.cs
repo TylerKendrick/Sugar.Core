@@ -23,9 +23,6 @@
         /// </summary>
         /// <typeparam name="T">Any type that implements a public parameterless constructor.</typeparam>
         public static T Create<T>()
-            where T : new()
-        {
-            return Factory<T>.Create();
-        }
+            where T : new() => Factory<T>.Create();
     }
 }

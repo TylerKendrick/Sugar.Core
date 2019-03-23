@@ -9,11 +9,8 @@
     public static class Delegate<T>
     {
         /// <summary>
-        /// Creates a new Delegate instance from the speficied <see cref="MethodInfo"/> parameter <paramref name="method"/>.
+        /// Creates a new Delegate instance from the specified <see cref="MethodInfo"/> parameter <paramref name="method"/>.
         /// </summary>
-        public static T Create(MethodInfo method)
-        {
-            return Delegate.CreateDelegate(typeof(T), method).Cast<T>();
-        }
+        public static T Create(MethodInfo method) => Delegate.CreateDelegate(typeof(T), method).Cast<T>();
     }
 }

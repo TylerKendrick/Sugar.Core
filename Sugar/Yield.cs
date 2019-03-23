@@ -42,7 +42,7 @@ namespace System
                 yield return generator();
             }
         }
-        
+
         /// <summary>
         /// Invokes a generator function a set number of times, using the iterator index as a parameter.
         /// </summary>
@@ -92,8 +92,6 @@ namespace System
         /// <typeparam name="T">The type of items in the returned collection.</typeparam>
         /// <returns>The results return by the generator function.</returns>
         public static IEnumerable<T> Times<T>(int count, Func<int, T, T> generator)
-        {
-            return Times(count, default(T), generator);
-        }
+            => Times(count, default, generator);
     }
 }

@@ -2,12 +2,12 @@
 {
     /// <summary>
     /// Provides the operators implemented by System.Core on the <see cref="Int32"/> 
-    /// datatype as delegates for use as first-class objects.
+    /// data-type as delegates for use as first-class objects.
     /// </summary>
     public static class Int32
     {
         #region Bitwise Operators
-        
+
         /// <summary>
         /// Exposes the left shift operator of Int32 as a delegate
         /// </summary>
@@ -40,7 +40,7 @@
 
         #endregion Bitwise Operators
 
-        #region Arithmatic Operators
+        #region Arithmetic Operators
 
         /// <summary>
         /// Exposes the numeric Add operator of Int32 as a delegate
@@ -56,19 +56,19 @@
         /// Exposes the numeric Multiply operator of Int32 as a delegate
         /// </summary>
         public static readonly Binary<int, int, int> Multiply = (left, right) => left * right;
-        
+
         /// <summary>
         /// Exposes the numeric Divide operator of Int32 as a delegate
         /// </summary>
         public static readonly Binary<int, int, int> Divide = (left, right) => left / right;
-        
+
         /// <summary>
         /// Exposes the numeric Modulo operator of Int32 as a delegate
         /// </summary>
         public static readonly Binary<int, int, int> Modulo = (left, right) => left % right;
 
         /// <summary>
-        /// Exposes the numeric Negatation operator of Int32 as a delegate
+        /// Exposes the numeric Negation operator of Int32 as a delegate
         /// </summary>
         public static readonly Unary<int, int> Negate = target => -target;
 
@@ -76,13 +76,13 @@
         /// Exposes the numeric Increment operator of Int32 as a delegate
         /// </summary>
         public static readonly Unary<int, int> Increment = target => target + 1;
-        
+
         /// <summary>
         /// Exposes the numeric Decrement operator of Int32 as a delegate
         /// </summary>
         public static readonly Unary<int, int> Decrement = target => target - 1;
 
-        #endregion Arithmatic Operators
+        #endregion Arithmetic Operators
 
         #region Comparison Operators
 
@@ -105,7 +105,7 @@
         /// Exposes the Comparison Less-Than-Or-Equal operator of Int32 as a delegate
         /// </summary>
         public static readonly Binary<int, int, bool> LessThanOrEqual = (left, right) => left <= right;
-        
+
         #endregion Comparison Operators
 
         #region Equality Operators
@@ -119,7 +119,7 @@
         /// Exposes the Inequality operator of Int32 as a delegate
         /// </summary>
         public static readonly Binary<int, int, bool> Inequality = (left, right) => left != right;
-        
+
         #endregion Equality Operators
     }
 }

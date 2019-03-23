@@ -15,21 +15,15 @@
         /// </summary>
         /// <typeparam name="T">The type of the provided instance.</typeparam>
         /// <param name="instance">The instance to inspect with reflection.</param>
-        public static TAttribute Parse<T>(T instance)
-        {
-            return ParseMany(instance)
-                .FirstOrDefault();
-        }
+        public static TAttribute Parse<T>(T instance) => ParseMany(instance)
+            .FirstOrDefault();
 
         /// <summary>
         /// Uses reflection to parse the object for Attributes of the targeted type.
         /// </summary>
         /// <typeparam name="T">The type of the provided instance.</typeparam>
-        public static TAttribute Parse<T>()
-        {
-            return ParseMany<T>()
-                .FirstOrDefault();
-        }
+        public static TAttribute Parse<T>() => ParseMany<T>()
+            .FirstOrDefault();
 
         /// <summary>
         /// Uses reflection to parse the object for Attributes of the targeted type.
@@ -37,18 +31,14 @@
         /// <typeparam name="T">The type of the provided instance.</typeparam>
         /// <param name="instance">The instance to inspect with reflection.</param>
         public static IEnumerable<TAttribute> ParseMany<T>(T instance)
-        {
-            return ParseMany(instance, false);
-        }
+            => ParseMany(instance, false);
 
         /// <summary>
         /// Uses reflection to parse the object for Attributes of the targeted type.
         /// </summary>
         /// <typeparam name="T">The type of the provided instance.</typeparam>
         public static IEnumerable<TAttribute> ParseMany<T>()
-        {
-            return ParseMany<T>(false);
-        }
+            => ParseMany<T>(false);
 
         /// <summary>
         /// Uses reflection to parse the object for Attributes of the targeted type.
@@ -57,22 +47,17 @@
         /// <param name="instance">The instance to inspect with reflection.</param>
         /// <param name="inherit">true to inspect the ancestors of <paramref name="instance"/>; otherwise, false. </param>
         public static IEnumerable<TAttribute> ParseMany<T>(T instance, bool inherit)
-        {
-            return instance.GetType()
+            => instance.GetType()
                 .GetCustomAttributes(inherit)
                 .OfType<TAttribute>();
-        }
 
         /// <summary>
         /// Uses reflection to parse the object for Attributes of the targeted type.
         /// </summary>
         /// <typeparam name="T">The type of the provided instance.</typeparam>
-        /// <param name="inherit">true to inspect the ancestors of the targetted type; otherwise, false. </param>
-        public static IEnumerable<TAttribute> ParseMany<T>(bool inherit)
-        {
-            return typeof(T)
-                .GetCustomAttributes(inherit)
-                .OfType<TAttribute>();
-        }
+        /// <param name="inherit">true to inspect the ancestors of the targeted type; otherwise, false. </param>
+        public static IEnumerable<TAttribute> ParseMany<T>(bool inherit) => typeof(T)
+            .GetCustomAttributes(inherit)
+            .OfType<TAttribute>();
     }
 }

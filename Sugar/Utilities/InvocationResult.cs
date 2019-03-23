@@ -1,9 +1,9 @@
 ﻿namespace System.Utilities
 {
-    internal class InvocationResult : IInvocationResult
+    internal sealed class InvocationResult : IInvocationResult
     {
-        public bool Success { get; private set; }
-        public Exception Exception { get; private set; }
+        public bool Success { get; }
+        public Exception Exception { get; }
 
         private InvocationResult(bool success, Exception exception)
         {
@@ -11,7 +11,7 @@
             Success = success;
         }
 
-        public static readonly Func<bool, Exception, IInvocationResult> Create = 
+        public static readonly Func<bool, Exception, IInvocationResult> Create =
             (success, exception) => new InvocationResult(success, exception);
     }
 }

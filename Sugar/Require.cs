@@ -25,9 +25,6 @@ namespace System
         /// <summary>
         /// Provides an explicit fluent assertion against a specified condition.
         /// </summary>
-        public static void That(bool condition)
-        {
-            That(condition, Lambda.Identity);
-        }
+        public static void That(bool condition) => That(condition, Lambda.Identity);
     }
 }

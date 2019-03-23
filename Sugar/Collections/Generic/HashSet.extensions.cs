@@ -10,10 +10,6 @@
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="set"></param>
-        /// <returns></returns>
-        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> set)
-        {
-            return new HashSet<T>(set);
-        }
+        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> set) => new HashSet<T>(set);
     }
 }

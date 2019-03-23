@@ -81,32 +81,24 @@ namespace System
         /// Invokes the Lambda{T1, T2}.Memoize delegate.
         /// </summary>
         public static Func<T1, T2> Memoize<T1, T2>(this Func<T1, T2> func)
-        {
-            return Lambda<T1, T2>.Memoize(func);
-        }
+            => Lambda<T1, T2>.Memoize(func);
 
         /// <summary>
         /// Invokes the Lambda{T1, T2, T3}.Memoize delegate.
         /// </summary>
         public static Func<T1, T2, T3> Memoize<T1, T2, T3>(this Func<T1, T2, T3> func)
-        {
-            return Lambda<T1, T2, T3>.Memoize(func);
-        }
+            => Lambda<T1, T2, T3>.Memoize(func);
 
         /// <summary>
         /// Invokes the Lambda{T1, T2, T3, T4}.Memoize delegate.
         /// </summary>
         public static Func<T1, T2, T3, T4> Memoize<T1, T2, T3, T4>(this Func<T1, T2, T3, T4> func)
-        {
-            return Lambda<T1, T2, T3, T4>.Memoize(func);
-        }
+            => Lambda<T1, T2, T3, T4>.Memoize(func);
 
         /// <summary>
         /// Invokes the Lambda{T1, T2, T3, T4, T5}.Memoize delegate.
         /// </summary>
         public static Func<T1, T2, T3, T4, T5> Memoize<T1, T2, T3, T4, T5>(this Func<T1, T2, T3, T4, T5> func)
-        {
-            return Lambda<T1, T2, T3, T4, T5>.Memoize(func);
-        }
+            => Lambda<T1, T2, T3, T4, T5>.Memoize(func);
     }
 }

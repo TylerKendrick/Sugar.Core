@@ -26,10 +26,9 @@
         /// <param name="cultureInfo">Uses Thread.CurrentThread.CurrentUICulture if null.</param>
         public static bool IsNumber(this string self, CultureInfo cultureInfo = null)
         {
-            double result;
             cultureInfo = cultureInfo ?? Thread.CurrentThread.CurrentUICulture;
-            return Double.TryParse(self, NumberStyles.Any,
-                cultureInfo, out result);
+            return double.TryParse(self, NumberStyles.Any,
+                cultureInfo, out double result);
         }
     }
 }
